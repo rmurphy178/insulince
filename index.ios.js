@@ -20,7 +20,6 @@ export default class insulince extends Component {
           Welcome to Insulince!
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.ios.js
         </Text>
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}
