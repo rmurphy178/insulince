@@ -17,7 +17,6 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
-    "postinstall": "rndebugger-open",
     "postinstall": "remotedev-debugger --hostname localhost --port 5678 --injectserver"
   },
   "jest": {
@@ -26,6 +25,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "expo": "^19.0.0",
+    "npm": "^4.6.1",
     "react": "16.0.0-alpha.12",
     "react-native": "^0.46.1",
     "react-native-elements": "^0.15.0",

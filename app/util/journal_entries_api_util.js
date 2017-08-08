@@ -2,7 +2,8 @@ import axios from 'axios';
 
 export const fetchAllJournalEntries = () => {
   const url = "/api/journal_entries";
-  return axios.get(url);
+  return axios.get(url)
+    .then(response => console.log(response));
 };
 
 export const createJournalEntry = journalEntry => {
