@@ -25,6 +25,8 @@ const MeasurementsReducer = (state = defaultState, action) => {
       return nextState;
     case CLEAR_STORE:
       return defaultState;
+      default:
+        return state;
   }
 };
 
