@@ -25,6 +25,8 @@ const JournalEntriesReducer = (state = defaultState, action) => {
       return nextState;
     case CLEAR_STORE:
       return defaultState;
+      default:
+        return state;
   }
 };
 
