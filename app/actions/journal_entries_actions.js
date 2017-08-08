@@ -1,3 +1,6 @@
+import * as journalEntriesAPIUtil from '../util/journal_entries_api_util';
+import { receiveErrors, clearErrors } from './errors_actions';
+
 export const RECEIVE_ALL_JOURNAL_ENTRIES = "RECEIVE_ALL_JOURNAL_ENTRIES";
 export const RECEIVE_JOURNAL_ENTRY = "RECEIVE_JOURNAL_ENTRY";
 
@@ -13,4 +16,43 @@ export const receiveJournalEntry = journalEntry => {
     type: RECEIVE_JOURNAL_ENTRY,
     journalEntry
   };
+};
+
+export const fetchAllJournalEntries = () => dispatch => {
+  return(
+    journalEntriesAPIUtil.fetchAllJournalEntries()
+      .then(journalEntries => {
+        dispatch(receiveAllJournalEntries(journalEntries));
+        dispatch(clearErrors());
+      }, errors => receiveErrors(errors))
+  );
+};
+
+export const createJournalEntry = journalEntry => dispatch => {
+  return(
+    journalEntriesAPIUtil.createJournalEntry(journalEntry)
+      .then(newJournalEntry => {
+        dispatch(receiveJournalEntry(newJournalEntry));
+        dispatch(clearErrors());
+      }, errors => receiveErrors(errors))
+  );
+};
+
+export const updateJournalEntry = journalEntry => dispatch => {
+  return(
+    journalEntriesAPIUtil.updateJournalEntry(journalEntry)
+      .then(updatedJournalEntry => {
+        dispatch(receiveJournalEntry(updatedJournalEntry));
+        dispatch(clearErrors());
+      }, errors => receiveErrors(errors))
+  );
+};
+
+export const deleteJournalEntry = journalEntryId => dispatch => {
+  return(
+    journalEntriesAPIUtil.deleteJournalEntry(journalEntryId)
+      .then(() => {
+        dispatch(clearErrors());
+      }, errors => receiveErrors(errors))
+  );
 };
