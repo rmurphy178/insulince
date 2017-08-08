@@ -6,14 +6,17 @@ import {
   View
 } from 'react-native';
 import { Provider } from 'react-redux';
-import  SignUp from './screens/auth/signup';
-import  Login from './screens/auth/login';
+// import  SignUp from './screens/auth/signup';
+// import  Login from './screens/auth/login';
+import { AuthNav } from './config/router';
+
 
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.store = configureStore();
+
   }
 
   render () {
@@ -21,18 +24,13 @@ export default class App extends Component {
     return (
       <Provider store={this.store}>
 
-      <Login />
+        <AuthNav />
 
       </Provider>
     );
   }
 }
 
-
-//
-// const Test = StackNavigator({
-//   App: { screen: App },
-// });
 
 const styles = StyleSheet.create({
   container: {
