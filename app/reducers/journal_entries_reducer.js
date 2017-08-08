@@ -20,13 +20,15 @@ const JournalEntriesReducer = (state = defaultState, action) => {
       return nextState;
     case(RECEIVE_JOURNAL_ENTRY):
       nextState = merge({}, state);
-      nextState.allIds.push(action.journalEntry.id);
       nextState.byId[action.journalEntry.id] = action.journalEntry;
+      if (!nextState.allIds.includes(action.journalEntry.id)) {
+        nextState.allIds.push(action.journalEntry.id);
+      }
       return nextState;
     case CLEAR_STORE:
       return defaultState;
-      default:
-        return state;
+    default:
+      return state;
   }
 };
 
