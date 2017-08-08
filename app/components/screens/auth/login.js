@@ -16,7 +16,7 @@ class Login extends Component {
       username: '',
       password: '',
       errors: []
-    }
+    };
 
   this.logInPressed = this.logInPressed.bind(this);
   this.redirectToSignUp = this.redirectToSignUp.bind(this);
@@ -26,7 +26,11 @@ class Login extends Component {
     this.props.login({ username: this.state.username,
                        password: this.state.password
           })
-        // .then(go somewhere)
+        .then(currentUser => {
+          if (currentUser) {
+            return this.props.navigation.navigate('Tabs');
+          }
+        });
    }
 
    redirectToSignUp() {
@@ -49,7 +53,7 @@ class Login extends Component {
 
 
        </KeyboardAvoidingView>
-     )
+     );
    }
 }
 
