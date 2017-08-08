@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'flex-end',
     flex: 1,
-    padding: 60,
-    backgroundColor: '#510847'
+    padding: 60
+
 
   },
   loginButton: {

@@ -51,6 +51,43 @@ class Login extends Component {
        </View>
        <Text>{this.state.errors}</Text>
 
+       <View style={baseStyles.inputContainer}>
+         <TextInput style={baseStyles.input}
+          placeholder='username'
+          value={this.state.username}
+          onChangeText={(text) => this.setState({username: text})}
+        />
+       </View>
+
+      <View style={baseStyles.inputContainer}>
+        <TextInput style={baseStyles.input}
+          placeholder='password'
+          value={this.state.password}
+          secureTextEntry={true}
+          onChangeText={(text) => this.setState({password: text})}
+        />
+      </View>
+
+      <View style={styles.buttonsContainer}>
+        <TouchableOpacity style={[baseStyles.buttonContainer, styles.loginButton]}
+          onPress={this.logInPressed}
+        >
+          <Text style={styles.buttonText}>Log In</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[baseStyles.buttonContainer, styles.loginButton]}
+          onPress={this.redirectToSignUp}>
+
+         <Text style={baseStyles.buttonText}>Not a member? Sign Up!</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[baseStyles.buttonContainer, styles.loginButton]}
+         onPress={this.handleDemo}>
+
+          <Text style={baseStyles.buttonText}>Demo Login</Text>
+        </TouchableOpacity>
+
+      </View>
 
        </KeyboardAvoidingView>
      );
@@ -60,5 +97,14 @@ class Login extends Component {
 export default Login;
 
 const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'flex-end',
+    flex: 1,
+    padding: 60,
+    // backgroundColor: '#510847'
+  },
+  loginButton: {
+    marginBottom: 20
+  }
 
 });
