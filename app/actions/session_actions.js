@@ -16,8 +16,16 @@ export const clearStore = () => {
   };
 };
 
+export const signUp = user => dispatch => {
+  return(
+    sessionAPIUtil.signUp(user).then(currentUser => {
+      dispatch(receiveCurrentUser(currentUser));
+    }, errors => console.log(errors))
+  );
+};
+
 export const login = user => dispatch => {
-  return (
+  return(
     sessionAPIUtil.login(user).then(currentUser => {
       dispatch(receiveCurrentUser(currentUser));
     }, errors => console.log(errors))
@@ -25,7 +33,7 @@ export const login = user => dispatch => {
 };
 
 export const logout = user => dispatch => {
-  return (
+  return(
     sessionAPIUtil.logout().then(() => {
       dispatch(receiveCurrentUser(null));
       dispatch(clearStore());
