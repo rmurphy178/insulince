@@ -6,6 +6,8 @@ import {
   View
 } from 'react-native';
 import { Provider } from 'react-redux';
+import  SignUp from './screens/auth/signup';
+import  Login from './screens/auth/login';
 
 export default class App extends Component {
   constructor(props) {
@@ -18,12 +20,9 @@ export default class App extends Component {
     window.store = this.store;
     return (
       <Provider store={this.store}>
-        <View style={styles.container}>
-          <Text>Insulince</Text>
-          <Text>Open up App.js to start working on your app!</Text>
-          <Text>Changes you make will automatically reload.</Text>
-          <Text>Shake your phone to open the developer menu.</Text>
-        </View>
+
+      <Login />
+
       </Provider>
     );
   }
