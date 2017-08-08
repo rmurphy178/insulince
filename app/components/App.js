@@ -21,7 +21,7 @@ export default class App extends Component {
     return (
       <Provider store={this.store}>
 
-      <Login />
+      <SignUp />
 
       </Provider>
     );
