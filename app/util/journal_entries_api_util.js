@@ -7,7 +7,7 @@ export const fetchAllJournalEntries = () => {
 
 export const createJournalEntry = journalEntry => {
   const url = "/api/journal_entries";
-  return axios.post(url)
+  return axios.post(url, { journalEntry })
     .then(response => console.log(response));
 };
 
