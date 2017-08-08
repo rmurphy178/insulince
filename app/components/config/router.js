@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator, DrawerNavigator } from 'react-navigation';
 
 
 // TODO:
@@ -12,4 +12,6 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 
 // and custom navigation views also possible but only StackRouter and TabRouter
 
-// included as standard routers.
+// included as standard routers. Top level navigators
+
+// accept these props: onNavigationStateChange(prevState, newState, action) 

@@ -6,7 +6,7 @@ import {
   View
 } from 'react-native';
 import { Provider } from 'react-redux';
-import { StackNavigator } from 'react-navigation';
+// import { StackNavigator } from 'react-navigation';
 
 export default class App extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ export default class App extends Component {
 }
 
 
-// 
+//
 // const Test = StackNavigator({
 //   App: { screen: App },
 // });
