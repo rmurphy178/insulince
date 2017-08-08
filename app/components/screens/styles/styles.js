@@ -1,7 +1,8 @@
 const baseStyles = {
   inputContainer: {
     borderBottomWidth: 1,
-    borderBottomColor: '#CC7AC1'
+    borderBottomColor: '#F2C500'
+
   },
   input: {
     textAlign: 'center',
@@ -9,12 +10,13 @@ const baseStyles = {
     margin: 2,
     marginTop: 0,
     paddingBottom: 1,
-    color: '#CC7AC1'
+    color: 'white'
+
   },
   buttonContainer: {
     height: 50,
     borderWidth: 1,
-    borderColor: '#CC7AC1',
+    borderColor: '#F2C500',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
@@ -24,7 +26,7 @@ const baseStyles = {
   },
   buttonText: {
     textAlign: 'center',
-    color: '#CC7AC1'
+    color: '#A4FFF8'
   }
 
 

@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { Provider } from 'react-redux';
 import  SignUp from './screens/auth/signup';
+import  Login from './screens/auth/login';
 
 export default class App extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ export default class App extends Component {
     return (
       <Provider store={this.store}>
 
-      <SignUp />
+      <Login />
 
       </Provider>
     );

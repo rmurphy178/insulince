@@ -1,4 +1,4 @@
-import react, { Component } from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -39,6 +39,14 @@ class Login extends Component {
        style={styles.container}
        behavior={'padding'}
        >
+
+       <View>
+         {this.state.errors.map((error, i) => (
+           <Text key={i}>{error}</Text>
+         ))}
+       </View>
+       <Text>{this.state.errors}</Text>
+
 
        </KeyboardAvoidingView>
      )
