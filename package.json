@@ -17,7 +17,6 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
-    "postinstall": "rndebugger-open",
     "postinstall": "remotedev-debugger --hostname localhost --port 5678 --injectserver"
   },
   "jest": {
@@ -31,6 +30,7 @@
     "react-native-elements": "^0.15.0",
     "react-native-progress": "^3.3.0",
     "react-native-vector-icons": "^4.3.0",
+    "react-navigation": "^1.0.0-beta.11",
     "react-redux": "^5.0.5",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
