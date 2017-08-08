@@ -20,13 +20,15 @@ const MeasurementsReducer = (state = defaultState, action) => {
       return nextState;
     case(RECEIVE_MEASUREMENT):
       nextState = merge({}, state);
-      nextState.allIds.push(action.measurement.id);
       nextState.byId[action.measurement.id] = action.measurement;
+      if (!nextState.allIds.includes(action.measurement.id)) {
+        nextState.allIds.push(action.measurement.id);
+      }
       return nextState;
     case CLEAR_STORE:
       return defaultState;
-      default:
-        return state;
+    default:
+      return state;
   }
 };
 
