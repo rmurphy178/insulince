@@ -16,7 +16,7 @@ class Login extends Component {
       username: '',
       password: '',
       errors: []
-    }
+    };
 
   this.logInPressed = this.logInPressed.bind(this);
   this.redirectToSignUp = this.redirectToSignUp.bind(this);
@@ -25,7 +25,7 @@ class Login extends Component {
   logInPressed() {
     this.props.login({ username: this.state.username,
                        password: this.state.password
-          })
+          });
         // .then(go somewhere)
    }
 
@@ -86,7 +86,7 @@ class Login extends Component {
       </View>
 
        </KeyboardAvoidingView>
-     )
+     );
    }
 }
 
