@@ -13,6 +13,13 @@ const mapStateToProps = ({ session }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllMeasurements:
+    createMeasurement: measurement => dispatch(createMeasurement(measurement));
+    deleteMeasurement: id => dispatch(deleteMeasurement(id));
+    updateMeasurement: id => dispatch(updateMeasurement(id));
   };
 };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Measurements);
