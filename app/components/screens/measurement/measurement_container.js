@@ -24,6 +24,12 @@ class Measurements extends Component {
     this.editPressed = this.editPressed.bind(this);
   }
 
+  handleEdit(event) {
+    const editInput = document.getElementById(this.edit.name);
+    editInput.classList.remove('hidden');
+    editInput.focus();
+  }
+
   editPressed() {
     this.props.edit({
       chest: this.state.chest,
