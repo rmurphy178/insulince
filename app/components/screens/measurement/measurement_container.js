@@ -1,62 +1,25 @@
-import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-  KeyboardAvoidingView
-} from 'react-native';
-import baseStyles from '../styles/styles';
+import { connect } from 'react-redux';
+import measurement from './measurement';
+import { fetchAllMeasurements, createMeasurement, deleteMeasurement, updateMeasurement } from '../../actions/measurements_actions';
 
-class Measurements extends Component {
-  constructor() {
-    super();
-    this.state = {
-      chest: '',
-      waist: '',
-      hips: '',
-      weight: '',
-      height: '',
-      errors: []
-    }
 
-    this.editPressed = this.editPressed.bind(this);
-  }
+const mapStateToProps = ({ session }) => {
+  return {
+    currentUser = state.currentUser,
+    measurement = state.measurement,
+    errors: session.errors
+  };
+};
 
-  handleEdit(event) {
-    const editInput = document.getElementById(this.edit.name);
-    editInput.classList.remove('hidden');
-    editInput.focus();
-  }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createMeasurement: measurement => dispatch(createMeasurement(measurement));
+    deleteMeasurement: id => dispatch(deleteMeasurement(id));
+    updateMeasurement: id => dispatch(updateMeasurement(id));
+  };
+};
 
-  editTag(event) {
-    const key = event.keyCode;
-    if (key === 13) {
-      this.props.updateTag(event.currentTarget.id, this.state)
-        .then(() => {
-          document.getElementById(this.props.tag.name).classList.add('hidden');
-        }, errors => this.setState({
-            name: this.props.tag.name
-          }));
-    }
-  }
-
-  editPressed() {
-    this.props.edit({
-      chest: this.state.chest,
-      waist: this.state.waist,
-      hips: this.state.hips,
-      weight: this.state.weight,
-      height: this.state.height
-    })
-    // should this redirect or just update?
-  }
-
-  render() {
-    return (
-
-    )
-  }
-
-}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Measurements);
