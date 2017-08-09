@@ -12,7 +12,6 @@ import SplashScreenContainer from '../screens/auth/splash_container';
 
 
 
-
 export const AuthNav = StackNavigator({
   Login: {
     screen: LoginContainer
