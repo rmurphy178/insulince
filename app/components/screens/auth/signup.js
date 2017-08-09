@@ -16,6 +16,8 @@ class SignUp extends Component {
       password: '',
     };
     this.signUpUser = this.signUpUser.bind(this);
+    this.onSignUpPress = this.onSignUpPress.bind(this);
+    this.redirectToLogin = this.redirectToLogin.bind(this);
   }
 
     onSignUpPress() {
@@ -32,6 +34,10 @@ class SignUp extends Component {
               return this.props.navigation.navigate('Home');
             }
           });
+    }
+
+    redirectToLogin() {
+      this.props.navigation.navigate('LoginContainer');
     }
 
     render() {
