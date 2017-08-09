@@ -13,7 +13,7 @@ export const login = user => {
 };
 
 export const logout = user => {
-  const url = "https://insulince-api.herokuapp.com/api/users";
+  const url = "https://insulince-api.herokuapp.com/api/user_token";
   return axios.delete(url, { user })
     .then(response => console.log(response));
 };
