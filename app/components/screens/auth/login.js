@@ -23,8 +23,9 @@ class Login extends Component {
   }
 
   logInPressed() {
-    this.props.login({ userCredential: this.state.userCredential,
-                       password: this.state.password
+    this.props.login({
+            userCredential: this.state.userCredential,
+            password: this.state.password
           })
         .then(currentUser => {
           if (currentUser) {
