@@ -31,7 +31,7 @@ class Login extends Component {
             return this.props.navigation.navigate('Home');
           }
         });
-        // .then(go somewhere)
+
    }
 
    redirectToSignUp() {

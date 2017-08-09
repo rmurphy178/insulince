@@ -6,6 +6,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import baseStyles from '../styles/styles';
+import AYSNC from '../../../util/aync_util';
 
 
 class Logout extends Component {
@@ -16,7 +17,8 @@ class Logout extends Component {
   }
 
   handleLogout() {
-  //  remove token
+    AYSNC.removeItem('token')
+      .then(this.props.navigation.navigate('Login'));
   }
 
   render() {

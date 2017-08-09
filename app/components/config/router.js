@@ -9,7 +9,12 @@ import LoginContainer from '../screens/auth/login_container';
 import SignUpContainer from '../screens/auth/signup_container';
 
 
-export const AuthNav = StackNavigator({
+
+
+
+
+
+export const AuthNav = TabNavigator({
   Login: {
     screen: LoginContainer
   },
