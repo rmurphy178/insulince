@@ -25,12 +25,17 @@ class Login extends Component {
   logInPressed() {
     this.props.login({ username: this.state.username,
                        password: this.state.password
+<<<<<<< HEAD
           })
         .then(currentUser => {
           if (currentUser) {
             return this.props.navigation.navigate('Home');
           }
         });
+=======
+          });
+        // .then(go somewhere)
+>>>>>>> 937bad76dcc538cb64366ccfed6093dce8ec32d9
    }
 
    redirectToSignUp() {

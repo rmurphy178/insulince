@@ -1,5 +1,13 @@
 {
   "expoServerPort": 19000,
   "packagerPort": 19001,
+<<<<<<< HEAD
   "packagerPid": 3699
 }
+=======
+  "packagerPid": 86815,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null
+}
+>>>>>>> 937bad76dcc538cb64366ccfed6093dce8ec32d9
