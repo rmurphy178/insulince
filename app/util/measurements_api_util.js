@@ -2,8 +2,16 @@ import axios from 'axios';
 
 export const fetchAllMeasurements = () => {
   const url = "/api/journal_entries";
-  return axios.get(url)
-    .then(response => console.log(response));
+  return axios({
+    method: 'GET',
+    url: url,
+    headers: {
+      // Authorization: `JWT ${}`
+    }
+  }).then(response => console.log(response));
+
+
+
 };
 
 export const createMeasurement = measurement => {
