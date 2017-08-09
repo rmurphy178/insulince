@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native';
 
 
 // anonymous aync function expression... consider supplementing or
-// replacing with redux-sagas if problematic during testing
+// replacing with redux-sagas? if problematic during testing
 
 export default {
   async setItem(key, value) {
