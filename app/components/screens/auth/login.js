@@ -25,8 +25,13 @@ class Login extends Component {
   logInPressed() {
     this.props.login({ username: this.state.username,
                        password: this.state.password
-          });
-        // .then(go somewhere)
+          })
+        .then(currentUser => {
+          if (currentUser) {
+            return this.props.navigation.navigate('Home');
+          }
+        });
+
    }
 
    redirectToSignUp() {

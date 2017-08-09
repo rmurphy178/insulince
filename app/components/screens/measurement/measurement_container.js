@@ -30,6 +30,18 @@ class Measurements extends Component {
     editInput.focus();
   }
 
+  editTag(event) {
+    const key = event.keyCode;
+    if (key === 13) {
+      this.props.updateTag(event.currentTarget.id, this.state)
+        .then(() => {
+          document.getElementById(this.props.tag.name).classList.add('hidden');
+        }, errors => this.setState({
+            name: this.props.tag.name
+          }));
+    }
+  }
+
   editPressed() {
     this.props.edit({
       chest: this.state.chest,
