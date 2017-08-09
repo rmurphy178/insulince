@@ -1,6 +1,6 @@
 import React from 'react';
 import { StackNavigator, TabNavigator } from 'react-navigation';
-
+import { Icon } from 'react-native-elements';
 
 // Tab Screens
 
@@ -11,10 +11,7 @@ import SignUpContainer from '../screens/auth/signup_container';
 
 
 
-
-
-
-export const AuthNav = TabNavigator({
+export const AuthNav = StackNavigator({
   Login: {
     screen: LoginContainer
   },

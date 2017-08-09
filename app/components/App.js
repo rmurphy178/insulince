@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { Provider } from 'react-redux';
 import { AuthNav } from './config/router';
-import AppWithNavigationState from './appNavigator/app_navigator';
+
 
 export default class App extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export default class App extends Component {
   render () {
     return (
       <Provider store={this.store}>
-        <AppWithNavigationState />      
+        <AuthNav />
       </Provider>
     );
   }
