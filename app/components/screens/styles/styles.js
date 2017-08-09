@@ -22,7 +22,7 @@ const baseStyles = {
     marginBottom: 10,
     marginTop: 45,
     borderRadius: 15,
-    borderWidth: 2
+    // borderWidth: 2
   },
   buttonText: {
     textAlign: 'center',
@@ -31,6 +31,6 @@ const baseStyles = {
 
 
 
-}
+};
 
-export default baseStyles
+export default baseStyles;
