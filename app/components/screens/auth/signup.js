@@ -26,8 +26,12 @@ class SignUp extends Component {
     signUpUser() {
       this.props.signup({ username: this.state.username,
                          password: this.state.password
-            });
-      // .then go to overview
+            })
+          .then(currentUser => {
+            if (currentUser) {
+              return this.props.navigation.navigate('Home');
+            }
+          });
     }
 
     render() {
