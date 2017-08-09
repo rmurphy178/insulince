@@ -13,7 +13,7 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
-      username: '',
+      userCredential: '',
       password: '',
       errors: []
     };
@@ -23,7 +23,7 @@ class Login extends Component {
   }
 
   logInPressed() {
-    this.props.login({ username: this.state.username,
+    this.props.login({ userCredential: this.state.userCredential,
                        password: this.state.password
           })
         .then(currentUser => {
@@ -54,9 +54,9 @@ class Login extends Component {
 
        <View style={baseStyles.inputContainer}>
          <TextInput style={baseStyles.input}
-          placeholder='username'
-          value={this.state.username}
-          onChangeText={(text) => this.setState({username: text})}
+          placeholder='userCredential'
+          value={this.state.userCredential}
+          onChangeText={(text) => this.setState({userCredential: text})}
         />
        </View>
 
