@@ -21,7 +21,10 @@ class Measurements extends Component {
       errors: []
     }
 
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.update = this.update.bind(this);
     this.updatePressed = this.updatePressed.bind(this);
+
   }
 
   handleUpdate(event) {
@@ -33,9 +36,9 @@ class Measurements extends Component {
   update(event) {
     const key = event.keyCode;
     if (key === 13) {
-      this.props.updateTag(event.currentTarget.id, this.state)
+      this.props.updateItem(event.currentTarget.id, this.state)
         .then(() => {
-          document.getElementById(this.props.tag.name).classList.add('hidden');
+          document.getElementById(this.props.update.name).classList.add('hidden');
         }, errors => this.setState({
             name: this.props.tag.name
           }));
@@ -67,9 +70,18 @@ class Measurements extends Component {
           ))}
         </View>
         <Text>{this.state.errors}</Text>
-
-
-
+        <View style={styles.container}>
+          <Text style={styles.update}>Weight</Text>
+          <TouchableOpacity style={styles.updateButton}
+            onPress={this.updatePressed}
+          >
+            <Text style={styles.buttonText}>Edit</Text>
+          </TouchableOpacity>
+          <Text style={styles.update}>Chest</Text>
+          <Text style={styles.update}>Waist</Text>
+          <Text style={styles.update}>Hips</Text>
+          <Text style={styles.update}>Height</Text>
+        </View>
 
 
 
@@ -81,3 +93,13 @@ class Measurements extends Component {
 }
 
 export default Measurements;
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'flex-end',
+    flex: 1,
+    padding: 60,
+    // backgroundColor: '#510847'
+  }
+
+});
