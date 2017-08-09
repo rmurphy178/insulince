@@ -6,8 +6,6 @@ import {
   View
 } from 'react-native';
 import { Provider } from 'react-redux';
-// import  SignUp from './screens/auth/signup';
-// import  Login from './screens/auth/login';
 import { AuthNav } from './config/router';
 
 
@@ -20,12 +18,9 @@ export default class App extends Component {
   }
 
   render () {
-    window.store = this.store;
     return (
       <Provider store={this.store}>
-
         <AuthNav />
-
       </Provider>
     );
   }

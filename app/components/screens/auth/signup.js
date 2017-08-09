@@ -19,14 +19,14 @@ class SignUp extends Component {
   }
 
     onSignUpPress() {
-      this.state.password === this.state.confirm_password
-        this.signUpUser()
+      this.state.password === this.state.confirm_password;
+        this.signUpUser();
     }
 
     signUpUser() {
       this.props.signup({ username: this.state.username,
                          password: this.state.password
-            })
+            });
       // .then go to overview
     }
 
@@ -55,11 +55,11 @@ class SignUp extends Component {
             </TouchableOpacity>
           </View>
         </View>
-      )
+      );
     }
 }
 
-export default SignUp
+export default SignUp;
 
 const styles = StyleSheet.create({
   container: {
@@ -74,4 +74,4 @@ const styles = StyleSheet.create({
 
   }
 
-})
+});

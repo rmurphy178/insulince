@@ -3,15 +3,16 @@ import { login, signUp, logout } from '../../../actions/session_actions';
 import SignUp from './signup';
 
 
-const mapStateToProps = ({ session }) => {
+const mapStateToProps = ({ currentUser, errors }) => {
   return {
-    errors: session.errors
+    errors: errors,
+    currentUser: currentUser
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signup: user => dispatch(signUp(user))
+    signUp: user => dispatch(signUp(user))
   };
 };
 

@@ -28,7 +28,7 @@ class Login extends Component {
           })
         .then(currentUser => {
           if (currentUser) {
-            return this.props.navigation.navigate('Tabs');
+            return this.props.navigation.navigate('Home');
           }
         });
    }
