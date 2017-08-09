@@ -19,7 +19,7 @@ class Measurements extends Component {
       weight: '',
       height: '',
       errors: []
-    }
+    };
 
     this.handleUpdate = this.handleUpdate.bind(this);
     this.update = this.update.bind(this);
@@ -52,7 +52,7 @@ class Measurements extends Component {
       hips: this.state.hips,
       weight: this.state.weight,
       height: this.state.height
-    })
+    });
     // should this redirect or just update?
   }
 
@@ -87,7 +87,7 @@ class Measurements extends Component {
 
         </View>
       </KeyboardAvoidingView>
-    )
+    );
   }
 
 }
