@@ -8,11 +8,12 @@
     "react-native-scripts": "1.1.0",
     "react-test-renderer": "16.0.0-alpha.12",
     "remote-redux-devtools": "^0.5.12",
-    "remotedev-rn-debugger": "^0.8.2"
+    "remotedev-rn-debugger": "^0.8.2",
+    "remotedev-server": "^0.2.3"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts start",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
@@ -25,6 +26,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "expo": "^19.0.0",
+    "npm": "^4.6.1",
     "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.12",
     "react-native": "^0.46.1",
