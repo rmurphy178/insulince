@@ -29,18 +29,21 @@ export const signUp = user => dispatch => {
 
 export const login = user => dispatch => {
   return(
-    sessionAPIUtil.login(user).then(currentUser => {
-      dispatch(receiveCurrentUser(currentUser));
-      dispatch(clearErrors());
-    }, errors => dispatch(receiveErrors(errors)))
+    sessionAPIUtil.login(user)
+      .then(ASYNC.addItem("auth_token", user.auth_token))
+      .then(currentUser => {
+        dispatch(receiveCurrentUser(currentUser));
+        dispatch(clearErrors());
+      }, errors => dispatch(receiveErrors(errors)))
   );
 };
 
 export const logout = user => dispatch => {
   return(
-    ASYNC.removeItem("auth_token").then(() => {
-      dispatch(receiveCurrentUser(null));
-      dispatch(clearStore());
-    }, errors => dispatch(receiveErrors(errors)))
+    ASYNC.removeItem("auth_token")
+      .then(() => {
+        dispatch(receiveCurrentUser(null));
+        dispatch(clearStore());
+      }, errors => dispatch(receiveErrors(errors)))
   );
 };
