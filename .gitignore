@@ -41,6 +41,7 @@ buck-out/
 \.buckd/
 *.keystore
 
+
 # fastlane
 #
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
@@ -51,3 +52,5 @@ buck-out/
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
+
+constants.js

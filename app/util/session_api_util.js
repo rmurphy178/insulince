@@ -1,15 +1,19 @@
 import axios from 'axios';
-
-const url = "/api/users";
+import { AsyncStorage } from 'react-native';
 
 export const signUp = user => {
-  return axios.post(url, { user });
+  const url = "https://insulince-api.herokuapp.com/api/users";
+  return axios.post(url, { user })
+    .then(response => console.log(response));
 };
 
 export const login = user => {
-  return axios.get(url).then(response => console.log(response));
+  const url = "https://insulince-api.herokuapp.com/api/user_token";
+  return axios.post(url, { auth: user })
+    .then(response => console.log(response));
 };
 
 export const logout = user => {
-  return axios.delete(url).then(response => console.log(response));
+  console.log(AsyncStorage);
+  // remove auth token from storage
 };
