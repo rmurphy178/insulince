@@ -29,7 +29,6 @@ export const signUp = user => dispatch => {
 export const login = user => dispatch => {
   return(
     sessionAPIUtil.login(user)
-      .then(ASYNC.addItem("auth_token", user.auth_token))
       .then(currentUser => {
         dispatch(receiveCurrentUser(currentUser));
         dispatch(clearErrors());

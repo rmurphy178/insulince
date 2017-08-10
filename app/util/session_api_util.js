@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AsyncStorage } from 'react-native';
+import ASYNC from '../util/async_util';
 
 export const signUp = user => {
   const url = "https://insulince-api.herokuapp.com/api/users";
@@ -8,7 +8,8 @@ export const signUp = user => {
 };
 
 export const login = user => {
+  console.log(user);
   const url = "https://insulince-api.herokuapp.com/api/user_token";
   return axios.post(url, { auth: user })
-    .then(response => console.log(response));
+    .then(ASYNC.setItem("auth_token", user.auth_token));
 };
