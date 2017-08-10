@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { Provider } from 'react-redux';
 import { AuthNav } from './config/router';
-
+import Header from './header/header';
 
 export default class App extends Component {
   constructor(props) {
@@ -19,6 +19,9 @@ export default class App extends Component {
   render () {
     return (
       <Provider store={this.store}>
+          <View style={{ flex: 1 }}>
+            <Header headerText={'Insulince'} />
+          </View>
         <AuthNav />
       </Provider>
     );
