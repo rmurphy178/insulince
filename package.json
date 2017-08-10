@@ -1,6 +1,6 @@
 {
   "name": "insulince",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "devDependencies": {
     "jest-expo": "~19.0.0",
@@ -14,33 +14,33 @@
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch",
-    "postinstall": "remotedev-debugger --hostname localhost --port 5678 --injectserver"
-  },
-  "jest": {
-    "preset": "jest-expo"
+    "test": "jest"
   },
   "dependencies": {
-    "art": "^0.10.1",
     "axios": "^0.16.2",
-    "d3": "^4.10.0",
-    "d3-shape": "^1.2.0",
     "expo": "^19.0.0",
     "npm": "^4.6.1",
     "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.12",
-    "react-native": "^0.46.1",
+    "react-native": "0.47.1",
     "react-native-elements": "^0.15.0",
     "react-native-progress": "^3.3.0",
     "react-native-vector-icons": "^4.3.0",
     "react-navigation": "^1.0.0-beta.11",
-    "react-redux": "^5.0.5",
+    "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "remote-redux-devtools": "^0.5.12"
+  },
+  "devDependencies": {
+    "babel-jest": "20.0.3",
+    "babel-preset-react-native": "2.1.0",
+    "jest": "20.0.4",
+    "react-test-renderer": "16.0.0-alpha.12"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }
