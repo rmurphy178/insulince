@@ -27,10 +27,12 @@ const baseStyles = {
   buttonText: {
     textAlign: 'center',
     color: '#A4FFF8'
+  },
+  headerContentStyle: {
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    textAlign: 'center'
   }
-
-
-
 };
 
 export default baseStyles;

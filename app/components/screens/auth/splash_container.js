@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import SplashScreen from './splash';
 import ASYNC from '../../../util/async_util.js';
-// import { receiveCurrentUser } from '../../..actions/session_actions';
+import { receiveCurrentUser } from '../../../actions/session_actions';
 
 const mapStateToProps = ({ currentUser, errors }) => {
   return {
@@ -12,7 +12,7 @@ const mapStateToProps = ({ currentUser, errors }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // receiveCurrentUser: currentUser => dispatch(receiveCurrentUser(currentUser)),
+    receiveCurrentUser: currentUser => dispatch(receiveCurrentUser(currentUser)),
     setItem: ASYNC.setItem,
     getItem: ASYNC.getItem,
     removeItem: ASYNC.removeItem
