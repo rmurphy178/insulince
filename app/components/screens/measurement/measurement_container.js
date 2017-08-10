@@ -1,51 +1,25 @@
-import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-  KeyboardAvoidingView
-} from 'react-native';
-import baseStyles from '../styles/styles';
+import { connect } from 'react-redux';
+import Measurements from './measurement';
+// import { fetchAllMeasurements, createMeasurement, deleteMeasurement, updateMeasurement } from '../../actions/measurements_actions';
 
-class Measurements extends Component {
-  constructor() {
-    super();
-    this.state = {
-      chest: '',
-      waist: '',
-      hips: '',
-      weight: '',
-      height: '',
-      errors: []
-    }
 
-    this.editPressed = this.editPressed.bind(this);
-  }
+const mapStateToProps = ({  currentUser, errors, measurements }) => {
+  return {
+    errors: errors,
+    currentUser: currentUser,
+    measurements: measurements
+  };
+};
 
-  editPressed() {
-    this.props.edit({
-      chest: this.state.chest,
-      waist: this.state.waist,
-      hips: this.state.hips,
-      weight: this.state.weight,
-      height: this.state.height
-    })
-    // should this redirect or just update?
-  }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createMeasurement: measurement => dispatch(createMeasurement(measurement)),
+    deleteMeasurement: id => dispatch(deleteMeasurement(id)),
+    updateMeasurement: id => dispatch(updateMeasurement(id))
+  };
+};
 
-  render() {
-    return (
-      <KeyboardAvoidingView
-      style={styles.container}
-      behavior={'padding'}
-      >
-
-      
-
-      </KeyboardAvoidingView>
-    )
-  }
-
-}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Measurements);
