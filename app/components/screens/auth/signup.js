@@ -9,8 +9,8 @@ import {
 import baseStyles from '../styles/styles';
 
 class SignUp extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       username: '',
       password: '',
@@ -26,7 +26,7 @@ class SignUp extends Component {
     }
 
     signUpUser() {
-      this.props.signup({ username: this.state.username,
+      this.props.signUp({ username: this.state.username,
                          password: this.state.password
             })
           .then(currentUser => {
