@@ -14,6 +14,7 @@ import Home from '../screens/home/home';
 
 
 
+
 export const AuthNav = StackNavigator({
   Login: { screen: LoginContainer },
   SignUp: { screen: SignUpContainer},

@@ -9,6 +9,10 @@ import {
 } from 'react-native';
 import baseStyles from '../styles/styles';
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 9a2646984807c6a927d2d115ab0c57516cee84e2
 class Measurements extends Component {
   constructor() {
     super();
@@ -34,15 +38,7 @@ class Measurements extends Component {
   }
 
   update(event) {
-    const key = event.keyCode;
-    if (key === 13) {
-      this.props.updateItem(event.currentTarget.id, this.state)
-        .then(() => {
-          document.getElementById(this.props.update.name).classList.add('hidden');
-        }, errors => this.setState({
-            name: this.props.tag.name
-          }));
-    }
+
   }
 
   updatePressed() {
@@ -70,6 +66,7 @@ class Measurements extends Component {
           ))}
         </View>
         <Text>{this.state.errors}</Text>
+
         <View style={styles.container}>
           <Text style={styles.update}>Weight</Text>
           <TouchableOpacity style={styles.updateButton}
