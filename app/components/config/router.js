@@ -8,20 +8,18 @@ import { Icon } from 'react-native-elements';
 import LoginContainer from '../screens/auth/login_container';
 import SignUpContainer from '../screens/auth/signup_container';
 import SplashScreenContainer from '../screens/auth/splash_container';
+import JournalEntries from '../screens/journal_entries/journal_entries';
+import Home from '../screens/home/home';
 
 
 
 
 export const AuthNav = StackNavigator({
-  Login: {
-    screen: LoginContainer
-  },
-  SplashScreenContainer: {
-    screen: SplashScreenContainer
-  },
-  SignUpContainer: {
-    screen: SignUpContainer
-  }
+  Login: { screen: LoginContainer },
+  SplashScreenContainer: { screen: SplashScreenContainer},
+  SignUpContainer: { screen: SignUpContainer},
+  Home: { screen: Home },
+  JournalEntries: { screen: JournalEntries}
 },
-{ headerMode: 'none' }
-);
+    { headerMode: 'none' }
+  );
