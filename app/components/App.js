@@ -19,9 +19,6 @@ export default class App extends Component {
   render () {
     return (
       <Provider store={this.store}>
-          <View style={{ flex: 1 }}>
-            <Header headerText={'Insulince'} />
-          </View>
         <AuthNav />
       </Provider>
     );

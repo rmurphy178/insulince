@@ -7,24 +7,26 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView
 } from 'react-native';
+import baseStyles from '../screens/styles/styles';
 
 
 
 export default class Header extends React.Component {
   constructor(props){
   super(props);
+
 }
+
+
+
 
   render() {
     const { textStyle, viewStyle } = styles;
-    const { goBack } = this.props.navigation;
   return (
-      <View style={viewStyle}>
-        <Text style={textStyle}>{this.props.headerText}</Text>
-          <Button
-             onPress={() => goBack()}
-             title="Go back"
-           />
+     <View style={viewStyle}>
+        <Text style={textStyle}>
+          Insulince
+       </Text>
      </View>
     );
   }

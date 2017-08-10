@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { headerContentStyle } from '../styles/styles';
+import Header from '../../header/header';
 
 export default class SplashScreen extends Component {
   constructor(props) {
@@ -61,9 +62,9 @@ export default class SplashScreen extends Component {
 
   render () {
     return(
-      <Text style={headerContentStyle}>
-        Welcome to Insulince!
-      </Text>
+      <View style={{ flex: 1 }}>
+        <Header />
+    </View>
     );
   }
  }
