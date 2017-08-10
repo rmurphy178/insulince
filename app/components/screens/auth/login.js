@@ -20,11 +20,6 @@ class Login extends Component {
 
   this.logInPressed = this.logInPressed.bind(this);
   this.redirectToSignUp = this.redirectToSignUp.bind(this);
-  this.logout = this.logout.bind(this);
-  }
-
-  logout() {
-    this.props.logout();
   }
 
   logInPressed() {
@@ -92,12 +87,6 @@ class Login extends Component {
          onPress={this.handleDemo}>
 
           <Text style={baseStyles.buttonText}>Demo Login</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={[baseStyles.buttonContainer, styles.loginButton]}
-         onPress={this.logout}>
-
-          <Text style={baseStyles.buttonText}>Logout</Text>
         </TouchableOpacity>
 
       </View>
