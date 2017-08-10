@@ -3,7 +3,8 @@ import SessionReducer from './session_reducer';
 import JournalEntriesReducer from './journal_entries_reducer';
 import MeasurementsReducer from './measurements_reducer';
 import ErrorsReducer from './errors_reducer';
-import navReducer from '../appNavigator/app_navigator';
+
+
 
 
 const RootReducer = combineReducers({
@@ -11,7 +12,6 @@ const RootReducer = combineReducers({
   journalEntries: JournalEntriesReducer,
   measurements: MeasurementsReducer,
   errors: ErrorsReducer,
-  nav: navReducer
 });
 
 export default RootReducer;

@@ -1,5 +1,6 @@
 import { AsyncStorage } from 'react-native';
 
+
 export default {
   async setItem(key, value) {
       try {
