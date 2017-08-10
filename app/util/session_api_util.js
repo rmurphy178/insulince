@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { AsyncStorage } from 'react-native';
 
 export const signUp = user => {
   const url = "https://insulince-api.herokuapp.com/api/users";
@@ -13,7 +14,6 @@ export const login = user => {
 };
 
 export const logout = user => {
-  const url = "https://insulince-api.herokuapp.com/api/user_token";
-  return axios.delete(url, { user })
-    .then(response => console.log(response));
+  console.log(AsyncStorage);
+  // remove auth token from storage
 };
