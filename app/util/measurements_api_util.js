@@ -6,7 +6,7 @@ export const fetchAllMeasurements = () => {
     method: 'GET',
     url: url,
     headers: {
-      // Authorization: `JWT ${}`
+      // "Authorization": "JWT" + AsyncStorage
     }
   }).then(response => console.log(response));
 
