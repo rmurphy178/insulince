@@ -20,10 +20,9 @@ export const clearStore = () => {
 
 export const signUp = user => dispatch => {
   return(
-    sessionAPIUtil.signUp(user).then(currentUser => {
-      dispatch(receiveCurrentUser(currentUser));
-      dispatch(clearErrors());
-    }, errors => dispatch(receiveErrors(errors)))
+    sessionAPIUtil.signUp(user)
+      .then(userInfo => login(userInfo),
+        errors => dispatch(receiveErrors(errors)))
   );
 };
 
