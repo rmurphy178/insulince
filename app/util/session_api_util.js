@@ -12,8 +12,3 @@ export const login = user => {
   return axios.post(url, { auth: user })
     .then(response => console.log(response));
 };
-
-export const logout = user => {
-  console.log(AsyncStorage);
-  // remove auth token from storage
-};
