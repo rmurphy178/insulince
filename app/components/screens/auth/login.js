@@ -28,14 +28,14 @@ class Login extends Component {
           })
         .then(currentUser => {
           if (currentUser) {
-            return this.props.navigation.navigate('Home');
+            return this.props.navigation.navigate('Login');
           }
         });
 
    }
 
    redirectToSignUp() {
-    this.props.navigation.navigate('SignUpContainer');
+    this.props.navigation.navigate('SignUp');
    }
 
    render() {
