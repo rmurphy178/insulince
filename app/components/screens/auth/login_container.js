@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { login, signup, logout } from '../../../actions/session_actions';
+import { login, signUp, logout } from '../../../actions/session_actions';
 import Login from './login';
 import ASYNC from '../../../util/async_util.js';
 
