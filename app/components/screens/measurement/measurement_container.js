@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Measurements from './measurement';
-// import { fetchAllMeasurements, createMeasurement, deleteMeasurement, updateMeasurement } from '../../actions/measurements_actions';
+import { fetchAllMeasurements, createMeasurement, deleteMeasurement, updateMeasurement } from '../../../actions/measurements_actions';
 
 
 const mapStateToProps = ({  currentUser, errors, measurements }) => {

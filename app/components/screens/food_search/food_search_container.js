@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import FoodSearch from 'food_search';
+import FoodSearch from './food_search';
 
 const mapStateToProps = state => {
   return {
