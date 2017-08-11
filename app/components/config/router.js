@@ -12,9 +12,6 @@ import JournalEntriesContainer from '../screens/journal_entries/journal_entries_
 import Home from '../screens/home/home';
 
 
-
-
-
 export const AuthNav = StackNavigator({
   Login: { screen: LoginContainer },
   SignUp: { screen: SignUpContainer},
