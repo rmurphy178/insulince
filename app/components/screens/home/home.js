@@ -7,12 +7,17 @@ class Home extends React.Component {
 
 
     return (
-    <View>
+    <Text>
       Home
-    </View>
+    </Text>
     );
   }
 }
+
+
+// Home.navigationOptions = {
+//   title: 'Home Screen',
+// };
 
 
 export default Home;
