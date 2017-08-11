@@ -9,6 +9,11 @@ import {
 } from 'react-native';
 import baseStyles from '../styles/styles';
 
+import { Container } from 'native-base';
+import Header from '../header/header';
+
+
+
 class Login extends Component {
   constructor() {
     super();
@@ -46,6 +51,7 @@ class Login extends Component {
 
    render() {
      return (
+       <Container>
        <KeyboardAvoidingView
        style={styles.container}
        behavior={'padding'}
@@ -97,6 +103,7 @@ class Login extends Component {
       </View>
 
        </KeyboardAvoidingView>
+       </Container>
      );
    }
 }

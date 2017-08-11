@@ -3,13 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "jest-expo": "~19.0.0",
-    "react-native-debugger-open": "^0.3.12",
-    "react-native-scripts": "1.1.0",
-    "react-test-renderer": "16.0.0-alpha.12",
-    "remote-redux-devtools": "^0.5.12",
-    "remotedev-rn-debugger": "^0.8.2",
-    "remotedev-server": "^0.2.3"
+    "babel-jest": "20.0.3",
+    "babel-preset-react-native": "2.1.0",
+    "jest": "20.0.4",
+    "react-test-renderer": "16.0.0-alpha.12"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -23,6 +20,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "expo": "^19.0.0",
+    "native-base": "^2.3.1",
     "npm": "^4.6.1",
     "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.12",
@@ -37,12 +35,6 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "remote-redux-devtools": "^0.5.12"
-  },
-  "devDependencies": {
-    "babel-jest": "20.0.3",
-    "babel-preset-react-native": "2.1.0",
-    "jest": "20.0.4",
-    "react-test-renderer": "16.0.0-alpha.12"
   },
   "jest": {
     "preset": "react-native"
