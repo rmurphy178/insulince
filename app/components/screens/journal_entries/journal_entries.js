@@ -11,10 +11,10 @@ class JournalEntries extends React.Component {
 
 
   render() {
-  return (
-  <View>
-  JournalEntries
-  </View>
+    return (
+      <View>
+        JournalEntries
+      </View>
     );
   }
 }
