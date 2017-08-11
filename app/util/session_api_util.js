@@ -16,6 +16,9 @@ export const signUp = user => {
 export const login = user => {
   const url = "https://insulince-api.herokuapp.com/api/user_token";
   return axios.post(url, {
-    auth: { user }
+    auth: {
+      user_credential: user.user_credential,
+      password: user.password
+    }
   });
 };
