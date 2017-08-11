@@ -13,6 +13,9 @@ const mapStateToProps = ( { currentUser, errors }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getJournalEntries: () => dispatch(fetchAllJournalEntries)
+    fetchAllJournalEntries: () => dispatch(fetchAllJournalEntries)
   };
 };
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(JournalEntries);

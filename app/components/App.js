@@ -7,6 +7,7 @@ import Expo, { AppLoading } from "expo";
 import { StyleProvider } from 'native-base';
 import getTheme from '../../native-base-theme/components';
 
+
 export default class App extends Component {
 
   constructor(props) {

@@ -8,6 +8,11 @@ import {
 } from 'react-native';
 import { Container, Content, Item, Input, Button, Text, Icon, Toast, Root } from 'native-base';
 
+import { Container } from 'native-base';
+import Header from '../header/header';
+
+
+
 class Login extends Component {
   constructor() {
     super();
@@ -41,6 +46,7 @@ class Login extends Component {
         }
       });
    }
+
 
   redirectToSignUp() {
   this.props.navigation.navigate('SignUp');
@@ -148,6 +154,7 @@ class Login extends Component {
       </Image>
     );
   }
+
 }
 
 export default Login;
