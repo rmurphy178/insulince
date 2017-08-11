@@ -3,9 +3,9 @@ import {
   View,
   StyleSheet,
   StatusBar,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Image
 } from 'react-native';
-// import baseStyles from '../styles/styles';
 import { Container, Content, Item, Input, Button, Text, Icon, Toast, Root } from 'native-base';
 
 class Login extends Component {
@@ -71,71 +71,77 @@ class Login extends Component {
   }
 
   render() {
-   return (
-     <KeyboardAvoidingView
-       style={ styles.view }
-       behavior={ 'padding' }>
-       <StatusBar hidden={true} />
-       <Root>
-         <Container>
-           <Content>
-             <View>
-               {
-                 this.displayErrors()
-               }
-             </View>
-             <Item error={ this.state.loginSuccessful ? false : true }>
-               <Input
-                 style={ styles.input }
-                 placeholder='username or email address'
-                 value={ this.state.userCredential }
-                 onChangeText={ text => this.setState({
-                   userCredential: text,
-                   loginSuccessful: true
-                 }) } />
-                 <Icon
-                   style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
-                   name='close-circle' />
-               </Item>
-               <Item error={ this.state.loginSuccessful ? false : true }>
-                 <Input
-                   style={ styles.input }
-                   secureTextEntry={ true }
-                   placeholder='password'
-                   value={ this.state.password }
-                   onChangeText={ text => this.setState({
-                     password: text,
-                     loginSuccessful: true
-                   }) } />
-                   <Icon
-                     style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
-                     name='close-circle' />
-                 </Item>
-                 <Button block
-                   disabled={ this.state.userCredential && this.state.password && this.state.password.length >= 6 ? false : true }
-                   style={ styles.button }
-                   onPress={ this.handleLogin }>
-                   <Text>Log In</Text>
-                 </Button>
-                 <Button block
-                   style={ styles.button }
-                   onPress={ this.handleDemo }>
-                   <Text>Demo</Text>
-                 </Button>
-                 <Text
-                   style={ styles.text }>
-                   Not a member?
-                 </Text>
-                 <Text
-                   style={ styles.redirectText }
-                   onPress={ this.redirectToSignUp }>
-                   Sign up!
-                 </Text>
-               </Content>
-             </Container>
-       </Root>
-    </KeyboardAvoidingView>
-   );
+    return (
+      <Image
+      source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502485970/insulince-gradient_wofrfg.png' }}
+      style={ styles.backgroundImage }>
+        <KeyboardAvoidingView
+        style={ styles.view }
+        behavior={ 'padding' }>
+          <StatusBar hidden={true} />
+          <Root>
+            <Container>
+              <Content>
+                <View>
+                {
+                this.displayErrors()
+                }
+                </View>
+                <Item error={ this.state.loginSuccessful ? false : true }>
+                <Input
+                style={ styles.input }
+                placeholderTextColor='white'
+                placeholder='username or email address'
+                value={ this.state.userCredential }
+                onChangeText={ text => this.setState({
+                userCredential: text,
+                loginSuccessful: true
+                }) } />
+                <Icon
+                style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
+                name='close-circle' />
+                </Item>
+                <Item error={ this.state.loginSuccessful ? false : true }>
+                <Input
+                style={ styles.input }
+                placeholderTextColor='white'
+                secureTextEntry={ true }
+                placeholder='password'
+                value={ this.state.password }
+                onChangeText={ text => this.setState({
+                password: text,
+                loginSuccessful: true
+                }) } />
+                <Icon
+                style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
+                name='close-circle' />
+                </Item>
+                <Button block
+                disabled={ this.state.userCredential && this.state.password && this.state.password.length >= 6 ? false : true }
+                style={ styles.button }
+                onPress={ this.handleLogin }>
+                <Text>Log In</Text>
+                </Button>
+                <Button block
+                style={ styles.button }
+                onPress={ this.handleDemo }>
+                <Text>Demo</Text>
+                </Button>
+                <Text
+                style={ styles.text }>
+                Not a member?
+                </Text>
+                <Text
+                style={ styles.redirectText }
+                onPress={ this.redirectToSignUp }>
+                Sign up!
+                </Text>
+              </Content>
+            </Container>
+          </Root>
+        </KeyboardAvoidingView>
+      </Image>
+    );
   }
 }
 
@@ -145,30 +151,39 @@ const styles = StyleSheet.create({
   view: {
     justifyContent: 'flex-end',
     flex: 1,
-    padding: 20,
+    padding: 30,
     // backgroundColor: '#510847',
   },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover'
+  },
   input: {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
+    opacity: .6
   },
   button: {
     marginTop: 20,
-    borderRadius: 7
+    borderRadius: 7,
+    backgroundColor: 'transparent',
+    opacity: .6
   },
   text: {
     textAlign: 'center',
     color: '#FFFFFF',
-    marginTop: 20,
+    opacity: .6,
+    marginTop: 20
   },
   redirectText: {
     textAlign: 'center',
     fontWeight: '700',
-    color: '#FFFFFF'
+    color: '#FFFFFF',
+    opacity: .6
   },
   iconHidden: {
     opacity: 0
   },
   iconShow: {
-    opacity: 100
+    opacity: 1
   }
 });
