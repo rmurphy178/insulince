@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {
   View,
+  Text,
   StyleSheet
 } from 'react-native';
 import { Icon } from 'react-native-elements';
@@ -58,8 +59,9 @@ export default class SplashScreen extends Component {
 
   render () {
     return(
-      <View>
-      </View>
+      <Text>
+        Splash
+      </Text>
     );
   }
  }

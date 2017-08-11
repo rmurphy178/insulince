@@ -12,6 +12,7 @@ import JournalEntriesContainer from '../screens/journal_entries/journal_entries_
 import FoodSearchContainer from '../screens/food_search/food_search_container';
 import MeasurementsContainer from '../screens/measurement/measurement_container';
 import Home from '../screens/home/home';
+import MacroTrackerContainer from '../screens/macro_tracker/macro_tracker_container';
 
 
 
@@ -21,12 +22,14 @@ import Home from '../screens/home/home';
 // });
 
 export const AuthNav = StackNavigator({
+  // Splash: { screen: SplashScreenContainer },
   Login: { screen: LoginContainer },
   SignUp: { screen: SignUpContainer},
   Home: { screen: Home },
   JournalEntries: { screen: JournalEntriesContainer},
   FoodSearch: { screen: FoodSearchContainer },
-  Measurements: { screen: MeasurementsContainer }
+  Measurements: { screen: MeasurementsContainer },
+  MacroTracker: { screen: MacroTrackerContainer }
 
 },
     { headerMode: 'none' }
