@@ -11,15 +11,17 @@ import SplashScreenContainer from '../screens/auth/splash_container';
 import JournalEntriesContainer from '../screens/journal_entries/journal_entries_container';
 import Home from '../screens/home/home';
 
-
-
+//
+// export const Tabs = TabNavigator({
+//
+// });
 
 export const AuthNav = StackNavigator({
   Splash: {screen: SplashScreenContainer },
   Login: { screen: LoginContainer },
   SignUp: { screen: SignUpContainer},
   Home: { screen: Home },
-  // JournalEntries: { screen: JournalEntriesContainer}
+  JournalEntries: { screen: JournalEntriesContainer}
 },
     { headerMode: 'none' }
   );

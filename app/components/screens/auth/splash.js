@@ -11,7 +11,7 @@ import Header from '../../header/header';
 export default class SplashScreen extends Component {
   constructor(props) {
     super(props);
-
+    this.goToLogin = this.goToLogin.bind(this);
   }
 
   // componentWillMount() {
@@ -59,11 +59,17 @@ export default class SplashScreen extends Component {
   //   }
   // }
 
+  goToLogin(){
+    this.props.navigation.navigate('LoginContainer');
+  }
 
   render () {
     return(
       <View style={{ flex: 1 }}>
         <Header />
+        <Text>
+          Welcome to Insulince!
+        </Text>
     </View>
     );
   }
