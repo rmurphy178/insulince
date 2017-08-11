@@ -7,6 +7,11 @@ import {
 } from 'react-native';
 import { Provider } from 'react-redux';
 import { AuthNav } from './config/router';
+import Header from './screens/header/header';
+
+// <View>
+//   <Header />
+// </View>
 
 
 export default class App extends Component {
