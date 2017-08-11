@@ -12,6 +12,12 @@ import JournalEntriesContainer from '../screens/journal_entries/journal_entries_
 import Home from '../screens/home/home';
 
 
+
+// 
+// export const Tabs = TabNavigator({
+//
+// });
+
 export const AuthNav = StackNavigator({
   Login: { screen: LoginContainer },
   SignUp: { screen: SignUpContainer},
@@ -20,3 +26,12 @@ export const AuthNav = StackNavigator({
 },
     { headerMode: 'none' }
   );
+
+
+// home
+//
+// journal
+//
+// measurements
+//
+// user/profile
