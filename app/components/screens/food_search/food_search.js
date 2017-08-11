@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { View, Text } from 'react-native';
 
 export default class FoodSearch extends Component {
 
@@ -7,7 +8,11 @@ export default class FoodSearch extends Component {
   }
 
   render() {
-    
+    return (
+      <Text>
+        Food Search
+      </Text>
+    );
   }
 
 }

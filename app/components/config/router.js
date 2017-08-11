@@ -9,11 +9,13 @@ import LoginContainer from '../screens/auth/login_container';
 import SignUpContainer from '../screens/auth/signup_container';
 import SplashScreenContainer from '../screens/auth/splash_container';
 import JournalEntriesContainer from '../screens/journal_entries/journal_entries_container';
+import FoodSearchContainer from '../screens/food_search/food_search_container';
+import MeasurementsContainer from '../screens/measurement/measurement_container';
 import Home from '../screens/home/home';
 
 
 
-// 
+//
 // export const Tabs = TabNavigator({
 //
 // });
@@ -22,7 +24,10 @@ export const AuthNav = StackNavigator({
   Login: { screen: LoginContainer },
   SignUp: { screen: SignUpContainer},
   Home: { screen: Home },
-  // JournalEntries: { screen: JournalEntriesContainer}
+  JournalEntries: { screen: JournalEntriesContainer},
+  FoodSearch: { screen: FoodSearchContainer },
+  Measurements: { screen: MeasurementsContainer }
+
 },
     { headerMode: 'none' }
   );
