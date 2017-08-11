@@ -4,7 +4,8 @@ import {
   Text,
   TextInput,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  KeyboardAvoidingView
 } from 'react-native';
 import baseStyles from '../styles/styles';
 
@@ -13,41 +14,47 @@ class SignUp extends Component {
     super(props);
     this.state = {
       username: '',
-      password: '',
+      email: '',
+      password: ''
     };
     this.signUpUser = this.signUpUser.bind(this);
-    this.onSignUpPress = this.onSignUpPress.bind(this);
     this.redirectToLogin = this.redirectToLogin.bind(this);
   }
 
-    onSignUpPress() {
-      this.state.password === this.state.confirm_password;
-        this.signUpUser();
-    }
-
     signUpUser() {
-      this.props.signUp({ username: this.state.username,
-                         password: this.state.password
-            })
-          .then(currentUser => {
-            if (currentUser) {
-              return this.props.navigation.navigate('Home');
-            }
-          });
+      this.props.signUp(this.state);
     }
 
     redirectToLogin() {
-      this.props.navigation.navigate('LoginContainer');
+      this.props.navigation.navigate('Login');
+      this.props.clearErrors();
     }
 
     render() {
       return (
-        <View style={styles.container}>
+          <KeyboardAvoidingView
+            style={styles.container}
+            behavior={'padding'}
+            >
+
+          <View>
+            {this.props.errors.map((error, i) => (
+              <Text key={i}>{error}</Text>
+            ))}
+          </View>
+          <Text>{this.state.errors}</Text>
+
           <View style={styles.inputsContainer}>
             <View style={baseStyles.inputContainer}>
               <TextInput style={baseStyles.input}
-                placeholder='email/username'
+                placeholder='username'
                 onChangeText={(text) => this.setState({username: text})}
+              />
+            </View>
+            <View style={baseStyles.inputContainer}>
+              <TextInput style={baseStyles.input}
+                placeholder='email'
+                onChangeText={(text) => this.setState({email: text})}
               />
             </View>
             <View style={baseStyles.inputContainer}>
@@ -60,11 +67,16 @@ class SignUp extends Component {
           </View>
           <View style={styles.buttonsContainer}>
             <TouchableOpacity style={[baseStyles.buttonContainer, styles.loginButton]}
-              onPress={this.onSignUpPress}>
+              onPress={this.signUpUser}>
               <Text style={styles.buttonText}>Sign Up!</Text>
             </TouchableOpacity>
+            <TouchableOpacity style={[baseStyles.buttonContainer, styles.loginButton]}
+              onPress={this.redirectToLogin}>
+
+             <Text style={baseStyles.buttonText}>Already a member? Login!</Text>
+            </TouchableOpacity>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       );
     }
 }

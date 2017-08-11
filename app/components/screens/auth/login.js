@@ -14,29 +14,34 @@ class Login extends Component {
     super();
     this.state = {
       userCredential: '',
-      password: '',
-      errors: []
+      password: ''
     };
 
   this.logInPressed = this.logInPressed.bind(this);
   this.redirectToSignUp = this.redirectToSignUp.bind(this);
+  this.handleDemo = this.handleDemo.bind(this);
   }
 
   logInPressed() {
-    this.props.login({
-            userCredential: this.state.userCredential,
-            password: this.state.password
-          })
-        .then(currentUser => {
-          if (currentUser) {
-            return this.props.navigation.navigate('Login');
-          }
-        });
+    this.props.login(this.state)
+      .then(() => {
+        this.props.navigation.navigate('Home');
+      });
 
    }
 
    redirectToSignUp() {
     this.props.navigation.navigate('SignUp');
+    this.props.clearErrors();
+   }
+
+   handleDemo() {
+     this.props.login({
+       userCredential: "demo",
+       password: "12345678"
+     }).then(() => {
+       this.props.navigation.navigate('Home');
+     });
    }
 
    render() {
@@ -47,7 +52,7 @@ class Login extends Component {
        >
 
        <View>
-         {this.state.errors.map((error, i) => (
+         {this.props.errors.map((error, i) => (
            <Text key={i}>{error}</Text>
          ))}
        </View>
