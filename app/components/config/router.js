@@ -29,6 +29,18 @@ import MacroTrackerContainer from '../screens/macro_tracker/macro_tracker_contai
 // });
 
 
+const navigationOptions = {
+  title: ({ state }) => state.routeName,
+  header: ({ navigate }) => ({
+    left: (
+      <IconToggle
+        onPress={() => navigate('DrawerOpen')}
+      />
+    ),
+  }),
+};
+
+
 export const Tabs = TabNavigator({
   Home: {
     screen: Home,
@@ -63,6 +75,7 @@ export const Tabs = TabNavigator({
 });
 
 export const AuthNav = StackNavigator({
+  Home: { screen: Home },
   // Splash: { screen: SplashScreenContainer },
   Login: { screen: LoginContainer },
   SignUp: { screen: SignUpContainer},

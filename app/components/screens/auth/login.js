@@ -47,6 +47,7 @@ class Login extends Component {
    render() {
      return (
        <Container>
+         <Header />
        <KeyboardAvoidingView
        style={styles.container}
        behavior={'padding'}

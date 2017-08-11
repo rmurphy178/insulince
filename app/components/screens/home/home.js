@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import Header from '../header/header';
 
 
 class Home extends React.Component {
@@ -7,9 +8,12 @@ class Home extends React.Component {
 
 
     return (
-    <Text>
-      Home
-    </Text>
+      <View>
+      <Header />
+      <Text>
+        Home
+      </Text>
+      </View>
     );
   }
 }
