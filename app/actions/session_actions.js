@@ -21,18 +21,22 @@ export const clearStore = () => {
 export const signUp = user => dispatch => {
   return(
     sessionAPIUtil.signUp(user)
-      .then(userInfo => login(userInfo),
-        errors => dispatch(receiveErrors(errors)))
+      .then(response => {
+        ASYNC.setItem("auth_token", response.data.auth_token);
+        dispatch(receiveCurrentUser(response.data));
+        dispatch(clearErrors());
+      }, errors => dispatch(receiveErrors(errors.response.data)))
   );
 };
 
 export const login = user => dispatch => {
   return(
     sessionAPIUtil.login(user)
-      .then(currentUser => {
-        dispatch(receiveCurrentUser(currentUser));
+      .then(response => {
+        ASYNC.setItem("auth_token", response.data.auth_token);
+        dispatch(receiveCurrentUser(response.data));
         dispatch(clearErrors());
-      }, errors => dispatch(receiveErrors(errors)))
+      }, errors => dispatch(receiveErrors(["Invalid credentials"])))
   );
 };
 
