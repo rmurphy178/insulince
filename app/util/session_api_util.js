@@ -1,6 +1,5 @@
 import axios from 'axios';
 import ASYNC from '../util/async_util';
-import { receiveLoginErrors } from '../actions/errors_actions';
 
 export const signUp = user => {
   console.log(user);
@@ -17,9 +16,6 @@ export const signUp = user => {
 export const login = user => {
   const url = "https://insulince-api.herokuapp.com/api/user_token";
   return axios.post(url, {
-    auth: {
-      user_credential: user.userCredential,
-      password: user.password
-    }
+    auth: { user }
   });
 };
