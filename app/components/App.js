@@ -9,7 +9,7 @@ import {
 import { Provider } from 'react-redux';
 import { AuthNav } from './config/router';
 import Expo, { AppLoading } from "expo";
-import { Root } from "native-base";
+import { Root } from 'native-base';
 
 
 export default class App extends Component {
@@ -37,10 +37,10 @@ export default class App extends Component {
     } else {
       return (
         <Provider store={this.store}>
-          <Root>
-            <StatusBar hidden={true} />
-            <AuthNav />
-          </Root>
+            
+
+              <AuthNav />
+
         </Provider>
       );
     }
@@ -54,5 +54,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
+  }
 });

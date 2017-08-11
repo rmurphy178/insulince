@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import {
   View,
   StyleSheet,
+  StatusBar,
   KeyboardAvoidingView
 } from 'react-native';
 // import baseStyles from '../styles/styles';
-import { Container, Content, Item, Input, Button, Text, Icon, Toast } from 'native-base';
+import { Container, Content, Item, Input, Button, Text, Icon, Toast, Root } from 'native-base';
 
 class Login extends Component {
   constructor() {
@@ -15,11 +16,10 @@ class Login extends Component {
       password: '',
       loginSuccessful: true
     };
-
-  this.handleLogin = this.handleLogin.bind(this);
-  this.redirectToSignUp = this.redirectToSignUp.bind(this);
-  this.handleDemo = this.handleDemo.bind(this);
-  this.foodSearch = this.foodSearch.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.redirectToSignUp = this.redirectToSignUp.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
+    this.foodSearch = this.foodSearch.bind(this);
   }
 
   foodSearch() {
@@ -42,80 +42,101 @@ class Login extends Component {
       });
    }
 
-   redirectToSignUp() {
-    this.props.navigation.navigate('SignUp');
-    this.props.clearErrors();
-   }
+  redirectToSignUp() {
+  this.props.navigation.navigate('SignUp');
+  this.props.clearErrors();
+  }
 
-   handleDemo() {
-     this.props.login({
-       userCredential: "demo",
-       password: "12345678"
-     }).then(() => {
-       this.props.navigation.navigate('Home');
-     });
-   }
+  handleDemo() {
+  this.props.login({
+   userCredential: "demo",
+   password: "12345678"
+  }).then(() => {
+   this.props.navigation.navigate('Home');
+  });
+  }
 
-   render() {
-     return (
-       <KeyboardAvoidingView
-         style={ styles.view }
-         behavior={ 'padding' }>
+  displayErrors() {
+    if (this.props.errors.length > 0) {
+      this.props.errors.map((error, i) => (
+       Toast.show({
+         text: error,
+         position: 'top',
+         buttonText: 'Okay',
+         type: 'danger',
+         duration: 3000
+       })));
+       this.props.clearErrors();
+     }
+  }
+
+  render() {
+   return (
+     <KeyboardAvoidingView
+       style={ styles.view }
+       behavior={ 'padding' }>
+       <StatusBar hidden={true} />
+       <Root>
          <Container>
-          <Content>
-            <View>
-              {this.props.errors.map((error, i) => (
-                Toast.show({
-                  text: error,
-                  position: 'top',
-                  buttonText: 'Okay'
-              })))}
-            </View>
-            <Item>
-              <Input
-                style={ styles.input }
-                placeholder='username or email address'
-                value={ this.state.userCredential }
-                onChangeText={ text => this.setState({
-                  userCredential: text
-                }) } />
-            </Item>
-            <Item error={ this.state.loginSuccessful ? false : true }>
-              <Input
-                style={ styles.input }
-                secureTextEntry={ true }
-                placeholder='password'
-                value={ this.state.password }
-                onChangeText={ text => this.setState({
-                  password: text
-                }) } />
-                <Icon name='close-circle' />
-            </Item>
-            <Button block
-              disabled={ this.state.userCredential && this.state.password && this.state.password.length >= 6 ? false : true }
-              style={ styles.button }
-              onPress={ this.handleLogin }>
-              <Text>Log In</Text>
-            </Button>
-            <Button block
-              style={ styles.button }
-              onPress={ this.handleDemo }>
-              <Text>Demo</Text>
-            </Button>
-            <Text
-              style={ styles.text }>
-              Not a member?
-            </Text>
-            <Text
-              style={ styles.redirectText }
-              onPress={ this.redirectToSignUp }>
-              Sign up!
-            </Text>
-          </Content>
-        </Container>
-      </KeyboardAvoidingView>
-     );
-   }
+           <Content>
+             <View>
+               {
+                 this.displayErrors()
+               }
+             </View>
+             <Item error={ this.state.loginSuccessful ? false : true }>
+               <Input
+                 style={ styles.input }
+                 placeholder='username or email address'
+                 value={ this.state.userCredential }
+                 onChangeText={ text => this.setState({
+                   userCredential: text,
+                   loginSuccessful: true
+                 }) } />
+                 <Icon
+                   style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
+                   name='close-circle' />
+               </Item>
+               <Item error={ this.state.loginSuccessful ? false : true }>
+                 <Input
+                   style={ styles.input }
+                   secureTextEntry={ true }
+                   placeholder='password'
+                   value={ this.state.password }
+                   onChangeText={ text => this.setState({
+                     password: text,
+                     loginSuccessful: true
+                   }) } />
+                   <Icon
+                     style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
+                     name='close-circle' />
+                 </Item>
+                 <Button block
+                   disabled={ this.state.userCredential && this.state.password && this.state.password.length >= 6 ? false : true }
+                   style={ styles.button }
+                   onPress={ this.handleLogin }>
+                   <Text>Log In</Text>
+                 </Button>
+                 <Button block
+                   style={ styles.button }
+                   onPress={ this.handleDemo }>
+                   <Text>Demo</Text>
+                 </Button>
+                 <Text
+                   style={ styles.text }>
+                   Not a member?
+                 </Text>
+                 <Text
+                   style={ styles.redirectText }
+                   onPress={ this.redirectToSignUp }>
+                   Sign up!
+                 </Text>
+               </Content>
+             </Container>
+       </Root>
+    </KeyboardAvoidingView>
+   );
+  }
 }
 
 export default Login;
@@ -143,5 +164,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '700',
     color: '#FFFFFF'
+  },
+  iconHidden: {
+    opacity: 0
+  },
+  iconShow: {
+    opacity: 100
   }
 });
