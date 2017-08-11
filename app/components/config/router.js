@@ -66,7 +66,7 @@ export const AuthNav = StackNavigator({
   // Splash: { screen: SplashScreenContainer },
   Login: { screen: LoginContainer },
   SignUp: { screen: SignUpContainer},
-  Home: { screen: Home },
+  Tabs: { screen: Tabs },
   MacroTracker: { screen: MacroTrackerContainer }
 
 },
