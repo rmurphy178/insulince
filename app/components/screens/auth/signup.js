@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView
 } from 'react-native';
 import baseStyles from '../styles/styles';
+import { Toast } from 'native-base';
 
 class SignUp extends Component {
   constructor(props) {
@@ -22,7 +23,12 @@ class SignUp extends Component {
   }
 
     signUpUser() {
-      this.props.signUp(this.state);
+      this.props.signUp(this.state)
+        .then(() => {
+          if (this.props.currentUser) {
+            this.props.navigation.navigate('Home');
+          }
+        });
     }
 
     redirectToLogin() {
@@ -36,13 +42,14 @@ class SignUp extends Component {
             style={styles.container}
             behavior={'padding'}
             >
-
-          <View>
-            {this.props.errors.map((error, i) => (
-              <Text key={i}>{error}</Text>
-            ))}
-          </View>
-          <Text>{this.state.errors}</Text>
+            <View>
+              {this.props.errors.map((error, i) => (
+                Toast.show({
+                  text: error,
+                  position: 'top',
+                  buttonText: 'Okay'
+              })))}
+            </View>
 
           <View style={styles.inputsContainer}>
             <View style={baseStyles.inputContainer}>

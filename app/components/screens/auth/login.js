@@ -1,33 +1,45 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
-  TextInput,
   StyleSheet,
-  TouchableOpacity,
   KeyboardAvoidingView
 } from 'react-native';
-import baseStyles from '../styles/styles';
+// import baseStyles from '../styles/styles';
+import { Container, Content, Item, Input, Button, Text, Icon, Toast } from 'native-base';
 
 class Login extends Component {
   constructor() {
     super();
     this.state = {
       userCredential: '',
-      password: ''
+      password: '',
+      loginSuccessful: true
     };
 
-  this.logInPressed = this.logInPressed.bind(this);
+  this.handleLogin = this.handleLogin.bind(this);
   this.redirectToSignUp = this.redirectToSignUp.bind(this);
   this.handleDemo = this.handleDemo.bind(this);
+  this.foodSearch = this.foodSearch.bind(this);
   }
 
-  logInPressed() {
-    this.props.login(this.state)
-      .then(() => {
-        this.props.navigation.navigate('Home');
-      });
+  foodSearch() {
+    this.props.navigation.navigate('FoodSearch');
+  }
 
+  handleLogin() {
+    this.props.login({
+      user_credential: this.state.userCredential,
+      password: this.state.password
+    })
+      .then(() => {
+        if (this.props.currentUser) {
+          this.props.navigation.navigate('Home');
+        } else {
+          this.setState({
+            loginSuccessful: false
+          });
+        }
+      });
    }
 
    redirectToSignUp() {
@@ -47,56 +59,61 @@ class Login extends Component {
    render() {
      return (
        <KeyboardAvoidingView
-       style={styles.container}
-       behavior={'padding'}
-       >
-
-       <View>
-         {this.props.errors.map((error, i) => (
-           <Text key={i}>{error}</Text>
-         ))}
-       </View>
-       <Text>{this.state.errors}</Text>
-
-       <View style={baseStyles.inputContainer}>
-         <TextInput style={baseStyles.input}
-          placeholder='userCredential'
-          value={this.state.userCredential}
-          onChangeText={(text) => this.setState({userCredential: text})}
-        />
-       </View>
-
-      <View style={baseStyles.inputContainer}>
-        <TextInput style={baseStyles.input}
-          placeholder='password'
-          value={this.state.password}
-          secureTextEntry={true}
-          onChangeText={(text) => this.setState({password: text})}
-        />
-      </View>
-
-      <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={[baseStyles.buttonContainer, styles.loginButton]}
-          onPress={this.logInPressed}
-        >
-          <Text style={styles.buttonText}>Log In</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={[baseStyles.buttonContainer, styles.loginButton]}
-          onPress={this.redirectToSignUp}>
-
-         <Text style={baseStyles.buttonText}>Not a member? Sign Up!</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={[baseStyles.buttonContainer, styles.loginButton]}
-         onPress={this.handleDemo}>
-
-          <Text style={baseStyles.buttonText}>Demo Login</Text>
-        </TouchableOpacity>
-
-      </View>
-
-       </KeyboardAvoidingView>
+         style={ styles.view }
+         behavior={ 'padding' }>
+         <Container>
+          <Content>
+            <View>
+              {this.props.errors.map((error, i) => (
+                Toast.show({
+                  text: error,
+                  position: 'top',
+                  buttonText: 'Okay'
+              })))}
+            </View>
+            <Item>
+              <Input
+                style={ styles.input }
+                placeholder='username or email address'
+                value={ this.state.userCredential }
+                onChangeText={ text => this.setState({
+                  userCredential: text
+                }) } />
+            </Item>
+            <Item error={ this.state.loginSuccessful ? false : true }>
+              <Input
+                style={ styles.input }
+                secureTextEntry={ true }
+                placeholder='password'
+                value={ this.state.password }
+                onChangeText={ text => this.setState({
+                  password: text
+                }) } />
+                <Icon name='close-circle' />
+            </Item>
+            <Button block
+              disabled={ this.state.userCredential && this.state.password && this.state.password.length >= 6 ? false : true }
+              style={ styles.button }
+              onPress={ this.handleLogin }>
+              <Text>Log In</Text>
+            </Button>
+            <Button block
+              style={ styles.button }
+              onPress={ this.handleDemo }>
+              <Text>Demo</Text>
+            </Button>
+            <Text
+              style={ styles.text }>
+              Not a member?
+            </Text>
+            <Text
+              style={ styles.redirectText }
+              onPress={ this.redirectToSignUp }>
+              Sign up!
+            </Text>
+          </Content>
+        </Container>
+      </KeyboardAvoidingView>
      );
    }
 }
@@ -104,14 +121,27 @@ class Login extends Component {
 export default Login;
 
 const styles = StyleSheet.create({
-  container: {
+  view: {
     justifyContent: 'flex-end',
     flex: 1,
-    padding: 60,
-    // backgroundColor: '#510847'
+    padding: 20,
+    // backgroundColor: '#510847',
   },
-  loginButton: {
-    marginBottom: 20
+  input: {
+    color: '#FFFFFF'
+  },
+  button: {
+    marginTop: 20,
+    borderRadius: 7
+  },
+  text: {
+    textAlign: 'center',
+    color: '#FFFFFF',
+    marginTop: 20,
+  },
+  redirectText: {
+    textAlign: 'center',
+    fontWeight: '700',
+    color: '#FFFFFF'
   }
-
 });
