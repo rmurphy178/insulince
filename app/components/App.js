@@ -13,7 +13,6 @@ import Header from './screens/header/header';
 //   <Header />
 // </View>
 
-
 export default class App extends Component {
   constructor(props) {
     super(props);
