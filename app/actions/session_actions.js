@@ -36,7 +36,7 @@ export const login = user => dispatch => {
         ASYNC.setItem("auth_token", response.data.auth_token);
         dispatch(receiveCurrentUser(response.data));
         dispatch(clearErrors());
-      }, errors => dispatch(receiveErrors(["Invalid credentials"])))
+      }, errors => dispatch(receiveErrors(["You have entered an invalid username or password"])))
   );
 };
 
