@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import configureStore from '../store/store';
-import {
-  StyleSheet,
-  Text,
-  View,
-  StatusBar
-} from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
 import { AuthNav } from './config/router';
 import Expo, { AppLoading } from "expo";
-import { Root } from 'native-base';
-
+import { StyleProvider } from 'native-base';
+import getTheme from '../../native-base-theme/components';
 
 export default class App extends Component {
 
@@ -37,10 +32,9 @@ export default class App extends Component {
     } else {
       return (
         <Provider store={this.store}>
-            
-
-              <AuthNav />
-
+          <StyleProvider style={ getTheme() }>
+            <AuthNav />
+          </StyleProvider>
         </Provider>
       );
     }

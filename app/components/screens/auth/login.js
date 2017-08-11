@@ -164,7 +164,6 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 20,
-    borderRadius: 7,
     backgroundColor: 'transparent',
     opacity: .6
   },
