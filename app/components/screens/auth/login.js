@@ -83,59 +83,64 @@ class Login extends Component {
             <Container>
               <Content>
                 <View>
-                {
-                this.displayErrors()
-                }
+                  {
+                  this.displayErrors()
+                  }
                 </View>
-                <Item error={ this.state.loginSuccessful ? false : true }>
-                <Input
-                style={ styles.input }
-                placeholderTextColor='white'
-                placeholder='username or email address'
-                value={ this.state.userCredential }
-                onChangeText={ text => this.setState({
-                userCredential: text,
-                loginSuccessful: true
-                }) } />
-                <Icon
-                style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
-                name='close-circle' />
+                <Item
+                  error={ this.state.loginSuccessful ? false : true }>
+                  <Input
+                    style={ styles.input }
+                    placeholderTextColor='white'
+                    placeholder='username or email address'
+                    value={ this.state.userCredential }
+                    onChangeText={ text => this.setState({
+                      userCredential: text,
+                      loginSuccessful: true
+                      }) } />
+                  <Icon
+                    style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
+                    name='close-circle' />
                 </Item>
-                <Item error={ this.state.loginSuccessful ? false : true }>
-                <Input
-                style={ styles.input }
-                placeholderTextColor='white'
-                secureTextEntry={ true }
-                placeholder='password'
-                value={ this.state.password }
-                onChangeText={ text => this.setState({
-                password: text,
-                loginSuccessful: true
-                }) } />
-                <Icon
-                style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
-                name='close-circle' />
+                <Item
+                  error={ this.state.loginSuccessful ? false : true }>
+                  <Input
+                    style={ styles.input }
+                    placeholderTextColor='white'
+                    secureTextEntry={ true }
+                    placeholder='password'
+                    value={ this.state.password }
+                    onChangeText={ text => this.setState({
+                      password: text,
+                      loginSuccessful: true
+                      }) } />
+                  <Icon
+                    style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
+                    name='close-circle' />
                 </Item>
                 <Button block
-                disabled={ this.state.userCredential && this.state.password && this.state.password.length >= 6 ? false : true }
-                style={ styles.button }
-                onPress={ this.handleLogin }>
-                <Text>Log In</Text>
+                  disabled={ this.state.userCredential && this.state.password && this.state.password.length >= 6 ? false : true }
+                  style={ styles.button }
+                  onPress={ this.handleLogin }>
+                    <Text>Log In</Text>
                 </Button>
                 <Button block
-                style={ styles.button }
-                onPress={ this.handleDemo }>
-                <Text>Demo</Text>
+                  style={ styles.button }
+                  onPress={ this.handleDemo }>
+                    <Text>Demo</Text>
                 </Button>
                 <Text
-                style={ styles.text }>
-                Not a member?
+                  style={ styles.text }>
+                    Not a member?
                 </Text>
-                <Text
-                style={ styles.redirectText }
-                onPress={ this.redirectToSignUp }>
-                Sign up!
-                </Text>
+                <Button transparent
+                  style={ styles.redirectButton }
+                  onPress={ this.redirectToSignUp }>
+                    <Text
+                      style={ styles.redirectText }>
+                      Sign up
+                    </Text>
+                </Button>
               </Content>
             </Container>
           </Root>
@@ -149,10 +154,10 @@ export default Login;
 
 const styles = StyleSheet.create({
   view: {
-    justifyContent: 'flex-end',
     flex: 1,
-    padding: 30,
-    // backgroundColor: '#510847',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: 40
   },
   backgroundImage: {
     flex: 1,
@@ -168,16 +173,18 @@ const styles = StyleSheet.create({
     opacity: .6
   },
   text: {
-    textAlign: 'center',
     color: '#FFFFFF',
     opacity: .6,
-    marginTop: 20
+    marginTop: 20,
+    textAlign: 'center'
+  },
+  redirectButton: {
+    alignSelf: 'center'
   },
   redirectText: {
-    textAlign: 'center',
-    fontWeight: '700',
     color: '#FFFFFF',
-    opacity: .6
+    opacity: .6,
+    textAlign: 'center'
   },
   iconHidden: {
     opacity: 0
