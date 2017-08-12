@@ -126,7 +126,7 @@ class Login extends Component {
                 </Item>
                 <Button block
                   disabled={ this.state.userCredential && this.state.password && this.state.password.length >= 6 ? false : true }
-                  style={ styles.button }
+                  style={ this.state.userCredential && this.state.password && this.state.password.length >= 6 ? styles.button : styles.disabledButton }
                   onPress={ this.handleLogin }>
                     <Text>Log In</Text>
                 </Button>
@@ -178,6 +178,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     backgroundColor: 'transparent',
     opacity: .6
+  },
+  disabledButton: {
+    marginTop: 20,
+    opacity: .1
   },
   text: {
     color: '#FFFFFF',

@@ -7,9 +7,9 @@ class Home extends React.Component {
 
 
     return (
-    <Text>
-      Home
-    </Text>
+    <View>
+      <Text>Home</Text>
+    </View>
     );
   }
 }
