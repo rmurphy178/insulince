@@ -25,7 +25,7 @@ export const createJournalEntry = journalEntry => {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + token
       },
-      data: { journal_entry: { entry: journalEntry } }
+      data: { journal_entry: journalEntry }
     });
   });
 };
@@ -40,7 +40,7 @@ export const updateJournalEntry = journalEntry => {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + token
       },
-      data: { journal_entry: { entry: journalEntry } }
+      data: { journal_entry: journalEntry }
     });
   });
 };
