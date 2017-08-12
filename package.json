@@ -14,11 +14,12 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch",
-    "postinstall": "remotedev-debugger --hostname localhost --port 8081 --injectserver"
+    "test": "node node_modules/jest/bin/jest.js --watch"
   },
   "dependencies": {
+    "@expo/vector-icons": "^5.1.0",
     "axios": "^0.16.2",
+    "babel-preset-expo": "^2.0.0",
     "expo": "^19.0.0",
     "native-base": "^2.3.1",
     "npm": "^4.6.1",
@@ -27,13 +28,18 @@
     "react-native": "0.46.1",
     "react-native-elements": "^0.15.0",
     "react-native-progress": "^3.3.0",
+    "react-native-vector-icons": "^4.3.0",
     "react-navigation": "^1.0.0-beta.11",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "remote-redux-devtools": "^0.5.12"
+    "remote-redux-devtools": "^0.5.12",
+    "babel-jest": "20.0.3",
+    "babel-preset-react-native": "2.1.0",
+    "jest": "20.0.4",
+    "react-test-renderer": "16.0.0-alpha.12"
   },
   "jest": {
     "preset": "react-native"
