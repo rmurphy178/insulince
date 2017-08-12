@@ -1,70 +1,146 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
+  Image,
+  StatusBar,
   TextInput,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  KeyboardAvoidingView
 } from 'react-native';
-import baseStyles from '../styles/styles';
+import { Container, Content, Item, Input, Button, Text, Icon, Toast, Root } from 'native-base';
 
 class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
+      email: '',
       password: '',
+      loginSuccessful: true
     };
     this.signUpUser = this.signUpUser.bind(this);
-    this.onSignUpPress = this.onSignUpPress.bind(this);
     this.redirectToLogin = this.redirectToLogin.bind(this);
   }
 
-    onSignUpPress() {
-      this.state.password === this.state.confirm_password;
-        this.signUpUser();
-    }
-
     signUpUser() {
-      this.props.signUp({ username: this.state.username,
-                         password: this.state.password
-            })
-          .then(currentUser => {
-            if (currentUser) {
-              return this.props.navigation.navigate('Home');
-            }
-          });
+      this.props.signUp({
+        username: this.state.username,
+        email: this.state.email,
+        password: this.state.password
+      })
+        .then(() => {
+          if (this.props.currentUser) {
+            this.props.navigation.navigate('Home');
+          }
+        });
     }
 
     redirectToLogin() {
-      this.props.navigation.navigate('LoginContainer');
+      this.props.navigation.navigate('Login');
+      this.props.clearErrors();
+    }
+
+    displayErrors() {
+      if (this.props.errors.length > 0) {
+        this.props.errors.map((error, i) => (
+         Toast.show({
+           text: error,
+           position: 'top',
+           buttonText: 'Okay',
+           type: 'danger',
+           duration: 3000
+         })));
+         this.props.clearErrors();
+       }
     }
 
     render() {
       return (
-        <View style={styles.container}>
-          <View style={styles.inputsContainer}>
-            <View style={baseStyles.inputContainer}>
-              <TextInput style={baseStyles.input}
-                placeholder='email/username'
-                onChangeText={(text) => this.setState({username: text})}
-              />
-            </View>
-            <View style={baseStyles.inputContainer}>
-              <TextInput style={baseStyles.input}
-                placeholder='password'
-                secureTextEntry={true}
-                onChangeText={(text) => this.setState({password: text})}
-              />
-            </View>
-          </View>
-          <View style={styles.buttonsContainer}>
-            <TouchableOpacity style={[baseStyles.buttonContainer, styles.loginButton]}
-              onPress={this.onSignUpPress}>
-              <Text style={styles.buttonText}>Sign Up!</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        <Image
+        source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502485970/insulince-gradient_wofrfg.png' }}
+        style={ styles.backgroundImage }>
+          <KeyboardAvoidingView
+          style={ styles.container }
+          behavior={ 'padding' }>
+            <StatusBar hidden={true} />
+            <Root>
+              <Container>
+                <Content>
+                  <View>
+                    {
+                    this.displayErrors()
+                    }
+                  </View>
+                  <Item
+                    error={ this.state.loginSuccessful ? false : true }>
+                    <Input
+                      style={ styles.input }
+                      placeholderTextColor='white'
+                      placeholder='username'
+                      value={ this.state.userCredential }
+                      onChangeText={ text => this.setState({
+                        username: text,
+                        loginSuccessful: true
+                        }) } />
+                    <Icon
+                      style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
+                      name='close-circle' />
+                  </Item>
+                  <Item
+                    error={ this.state.loginSuccessful ? false : true }>
+                    <Input
+                      style={ styles.input }
+                      placeholderTextColor='white'
+                      placeholder='email address'
+                      value={ this.state.userCredential }
+                      onChangeText={ text => this.setState({
+                        email: text,
+                        loginSuccessful: true
+                        }) } />
+                      <Icon
+                        style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
+                        name='close-circle' />
+                  </Item>
+                  <Item
+                    error={ this.state.loginSuccessful ? false : true }>
+                    <Input
+                      style={ styles.input }
+                      placeholderTextColor='white'
+                      secureTextEntry={ true }
+                      placeholder='password'
+                      value={ this.state.password }
+                      onChangeText={ text => this.setState({
+                        password: text,
+                        loginSuccessful: true
+                        }) } />
+                    <Icon
+                      style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
+                      name='close-circle' />
+                  </Item>
+                  <Button block
+                    disabled={ this.state.userCredential && this.state.password && this.state.password.length >= 6 ? false : true }
+                    style={ styles.button }
+                    onPress={ this.signUpUser }>
+                      <Text>Sign Up</Text>
+                  </Button>
+                  <Text
+                    style={ styles.text }>
+                      Already a member?
+                  </Text>
+                  <Button transparent
+                    style={ styles.redirectButton }
+                    onPress={ this.redirectToLogin }>
+                      <Text
+                        style={ styles.redirectText }>
+                        Login
+                      </Text>
+                  </Button>
+                </Content>
+              </Container>
+            </Root>
+          </KeyboardAvoidingView>
+        </Image>
       );
     }
 }
@@ -73,15 +149,41 @@ export default SignUp;
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     flex: 1,
-    padding: 60
-
-
+    padding: 40
   },
-  loginButton: {
-    marginBottom: 40
-
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover'
+  },
+  input: {
+    color: '#FFFFFF',
+    opacity: .6
+  },
+  button: {
+    marginTop: 20,
+    backgroundColor: 'transparent',
+    opacity: .6
+  },
+  text: {
+    color: '#FFFFFF',
+    opacity: .6,
+    marginTop: 20,
+    textAlign: 'center'
+  },
+  redirectButton: {
+    alignSelf: 'center'
+  },
+  redirectText: {
+    color: '#FFFFFF',
+    opacity: .6,
+    textAlign: 'center'
+  },
+  iconHidden: {
+    opacity: 0
+  },
+  iconShow: {
+    opacity: 1
   }
-
 });

@@ -1,18 +1,20 @@
 import { connect } from 'react-redux';
-import { login, signUp, logout } from '../../../actions/session_actions';
+import { login } from '../../../actions/session_actions';
+import { clearErrors } from '../../../actions/errors_actions';
 import Login from './login';
 import ASYNC from '../../../util/async_util.js';
 
-const mapStateToProps = ( { currentUser, errors }) => {
+const mapStateToProps = ({ currentUser, errors }) => {
   return {
-    errors: errors,
-    currentUser: currentUser
+    errors,
+    currentUser
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: user => dispatch(login(user))
+    login: user => dispatch(login(user)),
+    clearErrors: () => dispatch(clearErrors())
   };
 };
 
