@@ -61,7 +61,7 @@ class Login extends Component {
   }
 
   displayErrors() {
-    if (this.props.errors.length > 0) {
+    if (this.props.errors) {
       this.props.errors.map((error, i) => (
        Toast.show({
          text: error,
