@@ -34,7 +34,7 @@ export const createJournalEntry = journalEntry => dispatch => {
       .then(newJournalEntry => {
         dispatch(receiveJournalEntry(newJournalEntry));
         dispatch(clearErrors());
-      }, errors => receiveErrors(errors))
+      }, errors => receiveErrors(errors.response.data))
   );
 };
 
@@ -44,7 +44,7 @@ export const updateJournalEntry = journalEntry => dispatch => {
       .then(updatedJournalEntry => {
         dispatch(receiveJournalEntry(updatedJournalEntry));
         dispatch(clearErrors());
-      }, errors => receiveErrors(errors))
+      }, errors => receiveErrors(errors.response.data))
   );
 };
 
@@ -53,6 +53,6 @@ export const deleteJournalEntry = journalEntryId => dispatch => {
     journalEntriesAPIUtil.deleteJournalEntry(journalEntryId)
       .then(() => {
         dispatch(clearErrors());
-      }, errors => receiveErrors(errors))
+      }, errors => receiveErrors(errors.response.data))
   );
 };

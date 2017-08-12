@@ -34,7 +34,7 @@ export const createMeasurement = measurement => dispatch => {
     .then(newMeasurement => {
       dispatch(receiveMeasurement(newMeasurement));
       dispatch(clearErrors());
-    }, errors => receiveErrors(errors))
+    }, errors => receiveErrors(errors.response.data))
   );
 };
 
@@ -44,7 +44,7 @@ export const updateMeasurement = measurement => dispatch => {
     .then(updatedMeasurement => {
       dispatch(receiveMeasurement(updatedMeasurement));
       dispatch(clearErrors());
-    }, errors => receiveErrors(errors))
+    }, errors => receiveErrors(errors.response.data))
   );
 };
 
@@ -53,6 +53,6 @@ export const deleteMeasurement = measurementId => dispatch => {
     measurementsAPIUtil.deleteMeasurement(measurementId)
       .then(() => {
         dispatch(clearErrors());
-      }, errors => receiveErrors(errors))
+      }, errors => receiveErrors(errors.response.data))
   );
 };
