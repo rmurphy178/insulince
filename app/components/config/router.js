@@ -28,7 +28,7 @@ import MacroTrackerContainer from '../screens/macro_tracker/macro_tracker_contai
 //
 // });
 
-// 
+//
 // const navigationOptions = {
 //   title: ({ state }) => state.routeName,
 //   header: ({ navigate }) => ({
