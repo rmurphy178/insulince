@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Container, Header, Item, Input, Icon, Button, Text } from 'native-base';
-import getTheme from '../../../../native-base-theme/components';
-import material from '../../../../native-base-theme/variables/material';
 
 
 export default class FoodSearch extends Component {
