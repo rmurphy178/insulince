@@ -15,7 +15,7 @@ const JournalEntriesReducer = (state = defaultState, action) => {
       nextState = merge({}, defaultState);
       nextState.allIds = Object.keys(action.journalEntries);
       nextState.allIds.forEach(journalEntryId => {
-        nextState.byId[journalEntryId] = action.journalEntries[journalEntryId].entry;
+        nextState.byId[journalEntryId] = action.journalEntries[journalEntryId];
       });
       return nextState;
     case(RECEIVE_JOURNAL_ENTRY):
