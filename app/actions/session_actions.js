@@ -33,7 +33,6 @@ export const login = user => dispatch => {
   return(
     sessionAPIUtil.login(user)
       .then(response => {
-        console.log(response);
         ASYNC.setItem("auth_token", response.data.auth_token);
         dispatch(receiveCurrentUser(response.data));
         dispatch(clearErrors());
