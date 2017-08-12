@@ -7,8 +7,6 @@ import {
   Image
 } from 'react-native';
 import { Container, Content, Item, Input, Button, Text, Icon, Toast, Root } from 'native-base';
-
-import { Container } from 'native-base';
 import Header from '../header/header';
 
 
