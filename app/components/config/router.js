@@ -34,7 +34,7 @@ const navigationOptions = {
   header: ({ navigate }) => ({
     left: (
       <IconToggle
-        onPress={() => navigate('DrawerOpen')}
+        onPress={() => navigate('Home')}
       />
     ),
   }),
@@ -75,7 +75,7 @@ export const Tabs = TabNavigator({
 });
 
 export const AuthNav = StackNavigator({
-  Home: { screen: Home },
+  // Home: { screen: Home },
   // Splash: { screen: SplashScreenContainer },
   Login: { screen: LoginContainer },
   SignUp: { screen: SignUpContainer},
