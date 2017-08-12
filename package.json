@@ -10,11 +10,8 @@
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
     "postinstall": "remotedev-debugger --hostname localhost --port 8081 --injectserver"
   },
   "dependencies": {
@@ -24,9 +21,10 @@
     "npm": "^4.6.1",
     "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.12",
-    "react-native": "0.46.1",
+    "react-native": "0.47.1",
     "react-native-elements": "^0.15.0",
     "react-native-progress": "^3.3.0",
+    "react-native-vector-icons": "^4.3.0",
     "react-navigation": "^1.0.0-beta.11",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",

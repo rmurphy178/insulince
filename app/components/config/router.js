@@ -28,17 +28,17 @@ import MacroTrackerContainer from '../screens/macro_tracker/macro_tracker_contai
 //
 // });
 
-
-const navigationOptions = {
-  title: ({ state }) => state.routeName,
-  header: ({ navigate }) => ({
-    left: (
-      <IconToggle
-        onPress={() => navigate('Home')}
-      />
-    ),
-  }),
-};
+// 
+// const navigationOptions = {
+//   title: ({ state }) => state.routeName,
+//   header: ({ navigate }) => ({
+//     left: (
+//       <IconToggle
+//         onPress={() => navigate('Home')}
+//       />
+//     ),
+//   }),
+// };
 
 
 export const Tabs = TabNavigator({
