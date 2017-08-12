@@ -53,7 +53,7 @@ class Login extends Component {
 
   handleDemo() {
   this.props.login({
-   userCredential: "demo",
+   user_credential: "demo",
    password: "12345678"
   }).then(() => {
    this.props.navigation.navigate('Home');
