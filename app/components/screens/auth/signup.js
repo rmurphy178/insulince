@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 20,
-    backgroundColor: 'transparent',
+    backgroundColor: '#2A132B',
     opacity: .6
   },
   text: {

@@ -15,7 +15,7 @@ export default class App extends Component {
     this.store = configureStore();
     this.state = {
       ready: false
-    }
+    };
   }
 
   async componentWillMount() {

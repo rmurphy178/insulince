@@ -174,8 +174,8 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 20,
-    backgroundColor: 'transparent',
-    opacity: .6
+    backgroundColor: '#2A132B',
+    opacity: .6,
   },
   disabledButton: {
     marginTop: 20,
