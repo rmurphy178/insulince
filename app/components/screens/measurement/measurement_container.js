@@ -13,9 +13,10 @@ const mapStateToProps = ({  currentUser, errors, measurements }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchAllMeasurements: () => dispatch(fetchAllMeasurements()),
     createMeasurement: measurement => dispatch(createMeasurement(measurement)),
-    deleteMeasurement: id => dispatch(deleteMeasurement(id)),
-    updateMeasurement: id => dispatch(updateMeasurement(id))
+    updateMeasurement: measurement => dispatch(updateMeasurement(measurement)),
+    deleteMeasurement: measurementId => dispatch(deleteMeasurement(measurementId))
   };
 };
 

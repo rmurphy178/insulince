@@ -21,30 +21,30 @@ export const receiveMeasurement = measurement => {
 export const fetchAllMeasurements = () => dispatch => {
   return(
     measurementsAPIUtil.fetchAllMeasurements()
-      .then(measurements => {
-        dispatch(receiveAllMeasurements(measurements));
+      .then(response => {
+        dispatch(receiveAllMeasurements(response.data));
         dispatch(clearErrors());
-      }, errors => receiveErrors(errors))
+      }, errors => receiveErrors(errors.response.data))
   );
 };
 
 export const createMeasurement = measurement => dispatch => {
   return(
     measurementsAPIUtil.createMeasurement(measurement)
-      .then(newMeasurement => {
-        dispatch(receiveMeasurement(newMeasurement));
-        dispatch(clearErrors());
-      }, errors => receiveErrors(errors))
+    .then(newMeasurement => {
+      dispatch(receiveMeasurement(newMeasurement));
+      dispatch(clearErrors());
+    }, errors => receiveErrors(errors))
   );
 };
 
 export const updateMeasurement = measurement => dispatch => {
   return(
     measurementsAPIUtil.updateMeasurement(measurement)
-      .then(updatedMeasurement => {
-        dispatch(receiveMeasurement(updatedMeasurement));
-        dispatch(clearErrors());
-      }, errors => receiveErrors(errors))
+    .then(updatedMeasurement => {
+      dispatch(receiveMeasurement(updatedMeasurement));
+      dispatch(clearErrors());
+    }, errors => receiveErrors(errors))
   );
 };
 
