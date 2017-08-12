@@ -10,9 +10,16 @@ class JournalEntries extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      currentEntryId: this.props.journalEntries.allIds[this.props.journalEntries.allIds.length - 1]
+    };
   }
 
   render() {
+    const { journalEntries } = this.props;
+    // journalEntries.allIds.forEach(id => {
+    //   console.log(Array.from(journalEntries.byId[id].breakfast));
+    // });
     var items = ['Simon Mignolet','Nathaniel Clyne','Dejan Lovren','Mama Sakho','Emre Can'];
     return (
       <Container>
