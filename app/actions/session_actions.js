@@ -1,6 +1,7 @@
 import * as sessionAPIUtil from '../util/session_api_util';
 import { receiveErrors, clearErrors } from './errors_actions';
 import ASYNC from '../util/async_util';
+import { AsyncStorage } from 'react-native';
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const CLEAR_STORE = "CLEAR_STORE";

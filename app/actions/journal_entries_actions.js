@@ -21,10 +21,10 @@ export const receiveJournalEntry = journalEntry => {
 export const fetchAllJournalEntries = () => dispatch => {
   return(
     journalEntriesAPIUtil.fetchAllJournalEntries()
-      .then(journalEntries => {
-        dispatch(receiveAllJournalEntries(journalEntries));
+      .then(response => {
+        dispatch(receiveAllJournalEntries(response.data));
         dispatch(clearErrors());
-      }, errors => receiveErrors(errors))
+      }, errors => receiveErrors(errors.response.data))
   );
 };
 

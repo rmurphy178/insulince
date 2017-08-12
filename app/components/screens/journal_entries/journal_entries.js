@@ -4,9 +4,8 @@ import { fetchAllJournalEntries } from '../../../util/journal_entries_api_util';
 
 
 class JournalEntries extends React.Component {
-  componentWillMount() {
-    // this.props.fetchAllJournalEntries()
-    //   .then(response => this.setState({ JournalEntries: response.data }));
+  componentDidMount() {
+    this.props.fetchAllJournalEntries();
   }
 
 

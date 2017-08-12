@@ -13,9 +13,9 @@ const MeasurementsReducer = (state = defaultState, action) => {
   switch(action.type) {
     case(RECEIVE_ALL_MEASUREMENTS):
       nextState = merge({}, defaultState);
-      action.measurements.forEach(measurement => {
-        nextState.allIds.push(measurement.id);
-        nextState.byId[measurement.id] = measurement;
+      nextState.allIds = Object.keys(action.measurements);
+      nextState.allIds.forEach(measurementId => {
+        nextState.byId[measurementId] = action.journalEntries[measurementId];
       });
       return nextState;
     case(RECEIVE_MEASUREMENT):

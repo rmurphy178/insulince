@@ -1,4 +1,5 @@
 import axios from 'axios';
+import ASYNC from './async_util';
 
 export const fetchAllMeasurements = () => {
   const url = "https://insulince-api.herokuapp.com/api/measurements";
@@ -6,7 +7,7 @@ export const fetchAllMeasurements = () => {
     method: 'GET',
     url: url,
     headers: {
-      // "Authorization": "JWT" + AsyncStorage
+      "Authorization": "JWT" + ASYNC.getItem("auth_token")
     }
   }).then(response => console.log(response));
 
