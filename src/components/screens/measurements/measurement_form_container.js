@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Measurements from './measurements';
+import MeasurementsForm from './measurement_form';
 import {
   fetchAllMeasurements,
   createMeasurement,
@@ -19,10 +19,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchAllMeasurements: () => dispatch(fetchAllMeasurements()),
+    createMeasurement: measurement => dispatch(createMeasurement(measurement)),
+    updateMeasurement: measurement => dispatch(updateMeasurement(measurement)),
+    deleteMeasurement: measurementId => dispatch(deleteMeasurement(measurementId))
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Measurements);
+)(MeasurementsForm);

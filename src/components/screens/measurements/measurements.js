@@ -17,6 +17,7 @@ import {
   List
 } from 'native-base';
 import Footer from '../footer/footer';
+import MeasurementForm from './measurement_form';
 
 class Measurements extends Component {
   componentDidMount() {
@@ -33,32 +34,11 @@ class Measurements extends Component {
       height: '',
       errors: []
     };
-
-    this.handleUpdate = this.handleUpdate.bind(this);
-    this.update = this.update.bind(this);
-    this.updatePressed = this.updatePressed.bind(this);
-
+    this.redirectToMeasurementForm = this.redirectToMeasurementForm.bind(this);
   }
 
-  handleUpdate(event) {
-    const updateInput = document.getElementById(this.update.name);
-    updateInput.classList.remove('hidden');
-    updateInput.focus();
-  }
-
-  update(event) {
-
-  }
-
-  updatePressed() {
-    this.props.update({
-      chest: this.state.chest,
-      waist: this.state.waist,
-      hips: this.state.hips,
-      weight: this.state.weight,
-      height: this.state.height
-    });
-    // should this redirect or just update?
+  redirectToMeasurementForm() {
+    this.props.navigation.navigate('MeasurementForm');
   }
 
   render() {
@@ -82,30 +62,51 @@ class Measurements extends Component {
               <Right />
             </Header>
             <Content style={{ backgroundColor: 'white' }}>
-              <Separator bordered
-                style={ styles.separator }>
-                <Text style={ styles.separatorText }>
-                  DATE
-                </Text>
-              </Separator>
-              <List
-                style={{ backgroundColor: 'white' }}
-                dataSource={this.ds.cloneWithRows()}
-                renderRow={data =>
-                  <ListItem>
-                    <Text style={{ paddingLeft: 14 }}> {data} </Text>
-                  </ListItem>}
-                renderLeftHiddenRow={data =>
-                  <Button full onPress={() => alert(data)}>
-                    <Icon active name="information-circle" />
-                  </Button>}
-                renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-                  <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
-                    <Icon active name="trash" />
-                  </Button>}
-                leftOpenValue={75}
-                rightOpenValue={-75}
-              />
+
+
+              <Container style={styles.container}>
+                 <Content>
+                   <List>
+                     <ListItem>
+                       <Body>
+                         <Text style={styles.text} >Date</Text>
+                       </Body>
+                     </ListItem>
+                     <ListItem>
+                       <Body>
+                         <Text style={styles.text} >Weight</Text>
+                       </Body>
+                     </ListItem>
+                     <ListItem>
+                       <Body>
+                         <Text style={styles.text}>Chest</Text>
+                       </Body>
+                     </ListItem>
+                     <ListItem>
+                       <Body>
+                         <Text style={styles.text}>Waist</Text>
+                       </Body>
+                     </ListItem>
+                     <ListItem>
+                       <Body>
+                         <Text style={styles.text}>Hips</Text>
+                       </Body>
+                     </ListItem>
+                     <ListItem>
+                       <Body>
+                         <Text style={styles.text}>Height</Text>
+                       </Body>
+                     </ListItem>
+                   </List>
+                   <Button bordered transparent warning
+                     onPress={this.redirectToMeasurementForm}
+                     style={styles.newbutton}>
+                     <Text style={styles.plaintext}>Add New</Text>
+                   </Button>
+                 </Content>
+               </Container>
+
+
             </Content>
           </Container>
         </KeyboardAvoidingView>
