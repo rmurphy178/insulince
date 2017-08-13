@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   chart: {
     alignSelf: 'center',
     borderWidth: 1,
-    borderRadius: 2,
+    borderRadius: 0,
     borderColor: '#ddd',
     borderBottomWidth: 0,
     shadowColor: '#000',
