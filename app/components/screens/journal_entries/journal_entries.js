@@ -119,10 +119,11 @@ export default class JournalEntries extends Component {
             </Text>
           </Separator>
           <List
+            style={{ backgroundColor: 'white' }}
             dataSource={this.ds.cloneWithRows(this.state.breakfastItems)}
             renderRow={data =>
               <ListItem>
-                <Text> {data} </Text>
+                <Text style={{ paddingLeft: 14 }}> {data} </Text>
               </ListItem>}
             renderLeftHiddenRow={data =>
               <Button full onPress={() => alert(data)}>
@@ -147,10 +148,11 @@ export default class JournalEntries extends Component {
             </Text>
           </Separator>
           <List
+            style={{ backgroundColor: 'white' }}
             dataSource={this.ds.cloneWithRows(this.state.lunchItems)}
             renderRow={data =>
               <ListItem>
-                <Text> {data} </Text>
+                <Text style={{ paddingLeft: 14 }}> {data} </Text>
               </ListItem>}
             renderLeftHiddenRow={data =>
               <Button full onPress={() => alert(data)}>
@@ -175,10 +177,11 @@ export default class JournalEntries extends Component {
             </Text>
           </Separator>
           <List
+            style={{ backgroundColor: 'white' }}
             dataSource={this.ds.cloneWithRows(this.state.dinnerItems)}
             renderRow={data =>
               <ListItem>
-                <Text> {data} </Text>
+                <Text style={{ paddingLeft: 14 }}> {data} </Text>
               </ListItem>}
             renderLeftHiddenRow={data =>
               <Button full onPress={() => alert(data)}>
@@ -203,10 +206,11 @@ export default class JournalEntries extends Component {
             </Text>
           </Separator>
           <List
+            style={{ backgroundColor: 'white' }}
             dataSource={this.ds.cloneWithRows(this.state.snackItems)}
             renderRow={data =>
               <ListItem>
-                <Text> {data} </Text>
+                <Text style={{ paddingLeft: 14 }}> {data} </Text>
               </ListItem>}
             renderLeftHiddenRow={data =>
               <Button full onPress={() => alert(data)}>
