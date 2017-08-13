@@ -61,6 +61,7 @@ export default class FoodSearch extends Component {
   }
 
   render() {
+    const { key } = this.props.navigation.state.params;
     return (
       <Image
         source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502485970/insulince-gradient_wofrfg.png' }}
@@ -78,7 +79,7 @@ export default class FoodSearch extends Component {
               </Left>
               <Body style={ styles.headerBody }>
                 <Title>
-                  { this.props.navigation.state.params.key }
+                  { `Add ${key.charAt(0).toUpperCase()}${key.slice(1)}` }
                 </Title>
               </Body>
               <Right />
