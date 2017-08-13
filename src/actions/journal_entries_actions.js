@@ -28,6 +28,16 @@ export const fetchAllJournalEntries = () => dispatch => {
   );
 };
 
+export const fetchLastJournalEntry = () => dispatch => {
+  return(
+    journalEntriesAPIUtil.fetchLastJournalEntry()
+      .then(response => {
+        dispatch(receiveAllJournalEntries(response.data));
+        dispatch(clearErrors());
+      }, errors => receiveErrors(errors.response.data))
+  );
+};
+
 export const createJournalEntry = journalEntry => dispatch => {
   return(
     journalEntriesAPIUtil.createJournalEntry(journalEntry)
