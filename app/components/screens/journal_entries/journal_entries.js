@@ -87,7 +87,7 @@ export default class JournalEntries extends Component {
 
   addFood(key) {
     return(
-      () => this.props.navigation.navigate('FoodSearch')
+      () => this.props.navigation.navigate('FoodSearch', { key })
     );
   }
 
@@ -113,7 +113,7 @@ export default class JournalEntries extends Component {
               BREAKFAST
             </Text>
             <Text
-              onPress={ this.addFood('breakfast') }
+              onPress={ this.addFood('Add Breakfast') }
               style={ styles.separatorText }>
               + ADD FOOD
             </Text>
@@ -142,7 +142,7 @@ export default class JournalEntries extends Component {
               LUNCH
             </Text>
             <Text
-              onPress={ this.addFood('lunch') }
+              onPress={ this.addFood('Add Lunch') }
               style={ styles.separatorText }>
               + ADD FOOD
             </Text>
@@ -171,7 +171,7 @@ export default class JournalEntries extends Component {
               DINNER
             </Text>
             <Text
-              onPress={ this.addFood('dinner') }
+              onPress={ this.addFood('Add Dinner') }
               style={ styles.separatorText }>
               + ADD FOOD
             </Text>
@@ -200,7 +200,7 @@ export default class JournalEntries extends Component {
               SNACKS
             </Text>
             <Text
-              onPress={ this.addFood('snack') }
+              onPress={ this.addFood('Add Snack') }
               style={ styles.separatorText }>
               + ADD FOOD
             </Text>

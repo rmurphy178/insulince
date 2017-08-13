@@ -63,7 +63,7 @@ export default class FoodSearch extends Component {
             </Left>
             <Body style={ styles.headerBody }>
               <Title>
-                Food Search
+                { this.props.navigation.state.params.key }
               </Title>
             </Body>
             <Right />
