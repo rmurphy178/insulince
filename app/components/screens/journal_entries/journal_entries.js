@@ -43,8 +43,7 @@ class JournalEntries extends React.Component {
     });
     let idx = -1;
     return (
-      <Container>
-        <Content>
+      <Content>
           <Separator bordered
             style={ styles.separator }>
             <Text style={ styles.separatorText }>
@@ -138,7 +137,6 @@ class JournalEntries extends React.Component {
             }}>
           </List>
         </Content>
-      </Container>
     );
   }
 }

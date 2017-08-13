@@ -18,6 +18,7 @@ import {
 } from "native-base";
 import Home from '../home/home';
 import JournalEntriesContainer from '../journal_entries/journal_entries_container';
+import AccountContainer from '../account/account_container';
 
 export default class FooterNav extends Component {
   constructor(props) {
@@ -79,7 +80,7 @@ export default class FooterNav extends Component {
     let content = <Home />;
     if (this.state.tab2) content = <JournalEntriesContainer />;
     if (this.state.tab3) content = <Progress />;
-    if (this.state.tab4) content = <Account />;
+    if (this.state.tab4) content = <AccountContainer />;
     return (
       <Container style={styles.container}>
         <Header>
@@ -93,11 +94,7 @@ export default class FooterNav extends Component {
           </Body>
           <Right />
         </Header>
-
-        <Content>
-          { content }
-        </Content>
-
+        { content }
         <Footer>
           <FooterTab>
             <Button active={this.state.tab1} onPress={() => this.toggleTab1()}>

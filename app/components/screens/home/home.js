@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { Content, Text } from 'native-base';
 
 
 class Home extends React.Component {
@@ -7,9 +7,9 @@ class Home extends React.Component {
 
 
     return (
-    <View>
+    <Content>
       <Text>Home</Text>
-    </View>
+    </Content>
     );
   }
 }

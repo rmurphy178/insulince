@@ -50,3 +50,14 @@ export const logout = user => dispatch => {
       }, errors => dispatch(receiveErrors(errors)))
   );
 };
+
+export const updateUser = user => dispatch => {
+  return (
+    sessionAPIUtil.updateUser(user)
+    .then(response => {
+      ASYNC.setItem("auth_token", response.data.auth_token);
+      dispatch(receiveCurrentUser(response.data));
+      dispatch(clearErrors());
+    }, errors => dispatch(receiveErrors(errors.response.data)))
+  );
+};
