@@ -16,6 +16,8 @@ import {
 import { StyleSheet, Image } from 'react-native';
 import Footer from '../footer/footer';
 
+import PieChart from '../charts/pie_charts/pie_chart';
+
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -43,6 +45,7 @@ export default class Home extends React.Component {
             <H1 style={ styles.h1 }>
               Welcome, { currentUser.username }!
             </H1>
+            <PieChart />
           </Content>
           <Footer navigation={ this.props.navigation } />
         </Container>
