@@ -7,6 +7,9 @@
     "android": {
       "package": "insulince"
     },
+    "packagerOpts": {
+  "assetExts": ["ttf", "mp4", "xml"]
+},
     "name": "insulince",
     "slug": "insulince",
     "version": "0.1.0",

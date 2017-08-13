@@ -16,6 +16,7 @@ import LoginContainer from '../screens/auth/login_container';
 import SignUpContainer from '../screens/auth/signup_container';
 import SplashScreenContainer from '../screens/auth/splash_container';
 import MacroTrackerContainer from '../screens/macro_tracker/macro_tracker_container';
+import BarChartContainer from '../screens/charts/bar_chart_container';
 
 
 // JournalEntries: { screen: JournalEntriesContainer},
@@ -75,6 +76,7 @@ export const Tabs = TabNavigator({
 });
 
 export const AuthNav = StackNavigator({
+  BarChart: { screen: BarChartContainer },
   // Home: { screen: Home },
   // Splash: { screen: SplashScreenContainer },
   Login: { screen: LoginContainer },

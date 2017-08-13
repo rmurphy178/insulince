@@ -4,6 +4,8 @@ import Header from '../header/header';
 
 import { Container } from 'native-base';
 
+import BarChart from '../charts/bar_chart';
+
 
 class Home extends React.Component {
     render() {

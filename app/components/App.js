@@ -8,8 +8,11 @@ import {
 import { Provider } from 'react-redux';
 import { AuthNav } from './config/router';
 import Header from './screens/header/header';
+// import Expo, { AppLoading } from 'Expo';
 
-
+// <View>
+//   <Header />
+// </View>
 
 export default class App extends Component {
   constructor(props) {
@@ -21,7 +24,7 @@ export default class App extends Component {
   render () {
     return (
       <Provider store={this.store}>
-          <AuthNav />
+        <AuthNav />
       </Provider>
     );
   }

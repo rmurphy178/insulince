@@ -6,6 +6,8 @@ import {
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 
+import BarChart from '../charts/bar_chart';
+
 export default class SplashScreen extends Component {
   constructor(props) {
     super(props);
