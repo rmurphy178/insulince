@@ -10,7 +10,7 @@ import Progress from '../screens/progress/progress';
 import AccountContainer from '../screens/account/account_container';
 import MacroTrackerContainer from '../screens/macro_tracker/macro_tracker_container';
 import FoodSearchContainer from '../screens/food_search/food_search_container';
-import FoodShow from '../food_search/food_show';
+import FoodShow from '../screens/food_search/food_show';
 
 export const AuthNav = StackNavigator({
   Login: { screen: LoginContainer },

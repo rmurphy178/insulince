@@ -19,7 +19,6 @@ import {
 import Footer from '../footer/footer';
 
 export default class FoodSearch extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -52,7 +51,7 @@ export default class FoodSearch extends Component {
 
   showFoodPage(item) {
     return (
-      () => this.props.navigation.navigate('FoodShow', { item }) 
+      () => this.props.navigation.navigate('FoodShow', { item })
     );
   }
 
