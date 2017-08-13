@@ -24,12 +24,17 @@ export default class FoodSearch extends Component {
       query: ''
     };
     this.updateQuery = this.updateQuery.bind(this);
+    this.search = this.search.bind(this);
   }
 
-  updateQuery(event) {
+  updateQuery(text) {
     this.setState({
-      query: event.target.value
+      query: text
     });
+  }
+
+  search() {
+    this.props.searchNutritionix(this.state.query);
   }
 
   render() {
@@ -55,9 +60,11 @@ export default class FoodSearch extends Component {
             <Item>
               <Icon name="ios-search" />
               <Input
+                onChangeText={ text => this.updateQuery(text) }
                 placeholder="Search for a food" />
             </Item>
-            <Button transparent>
+            <Button transparent
+              onPress={ this.search }>
               <Text>Search</Text>
             </Button>
           </Header>

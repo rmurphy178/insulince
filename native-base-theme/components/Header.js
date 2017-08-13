@@ -80,6 +80,7 @@ export default (variables = variable) => {
 			paddingHorizontal: 15,
 		},
 		".searchBar": {
+			paddingTop: 0,
 			"NativeBase.Item": {
 				"NativeBase.Icon": {
 					backgroundColor: "transparent",
