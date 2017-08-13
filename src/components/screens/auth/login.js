@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   KeyboardAvoidingView,
-  Image
+  Image,
+  StatusBar
 } from 'react-native';
 import {
   Container,
@@ -25,14 +26,17 @@ class Login extends Component {
       password: '',
       loginSuccessful: true
     };
+    this.handleUpdate = this.handleUpdate.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.redirectToSignUp = this.redirectToSignUp.bind(this);
     this.handleDemo = this.handleDemo.bind(this);
-    this.foodSearch = this.foodSearch.bind(this);
   }
 
-  foodSearch() {
-    this.props.navigation.navigate('FoodSearch');
+  handleUpdate(text, key) {
+    return () => this.setState({
+      [key]: text,
+      loginSuccessful: true
+    });
   }
 
   handleLogin() {
@@ -59,12 +63,12 @@ class Login extends Component {
   }
 
   handleDemo() {
-  this.props.login({
-   user_credential: "demo",
-   password: "12345678"
-  }).then(() => {
-   this.props.navigation.navigate('Home');
-  });
+    this.props.login({
+      user_credential: "demo",
+      password: "12345678"
+    }).then(() => {
+      this.props.navigation.navigate('Home');
+    });
   }
 
   displayErrors() {
@@ -90,6 +94,7 @@ class Login extends Component {
           style={ styles.view }
           behavior={ 'padding' }>
           <Root>
+            <StatusBar barStyle="light-content" />
             <Container>
               <Content>
                 <View>
@@ -107,11 +112,8 @@ class Login extends Component {
                       style={ styles.input }
                       placeholderTextColor='white'
                       placeholder='username or email address'
-                      value={ this.state.userCredential }
-                      onChangeText={ text => this.setState({
-                        userCredential: text,
-                        loginSuccessful: true
-                      }) } />
+                      onChangeText={ text =>
+                        this.handleUpdate(text, 'userCredential') } />
                     <Icon
                       style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
                       name='close-circle' />
@@ -123,11 +125,8 @@ class Login extends Component {
                       placeholderTextColor='white'
                       secureTextEntry={ true }
                       placeholder='password'
-                      value={ this.state.password }
-                      onChangeText={ text => this.setState({
-                        password: text,
-                        loginSuccessful: true
-                      }) } />
+                      onChangeText={ text =>
+                        this.handleUpdate(text, 'password') } />
                     <Icon
                       style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
                       name='close-circle' />
