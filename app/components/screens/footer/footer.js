@@ -154,16 +154,3 @@ export default class FooterNav extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#FFF"
-  },
-  text: {
-    alignSelf: "center",
-    marginBottom: 7
-  },
-  mb: {
-    marginBottom: 15
-  }
-});
