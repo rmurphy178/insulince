@@ -58,11 +58,19 @@ class JournalEntries extends React.Component {
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
+              <Icon name="ios-arrow-round-back" />
             </Button>
           </Left>
-          <Body>
-            <Title>Date</Title>
+          <Body style={ styles.headerBody }>
+            <Icon
+              style={ styles.headerIcons }
+              name="ios-arrow-back" />
+            <Title>
+              Date
+            </Title>
+            <Icon
+              style={ styles.headerIcons }
+              name="ios-arrow-forward" />
           </Body>
           <Right />
         </Header>
@@ -188,5 +196,14 @@ const styles = StyleSheet.create({
   listItemDetails: {
     alignSelf: 'flex-start',
     fontSize: 12
+  },
+  headerBody: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  headerIcons: {
+    color: 'white'
   }
 });
