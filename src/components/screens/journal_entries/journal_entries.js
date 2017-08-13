@@ -119,7 +119,6 @@ export default class JournalEntries extends Component {
             </Text>
           </Separator>
           <List
-            style={{ backgroundColor: 'white' }}
             dataSource={this.ds.cloneWithRows(this.state.breakfastItems)}
             renderRow={data =>
               <ListItem>
