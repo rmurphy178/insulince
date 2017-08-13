@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 // import { Header  } from 'react-native-elements';
 
 
-class MacroTracker extends React.Component {
+export default class Nutrition extends React.Component {
   componentWillMount() {
   }
 
@@ -13,11 +13,8 @@ class MacroTracker extends React.Component {
     return (
 
       <Text>
-        MacroTracker
+        Nutrition
       </Text>
     );
   }
 }
-
-
-export default MacroTracker;

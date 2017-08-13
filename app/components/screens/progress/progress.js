@@ -17,11 +17,12 @@ import Footer from '../footer/footer';
 export default class Progress extends Component {
   constructor(props) {
     super(props);
+    this.redirectToNutrition = this.redirectToNutrition.bind(this);
     this.redirectToMeasurements = this.redirectToMeasurements.bind(this);
   }
 
-  redirectToMacroTracker() {
-    this.props.navigation.navigate('MacroTracker');
+  redirectToNutrition() {
+    this.props.navigation.navigate('Nutrition');
   }
 
   redirectToMeasurements() {
@@ -47,10 +48,10 @@ export default class Progress extends Component {
             <Right />
           </Header>
           <Button full
-            onPress={ this.redirectToMacroTracker }
-            style={ styles.macroButton }>
+            onPress={ this.redirectToNutrition }
+            style={ styles.nutritionButton }>
             <Text>
-              Macro Tracker
+              Nutrition
             </Text>
           </Button>
           <Button full
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover'
   },
-  macroButton: {
+  nutritionButton: {
     flex: 1,
     backgroundColor: 'transparent'
   },
