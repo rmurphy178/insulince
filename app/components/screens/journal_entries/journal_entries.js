@@ -91,7 +91,11 @@ export default class JournalEntries extends Component {
   }
 
   render() {
-    let content = <Content><Spinner color='#621E2F' /></Content>;
+    let content =
+      <Content
+        style={{ backgroundColor: 'white' }}>
+        <Spinner color='#621E2F' />
+      </Content>;
     if (this.state.currentEntryId) {
       content =
         <Content>
