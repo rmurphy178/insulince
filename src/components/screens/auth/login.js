@@ -73,7 +73,7 @@ class Login extends Component {
 
   displayErrors() {
     if (this.props.errors.length > 0) {
-      this.props.errors.map((error, i) => (
+      this.props.errors.map(error => (
        Toast.show({
          text: error,
          position: 'top',
@@ -98,9 +98,7 @@ class Login extends Component {
             <Container>
               <Content>
                 <View>
-                  {
-                  this.displayErrors()
-                  }
+                  { this.displayErrors() }
                 </View>
                 <Container style={ styles.container }>
                   <Image

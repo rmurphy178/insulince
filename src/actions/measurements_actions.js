@@ -31,8 +31,8 @@ export const fetchAllMeasurements = () => dispatch => {
 export const createMeasurement = measurement => dispatch => {
   return(
     measurementsAPIUtil.createMeasurement(measurement)
-    .then(newMeasurement => {
-      dispatch(receiveMeasurement(newMeasurement));
+    .then(response => {
+      dispatch(receiveMeasurement(response.data));
       dispatch(clearErrors());
     }, errors => receiveErrors(errors.response.data))
   );
@@ -41,8 +41,8 @@ export const createMeasurement = measurement => dispatch => {
 export const updateMeasurement = measurement => dispatch => {
   return(
     measurementsAPIUtil.updateMeasurement(measurement)
-    .then(updatedMeasurement => {
-      dispatch(receiveMeasurement(updatedMeasurement));
+    .then(response => {
+      dispatch(receiveMeasurement(response.data));
       dispatch(clearErrors());
     }, errors => receiveErrors(errors.response.data))
   );

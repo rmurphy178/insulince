@@ -39,27 +39,22 @@ export default class JournalEntries extends Component {
         this.lunchItems = [];
         this.dinnerItems = [];
         this.snackItems = [];
-        this.ItemsInfo = [];
         journalEntries.byId[this.currentEntryId].breakfast
-        .forEach(breakfastItem => {
-          this.breakfastItems.push(breakfastItem.item_name);
-          this.ItemsInfo.push(`${breakfastItem.brand_name}, ${breakfastItem.nf_serving_size_qty} ${breakfastItem.nf_serving_size_unit}`);
-        });
+          .forEach(breakfastItem => {
+            this.breakfastItems.push(breakfastItem);
+          });
         journalEntries.byId[this.currentEntryId].lunch
-        .forEach(lunchItem => {
-          this.lunchItems.push(lunchItem.item_name);
-          this.ItemsInfo.push(`${lunchItem.brand_name}, ${lunchItem.nf_serving_size_qty} ${lunchItem.nf_serving_size_unit}`);
-        });
+          .forEach(lunchItem => {
+            this.lunchItems.push(lunchItem);
+          });
         journalEntries.byId[this.currentEntryId].dinner
-        .forEach(dinnerItem => {
-          this.dinnerItems.push(dinnerItem.item_name);
-          this.ItemsInfo.push(`${dinnerItem.brand_name}, ${dinnerItem.nf_serving_size_qty} ${dinnerItem.nf_serving_size_unit}`);
+          .forEach(dinnerItem => {
+            this.dinnerItems.push(dinnerItem);
         });
         journalEntries.byId[this.currentEntryId].snacks
-        .forEach(snackItem => {
-          this.snackItems.push(snackItem.item_name);
-          this.ItemsInfo.push(`${snackItem.brand_name}, ${snackItem.nf_serving_size_qty} ${snackItem.nf_serving_size_unit}`);
-        });
+          .forEach(snackItem => {
+            this.snackItems.push(snackItem);
+          });
         this.setState({
           currentEntryId: this.currentEntryId,
           breakfastItems: this.breakfastItems,
@@ -121,8 +116,13 @@ export default class JournalEntries extends Component {
           <List
             dataSource={this.ds.cloneWithRows(this.state.breakfastItems)}
             renderRow={data =>
-              <ListItem>
-                <Text style={{ paddingLeft: 14 }}> {data} </Text>
+              <ListItem style={ styles.resultInfo }>
+                <Text style={ styles.resultName }>
+                  {data.item_name}
+                </Text>
+                <Text style={ styles.infoText }>
+                  { `${data.brand_name}, ${data.nf_serving_size_qty} ${data.nf_serving_size_unit}` }
+                </Text>
               </ListItem>}
             renderLeftHiddenRow={data =>
               <Button full onPress={() => alert(data)}>
@@ -150,8 +150,13 @@ export default class JournalEntries extends Component {
             style={{ backgroundColor: 'white' }}
             dataSource={this.ds.cloneWithRows(this.state.lunchItems)}
             renderRow={data =>
-              <ListItem>
-                <Text style={{ paddingLeft: 14 }}> {data} </Text>
+              <ListItem style={ styles.resultInfo }>
+                <Text style={ styles.resultName }>
+                  {data.item_name}
+                </Text>
+                <Text style={ styles.infoText }>
+                  { `${data.brand_name}, ${data.nf_serving_size_qty} ${data.nf_serving_size_unit}` }
+                </Text>
               </ListItem>}
             renderLeftHiddenRow={data =>
               <Button full onPress={() => alert(data)}>
@@ -179,8 +184,13 @@ export default class JournalEntries extends Component {
             style={{ backgroundColor: 'white' }}
             dataSource={this.ds.cloneWithRows(this.state.dinnerItems)}
             renderRow={data =>
-              <ListItem>
-                <Text style={{ paddingLeft: 14 }}> {data} </Text>
+              <ListItem style={ styles.resultInfo }>
+                <Text style={ styles.resultName }>
+                  {data.item_name}
+                </Text>
+                <Text style={ styles.infoText }>
+                  { `${data.brand_name}, ${data.nf_serving_size_qty} ${data.nf_serving_size_unit}` }
+                </Text>
               </ListItem>}
             renderLeftHiddenRow={data =>
               <Button full onPress={() => alert(data)}>
@@ -208,8 +218,13 @@ export default class JournalEntries extends Component {
             style={{ backgroundColor: 'white' }}
             dataSource={this.ds.cloneWithRows(this.state.snackItems)}
             renderRow={data =>
-              <ListItem>
-                <Text style={{ paddingLeft: 14 }}> {data} </Text>
+              <ListItem style={ styles.resultInfo }>
+                <Text style={ styles.resultName }>
+                  {data.item_name}
+                </Text>
+                <Text style={ styles.infoText }>
+                  { `${data.brand_name}, ${data.nf_serving_size_qty} ${data.nf_serving_size_unit}` }
+                </Text>
               </ListItem>}
             renderLeftHiddenRow={data =>
               <Button full onPress={() => alert(data)}>
@@ -282,5 +297,19 @@ const styles = StyleSheet.create({
   },
   headerIcons: {
     color: 'white'
+  },
+  resultName: {
+    paddingLeft: 14,
+    alignSelf: 'flex-start'
+  },
+  resultInfo: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start'
+  },
+  infoText: {
+    paddingLeft: 14,
+    alignSelf: 'flex-start',
+    fontSize: 12
   }
 });
