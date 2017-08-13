@@ -29,10 +29,6 @@ export default class FooterNav extends Component {
     });
   }
 
-  componentWillReceiveProps(newProps) {
-    console.log("hi");
-  }
-
   constructor(props) {
     super(props);
     this.state = {
