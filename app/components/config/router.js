@@ -11,7 +11,7 @@ import JournalEntriesContainer from '../screens/journal_entries/journal_entries_
 import MeasurementsContainer from '../screens/measurement/measurement_container';
 import FoodSearchContainer from '../screens/food_search/food_search_container';
 
-import FooterNav from '../screens/footer/footer';
+import FooterContainer from '../screens/footer/footer_container';
 
 // Stack Screens
 import LoginContainer from '../screens/auth/login_container';
@@ -68,9 +68,7 @@ export const AuthNav = StackNavigator({
   // Splash: { screen: SplashScreenContainer },
   Login: { screen: LoginContainer },
   SignUp: { screen: SignUpContainer},
-  Footer: { screen: FooterNav },
-  MacroTracker: { screen: MacroTrackerContainer }
-
+  Footer: { screen: FooterContainer }
 },
     { headerMode: 'none' }
   );

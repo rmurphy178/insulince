@@ -10,11 +10,6 @@ import {
 import baseStyles from '../styles/styles';
 
 class Measurements extends Component {
-
-  componentWillMount() {
-    this.props.fetchAllMeasurements();
-  }
-
   constructor() {
     super();
     this.state = {

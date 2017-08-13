@@ -19,8 +19,14 @@ import {
 import Home from '../home/home';
 import JournalEntriesContainer from '../journal_entries/journal_entries_container';
 import AccountContainer from '../account/account_container';
+import Progress from '../progress/progress';
 
 export default class FooterNav extends Component {
+  componentDidMount() {
+    this.props.fetchAllJournalEntries();
+    this.props.fetchAllMeasurements();
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -83,17 +89,6 @@ export default class FooterNav extends Component {
     if (this.state.tab4) content = <AccountContainer />;
     return (
       <Container style={styles.container}>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Footer</Title>
-          </Body>
-          <Right />
-        </Header>
         { content }
         <Footer>
           <FooterTab>

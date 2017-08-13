@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Measurements from './measurement';
-import { fetchAllMeasurements, createMeasurement, deleteMeasurement, updateMeasurement } from '../../../actions/measurements_actions';
+import { createMeasurement, deleteMeasurement, updateMeasurement } from '../../../actions/measurements_actions';
 
 
 const mapStateToProps = ({  currentUser, errors, measurements }) => {
@@ -13,7 +13,6 @@ const mapStateToProps = ({  currentUser, errors, measurements }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllMeasurements: () => dispatch(fetchAllMeasurements()),
     createMeasurement: measurement => dispatch(createMeasurement(measurement)),
     updateMeasurement: measurement => dispatch(updateMeasurement(measurement)),
     deleteMeasurement: measurementId => dispatch(deleteMeasurement(measurementId))

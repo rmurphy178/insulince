@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
+import MeasurementsContainer from '../measurement/measurement_container';
+import MacroTrackerContainer from '../macro_tracker/macro_tracker_container';
 import {
   Content,
   Text,
-  View,
+  Container,
   Header,
   Left,
-  Icon,
   Button,
-  Body,
-  Title,
+  Icon,
   Right,
-  Container
+  Body,
+  Title 
 } from 'native-base';
 
-
-class Home extends React.Component {
-    render() {
-
-
+export default class Progress extends Component {
+  render() {
     return (
       <Container>
         <Header>
@@ -27,17 +25,14 @@ class Home extends React.Component {
             </Button>
           </Left>
           <Body>
-            <Title>Home</Title>
+            <Title>Progress</Title>
           </Body>
           <Right />
         </Header>
         <Content>
-          <Text>Home</Text>
+          <Text>Progress</Text>
         </Content>
       </Container>
     );
   }
 }
-
-
-export default Home;

@@ -10,15 +10,15 @@ import {
   Left,
   Body,
   Right,
+  Button,
+  Title
 } from 'native-base';
 
 export default class ListIconExample extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      updateUsername: false,
-      updateEmail: false,
-      updatePassword: false
+      updateUser: false,
     };
   }
 
@@ -71,9 +71,22 @@ export default class ListIconExample extends Component {
         </ListItem>
       </List>;
     return (
-      <Content>
-        { content }
-      </Content>
+      <Container>
+        <Header>
+          <Left>
+            <Button transparent onPress={() => this.props.navigation.goBack()}>
+              <Icon name="arrow-back" />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Your Account</Title>
+          </Body>
+          <Right />
+        </Header>
+        <Content>
+          { content }
+        </Content>
+      </Container>
     );
   }
 }

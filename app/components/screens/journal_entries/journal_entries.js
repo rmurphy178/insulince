@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
-import { fetchAllJournalEntries } from '../../../util/journal_entries_api_util';
-import { Container, Content, List, ListItem, Text, Separator } from 'native-base';
+import {
+  Container,
+  Content,
+  List,
+  ListItem,
+  Text,
+  Separator,
+  Header,
+  Left,
+  Right,
+  Title,
+  Body,
+  Button,
+  Icon
+} from 'native-base';
 import { StyleSheet } from 'react-native';
 
 
 class JournalEntries extends React.Component {
-  componentDidMount() {
-    this.props.fetchAllJournalEntries();
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -23,27 +32,41 @@ class JournalEntries extends React.Component {
     const snackItems = [];
     const ItemsInfo = [];
     const { journalEntries } = this.props;
-    journalEntries.allIds.forEach(id => {
-      journalEntries.byId[id].breakfast.forEach(breakfastItem => {
+    journalEntries.byId[this.state.currentEntryId].breakfast
+      .forEach(breakfastItem => {
         breakfastItems.push(breakfastItem.item_name);
         ItemsInfo.push(`${breakfastItem.brand_name}, ${breakfastItem.nf_serving_size_qty} ${breakfastItem.nf_serving_size_unit}`);
       });
-      journalEntries.byId[id].lunch.forEach(lunchItem => {
+    journalEntries.byId[this.state.currentEntryId].lunch
+      .forEach(lunchItem => {
         lunchItems.push(lunchItem.item_name);
         ItemsInfo.push(`${lunchItem.brand_name}, ${lunchItem.nf_serving_size_qty} ${lunchItem.nf_serving_size_unit}`);
       });
-      journalEntries.byId[id].dinner.forEach(dinnerItem => {
+    journalEntries.byId[this.state.currentEntryId].dinner
+      .forEach(dinnerItem => {
         dinnerItems.push(dinnerItem.item_name);
         ItemsInfo.push(`${dinnerItem.brand_name}, ${dinnerItem.nf_serving_size_qty} ${dinnerItem.nf_serving_size_unit}`);
       });
-      journalEntries.byId[id].snacks.forEach(snackItem => {
+    journalEntries.byId[this.state.currentEntryId].snacks
+      .forEach(snackItem => {
         snackItems.push(snackItem.item_name);
         ItemsInfo.push(`${snackItem.brand_name}, ${snackItem.nf_serving_size_qty} ${snackItem.nf_serving_size_unit}`);
       });
-    });
     let idx = -1;
     return (
-      <Content>
+      <Container>
+        <Header>
+          <Left>
+            <Button transparent onPress={() => this.props.navigation.goBack()}>
+              <Icon name="arrow-back" />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Date</Title>
+          </Body>
+          <Right />
+        </Header>
+        <Content>
           <Separator bordered
             style={ styles.separator }>
             <Text style={ styles.separatorText }>
@@ -137,6 +160,7 @@ class JournalEntries extends React.Component {
             }}>
           </List>
         </Content>
+      </Container>
     );
   }
 }
