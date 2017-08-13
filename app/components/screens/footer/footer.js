@@ -16,17 +16,8 @@ import {
   Fab,
   View
 } from "native-base";
-import Home from '../home/home';
-import JournalEntriesContainer from '../journal_entries/journal_entries_container';
-import AccountContainer from '../account/account_container';
-import Progress from '../progress/progress';
 
 export default class FooterNav extends Component {
-  componentDidMount() {
-    this.props.fetchAllJournalEntries();
-    this.props.fetchAllMeasurements();
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -43,6 +34,10 @@ export default class FooterNav extends Component {
       tab2: false,
       tab3: false,
       tab4: false
+    }, () => {
+      if (this.props.navigation.state.routeName !== 'Home') {
+        this.props.navigation.navigate('Home');
+      }
     });
   }
 
@@ -52,6 +47,10 @@ export default class FooterNav extends Component {
       tab2: true,
       tab3: false,
       tab4: false
+    }, () => {
+      if (this.props.navigation.state.routeName !== 'JournalEntries') {
+        this.props.navigation.navigate('JournalEntries');
+      }
     });
   }
 
@@ -61,6 +60,10 @@ export default class FooterNav extends Component {
       tab2: false,
       tab3: true,
       tab4: false
+    }, () => {
+      if (this.props.navigation.state.routeName !== 'Progress') {
+        this.props.navigation.navigate('Progress');
+      }
     });
   }
 
@@ -70,6 +73,10 @@ export default class FooterNav extends Component {
       tab2: false,
       tab3: false,
       tab4: true
+    }, () => {
+      if (this.props.navigation.state.routeName !== 'Account') {
+        this.props.navigation.navigate('Account');
+      }
     });
   }
 
@@ -83,13 +90,7 @@ export default class FooterNav extends Component {
   }
 
   render() {
-    let content = <Home />;
-    if (this.state.tab2) content = <JournalEntriesContainer />;
-    if (this.state.tab3) content = <Progress />;
-    if (this.state.tab4) content = <AccountContainer />;
     return (
-      <Container style={styles.container}>
-        { content }
         <Footer>
           <FooterTab>
             <Button active={this.state.tab1} onPress={() => this.toggleTab1()}>
@@ -113,7 +114,7 @@ export default class FooterNav extends Component {
             </Button>
           </FooterTab>
         </Footer>
-      </Container>
+
     );
   }
 }

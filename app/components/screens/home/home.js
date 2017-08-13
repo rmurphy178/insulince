@@ -12,12 +12,19 @@ import {
   Right,
   Container
 } from 'native-base';
-
+import Footer from '../footer/footer';
 
 class Home extends React.Component {
-    render() {
+  componentDidMount() {
+    this.props.fetchAllJournalEntries();
+    this.props.fetchAllMeasurements();
+  }
 
+  constructor(props) {
+    super(props);
+  }
 
+  render() {
     return (
       <Container>
         <Header>
@@ -34,10 +41,10 @@ class Home extends React.Component {
         <Content>
           <Text>Home</Text>
         </Content>
+        <Footer navigation={ this.props.navigation } />
       </Container>
     );
   }
 }
-
 
 export default Home;

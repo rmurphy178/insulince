@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
-import { clearErrors } from '../../../actions/errors_actions';
 import { fetchAllJournalEntries } from '../../../actions/journal_entries_actions';
 import { fetchAllMeasurements } from '../../../actions/measurements_actions';
-import Footer from './footer';
+import Home from './home';
 
 const mapStateToProps = state => {
   return {
@@ -16,9 +15,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchAllJournalEntries: () => dispatch(fetchAllJournalEntries()),
-    fetchAllMeasurements: () => dispatch(fetchAllMeasurements()),
-    clearErrors: () => dispatch(clearErrors())
+    fetchAllMeasurements: () => dispatch(fetchAllMeasurements())
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Footer);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -13,63 +13,10 @@ import {
   Button,
   Title
 } from 'native-base';
+import Footer from '../footer/footer';
 
-export default class ListIconExample extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      updateUser: false,
-    };
-  }
-
+export default class Account extends Component {
   render() {
-    let content =
-      <List>
-        <ListItem icon>
-          <Left>
-            <Icon name="ios-person" />
-          </Left>
-          <Body>
-            <Text>{ this.props.currentUser.username }</Text>
-          </Body>
-          <Right>
-            <Icon name="arrow-forward" />
-          </Right>
-        </ListItem>
-        <ListItem icon>
-          <Left>
-            <Icon name="ios-mail" />
-          </Left>
-          <Body>
-            <Text>{ this.props.currentUser.email }</Text>
-          </Body>
-          <Right>
-            <Icon name="arrow-forward" />
-          </Right>
-        </ListItem>
-        <ListItem icon>
-          <Left>
-            <Icon name="ios-key" />
-          </Left>
-          <Body>
-            <Text>Change your password</Text>
-          </Body>
-          <Right>
-            <Icon name="arrow-forward" />
-          </Right>
-        </ListItem>
-        <ListItem icon>
-          <Left>
-            <Icon name="ios-log-out" />
-          </Left>
-          <Body>
-            <Text>Log out</Text>
-          </Body>
-          <Right>
-            <Icon name="arrow-forward" />
-          </Right>
-        </ListItem>
-      </List>;
     return (
       <Container>
         <Header>
@@ -84,8 +31,54 @@ export default class ListIconExample extends Component {
           <Right />
         </Header>
         <Content>
-          { content }
+          <List>
+            <ListItem icon>
+              <Left>
+                <Icon name="ios-person" />
+              </Left>
+              <Body>
+                <Text>{ this.props.currentUser.username }</Text>
+              </Body>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </ListItem>
+            <ListItem icon>
+              <Left>
+                <Icon name="ios-mail" />
+              </Left>
+              <Body>
+                <Text>{ this.props.currentUser.email }</Text>
+              </Body>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </ListItem>
+            <ListItem icon>
+              <Left>
+                <Icon name="ios-key" />
+              </Left>
+              <Body>
+                <Text>Change your password</Text>
+              </Body>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </ListItem>
+            <ListItem icon>
+              <Left>
+                <Icon name="ios-log-out" />
+              </Left>
+              <Body>
+                <Text>Log out</Text>
+              </Body>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </ListItem>
+          </List>
         </Content>
+        <Footer navigation={ this.props.navigation } />
       </Container>
     );
   }

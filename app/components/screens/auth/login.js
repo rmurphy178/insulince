@@ -63,7 +63,7 @@ class Login extends Component {
    user_credential: "demo",
    password: "12345678"
   }).then(() => {
-   this.props.navigation.navigate('Footer');
+   this.props.navigation.navigate('Home');
   });
   }
 

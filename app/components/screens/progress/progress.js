@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import MeasurementsContainer from '../measurement/measurement_container';
-import MacroTrackerContainer from '../macro_tracker/macro_tracker_container';
 import {
   Content,
   Text,
@@ -11,10 +9,20 @@ import {
   Icon,
   Right,
   Body,
-  Title 
+  Title
 } from 'native-base';
+import Footer from '../footer/footer';
 
 export default class Progress extends Component {
+  constructor(props) {
+    super(props);
+    this.redirectToMeasurements = this.redirectToMeasurements.bind(this);
+  }
+
+  redirectToMeasurements() {
+    this.props.navigation.navigate('Measurements');
+  }
+
   render() {
     return (
       <Container>
@@ -31,7 +39,12 @@ export default class Progress extends Component {
         </Header>
         <Content>
           <Text>Progress</Text>
+          <Button
+            onPress={ this.redirectToMeasurements }>
+            <Text>Measurements</Text>
+          </Button>
         </Content>
+        <Footer navigation={ this.props.navigation } />
       </Container>
     );
   }

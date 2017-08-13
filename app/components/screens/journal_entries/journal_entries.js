@@ -15,9 +15,9 @@ import {
   Icon
 } from 'native-base';
 import { StyleSheet } from 'react-native';
+import Footer from '../footer/footer';
 
-
-class JournalEntries extends React.Component {
+export default class JournalEntries extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -168,12 +168,11 @@ class JournalEntries extends React.Component {
             }}>
           </List>
         </Content>
+        <Footer navigation={ this.props.navigation } />
       </Container>
     );
   }
 }
-
-export default JournalEntries;
 
 const styles = StyleSheet.create({
   separator: {

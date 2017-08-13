@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Measurements from './measurement';
+import Measurements from './measurements';
 import { createMeasurement, deleteMeasurement, updateMeasurement } from '../../../actions/measurements_actions';
 
 
