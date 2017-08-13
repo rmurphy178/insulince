@@ -6,15 +6,22 @@
     "babel-jest": "20.0.3",
     "babel-preset-react-native": "2.1.0",
     "jest": "20.0.4",
-    "react-test-renderer": "16.0.0-alpha.12"
+    "jest-expo": "^19.0.5",
+    "react-native-debugger-open": "^0.3.12",
+     "react-native-scripts": "1.1.0",
+     "react-test-renderer": "16.0.0-alpha.12",
+     "remote-redux-devtools": "^0.5.12",
+     "remotedev-rn-debugger": "^0.8.2",
+     "remotedev-server": "^0.2.3"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
-    "ios": "react-native run-ios",
-    "test": "node node_modules/jest/bin/jest.js --watch"
+    "ios": "react-native-scripts ios",
+    "test": "node node_modules/jest/bin/jest.js --watch",
+    "postinstall": "remotedev-debugger --hostname localhost --port 8081 --injectserver"
   },
   "rnpm": {
     "assets": [
@@ -22,7 +29,6 @@
     ]
   },
   "dependencies": {
-    "@expo/vector-icons": "^5.1.0",
     "axios": "^0.16.2",
     "expo": "^19.0.1",
     "native-base": "^2.3.1",

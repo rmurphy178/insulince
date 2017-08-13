@@ -6,6 +6,10 @@ import {
   VictoryAxis, VictoryArea, VictoryChart, VictoryStack, VictoryTheme }
 from "victory-native";
 
+
+import PieChart from './pie_chart/pie_chart';
+
+
 const data1992 = [
   {quarter: 1, earnings: 13000},
   {quarter: 2, earnings: 16500},
@@ -40,49 +44,51 @@ export default class BarChart extends React.Component {
     return (
       <View>
         <Text>{"Victory Tutorial"}</Text>
-          <VictoryChart
-        theme={VictoryTheme.material}
-      >
-        <VictoryAxis
-          tickValues={[1, 2, 3, 4]}
-          tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
-        />
-        <VictoryAxis
-          dependentAxis
-          tickFormat={(x) => (`$${x / 1000}k`)}
-        />
-        <VictoryStack
-          style={{
-            data: { stroke: "white", strokeWidth: 4 }
-          }}
-          colorScale={["cyan", "gold", "orange", "tomato"]}
-        >
-          <VictoryArea
-            style={{
-              data: { fill: "navy" }
-            }}
-            data={data1992}
-            x="quarter"
-            y="earnings"
-          />
-          <VictoryArea
-            data={data1993}
-            x="quarter"
-            y="earnings"
-          />
-          <VictoryArea
-            data={data1994}
-            x="quarter"
-            y="earnings"
-          />
-          <VictoryArea
-            data={data1995}
-            x="quarter"
-            y="earnings"
-          />
-        </VictoryStack>
-      </VictoryChart>
-      </View>
+        <PieChart />
+        </View>
+      //     <VictoryChart
+      //   theme={VictoryTheme.material}
+      // >
+      //   <VictoryAxis
+      //     tickValues={[1, 2, 3, 4]}
+      //     tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
+      //   />
+      //   <VictoryAxis
+      //     dependentAxis
+      //     tickFormat={(x) => (`$${x / 1000}k`)}
+      //   />
+      //   <VictoryStack
+      //     style={{
+      //       data: { stroke: "white", strokeWidth: 4 }
+      //     }}
+      //     colorScale={["cyan", "gold", "orange", "tomato"]}
+      //   >
+      //     <VictoryArea
+      //       style={{
+      //         data: { fill: "navy" }
+      //       }}
+      //       data={data1992}
+      //       x="quarter"
+      //       y="earnings"
+      //     />
+      //     <VictoryArea
+      //       data={data1993}
+      //       x="quarter"
+      //       y="earnings"
+      //     />
+      //     <VictoryArea
+      //       data={data1994}
+      //       x="quarter"
+      //       y="earnings"
+      //     />
+      //     <VictoryArea
+      //       data={data1995}
+      //       x="quarter"
+      //       y="earnings"
+      //     />
+      //   </VictoryStack>
+      // </VictoryChart>
+      // </View>
     );
   }
 }
