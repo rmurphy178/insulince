@@ -27,21 +27,29 @@ class SignUp extends Component {
       password: '',
       loginSuccessful: true
     };
+    this.handleUpdate = this.handleUpdate.bind(this);
     this.signUpUser = this.signUpUser.bind(this);
     this.redirectToLogin = this.redirectToLogin.bind(this);
   }
 
-    signUpUser() {
-      this.props.signUp({
-        username: this.state.username,
-        email: this.state.email,
-        password: this.state.password
-      })
-        .then(() => {
-          if (this.props.currentUser) {
-            this.props.navigation.navigate('Home');
-          }
-        });
+  handleUpdate(text, key) {
+    return () => this.setState({
+      [key]: text,
+      loginSuccessful: true
+    });
+  }
+
+  signUpUser() {
+    this.props.signUp({
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password
+    })
+      .then(() => {
+        if (this.props.currentUser) {
+          this.props.navigation.navigate('Home');
+        }
+      });
     }
 
     redirectToLogin() {
@@ -91,10 +99,8 @@ class SignUp extends Component {
                         placeholderTextColor='white'
                         placeholder='username'
                         value={ this.state.userCredential }
-                        onChangeText={ text => this.setState({
-                          username: text,
-                          loginSuccessful: true
-                        }) } />
+                        onChangeText={ text =>
+                          this.handleUpdate(text, 'username') } />
                       <Icon
                         style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
                         name='close-circle' />
@@ -105,11 +111,8 @@ class SignUp extends Component {
                         style={ styles.input }
                         placeholderTextColor='white'
                         placeholder='email address'
-                        value={ this.state.userCredential }
-                        onChangeText={ text => this.setState({
-                          email: text,
-                          loginSuccessful: true
-                        }) } />
+                        onChangeText={ text =>
+                          this.handleUpdate(text, 'email') } />
                       <Icon
                         style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
                         name='close-circle' />
@@ -121,11 +124,8 @@ class SignUp extends Component {
                         placeholderTextColor='white'
                         secureTextEntry={ true }
                         placeholder='password'
-                        value={ this.state.password }
-                        onChangeText={ text => this.setState({
-                          password: text,
-                          loginSuccessful: true
-                        }) } />
+                        onChangeText={ text =>
+                          this.handleUpdate(text, 'password') } />
                       <Icon
                         style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
                         name='close-circle' />

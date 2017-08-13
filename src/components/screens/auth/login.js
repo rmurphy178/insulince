@@ -32,13 +32,11 @@ class Login extends Component {
     this.handleDemo = this.handleDemo.bind(this);
   }
 
-  handleUpdate(text) {
-    return () => {
-      this.setState({
-        userCredential: text,
-        loginSuccessful: true
-      });
-    };
+  handleUpdate(text, key) {
+    return () => this.setState({
+      [key]: text,
+      loginSuccessful: true
+    });
   }
 
   handleLogin() {
@@ -65,12 +63,12 @@ class Login extends Component {
   }
 
   handleDemo() {
-  this.props.login({
-   user_credential: "demo",
-   password: "12345678"
-  }).then(() => {
-   this.props.navigation.navigate('Home');
-  });
+    this.props.login({
+      user_credential: "demo",
+      password: "12345678"
+    }).then(() => {
+      this.props.navigation.navigate('Home');
+    });
   }
 
   displayErrors() {
@@ -114,8 +112,8 @@ class Login extends Component {
                       style={ styles.input }
                       placeholderTextColor='white'
                       placeholder='username or email address'
-                      value={ this.state.userCredential }
-                      onChangeText={ text => this.handleUpdate(text) } />
+                      onChangeText={ text =>
+                        this.handleUpdate(text, 'userCredential') } />
                     <Icon
                       style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
                       name='close-circle' />
@@ -127,8 +125,8 @@ class Login extends Component {
                       placeholderTextColor='white'
                       secureTextEntry={ true }
                       placeholder='password'
-                      value={ this.state.password }
-                      onChangeText={ text => this.handleUpdate(text) } />
+                      onChangeText={ text =>
+                        this.handleUpdate(text, 'password') } />
                     <Icon
                       style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
                       name='close-circle' />
