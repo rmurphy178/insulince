@@ -12,9 +12,10 @@ import {
   Title,
   Body,
   Button,
-  Icon
+  Icon,
+  Spinner
 } from 'native-base';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import Footer from '../footer/footer';
 
 export default class JournalEntries extends Component {
@@ -33,8 +34,7 @@ export default class JournalEntries extends Component {
   }
 
   render() {
-    console.log(this.state);
-    console.log(this.props.journalEntries);
+    let content = <Content><Spinner color='#621E2F' /></Content>;
     const breakfastItems = [];
     const lunchItems = [];
     const dinnerItems = [];
@@ -62,29 +62,7 @@ export default class JournalEntries extends Component {
         snackItems.push(snackItem.item_name);
         ItemsInfo.push(`${snackItem.brand_name}, ${snackItem.nf_serving_size_qty} ${snackItem.nf_serving_size_unit}`);
       });
-    }
-    let idx = -1;
-    return (
-      <Container>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="md-arrow-back" />
-            </Button>
-          </Left>
-          <Body style={ styles.headerBody }>
-            <Icon
-              style={ styles.headerIcons }
-              name="ios-arrow-back" />
-            <Title>
-              Date
-            </Title>
-            <Icon
-              style={ styles.headerIcons }
-              name="ios-arrow-forward" />
-          </Body>
-          <Right />
-        </Header>
+      content =
         <Content>
           <Separator bordered
             style={ styles.separator }>
@@ -178,7 +156,31 @@ export default class JournalEntries extends Component {
               );
             }}>
           </List>
-        </Content>
+        </Content>;
+    }
+    let idx = -1;
+    return (
+      <Container>
+        <Header>
+          <Left>
+            <Button transparent onPress={() => this.props.navigation.goBack()}>
+              <Icon name="md-arrow-back" />
+            </Button>
+          </Left>
+          <Body style={ styles.headerBody }>
+            <Icon
+              style={ styles.headerIcons }
+              name="ios-arrow-back" />
+            <Title>
+              Date
+            </Title>
+            <Icon
+              style={ styles.headerIcons }
+              name="ios-arrow-forward" />
+          </Body>
+          <Right />
+        </Header>
+        { content }
         <Footer navigation={ this.props.navigation } />
       </Container>
     );
@@ -214,6 +216,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   headerIcons: {
-    color: 'white'
+    color: Platform.OS === "ios" ? '#007aff' : 'white'
   }
 });
