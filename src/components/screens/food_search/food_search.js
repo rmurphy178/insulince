@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet, Image, KeyboardAvoidingView } from 'react-native';
 import {
   Container,
   Header,
@@ -14,7 +14,10 @@ import {
   Title,
   Body,
   List,
-  ListItem
+  ListItem,
+  Toast,
+  Root,
+  View
 } from 'native-base';
 import Footer from '../footer/footer';
 
@@ -23,7 +26,8 @@ export default class FoodSearch extends Component {
     super(props);
     this.state = {
       query: '',
-      searchResults: []
+      searchResults: [],
+      noResults: false
     };
     this.updateQuery = this.updateQuery.bind(this);
     this.search = this.search.bind(this);
@@ -32,7 +36,7 @@ export default class FoodSearch extends Component {
 
   updateQuery(text) {
     this.setState({
-      query: text
+      query: text,
     });
   }
 
@@ -44,7 +48,8 @@ export default class FoodSearch extends Component {
           searchResults.push(result.fields);
         });
         this.setState({
-          searchResults: searchResults
+          searchResults: searchResults,
+          noResults: searchResults.length === 0
         });
       });
   }
@@ -55,60 +60,57 @@ export default class FoodSearch extends Component {
     );
   }
 
+  displayErrors() {
+    if (this.state.noResults) {
+      return Toast.show({
+        text: "No results found. Please try another search.",
+        position: 'top',
+        buttonText: 'Okay',
+        type: 'danger',
+        duration: 3000
+      });
+    }
+  }
+
   render() {
     return (
       <Image
         source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502485970/insulince-gradient_wofrfg.png' }}
         style={ styles.backgroundImage }>
-        <Container>
-          <Header>
-            <Left>
-              <Button transparent onPress={() => this.props.navigation.goBack()}>
-                <Icon name="md-arrow-back" />
-              </Button>
-            </Left>
-            <Body style={ styles.headerBody }>
-              <Title>
-                { this.props.navigation.state.params.key }
-              </Title>
-            </Body>
-            <Right />
-          </Header>
-          <Header searchBar rounded>
-            <Item>
-              <Icon name="ios-search" />
-              <Input
-                onChangeText={ text => this.updateQuery(text) }
-                placeholder="Search for a food" />
-            </Item>
-            <Button transparent
-              onPress={ this.search }>
-              <Text>Search</Text>
-            </Button>
-          </Header>
-          <Content style={{ backgroundColor: 'white' }}>
-            <List
-              dataArray={ this.state.searchResults }
-              renderRow={item =>
-              <ListItem onPress={ this.showFoodPage(item) }>
-                <Left style={ styles.resultInfo }>
-                  <Text
-                    style={{ alignSelf: 'flex-start' }}>
-                    { item.item_name }
-                  </Text>
-                  <Text style={ styles.infoText }>
-                    { `${item.brand_name}, ${item.nf_serving_size_qty} ${item.nf_serving_size_unit}` }
-                  </Text>
-                </Left>
-                <Right>
-                  <Icon name="arrow-forward" />
-                </Right>
-              </ListItem>
-            }>
-          </List>
-          </Content>
-          <Footer navigation={ this.props.navigation } />
-        </Container>
+        <KeyboardAvoidingView
+          style={ styles.view }
+          behavior={ 'padding' }>
+        <Root>
+          <Container>
+
+            <Content style={{ backgroundColor: 'white' }}>
+              <View>
+                { this.displayErrors() }
+              </View>
+              <List
+                dataArray={ this.state.searchResults }
+                renderRow={item =>
+                  <ListItem onPress={ this.showFoodPage(item) }>
+                    <Left style={ styles.resultInfo }>
+                      <Text
+                        style={{ alignSelf: 'flex-start' }}>
+                        { item.item_name }
+                      </Text>
+                      <Text style={ styles.infoText }>
+                        { `${item.brand_name}, ${item.nf_serving_size_qty} ${item.nf_serving_size_unit}` }
+                      </Text>
+                    </Left>
+                    <Right>
+                      <Icon name="arrow-forward" />
+                    </Right>
+                  </ListItem>
+                }>
+              </List>
+            </Content>
+            <Footer navigation={ this.props.navigation } />
+          </Container>
+        </Root>
+      </KeyboardAvoidingView>
       </Image>
     );
   }
@@ -118,6 +120,9 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover'
+  },
+  view: {
+    flex: 1,
   },
   resultInfo: {
     flexDirection: 'column',

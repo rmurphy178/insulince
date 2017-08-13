@@ -33,7 +33,7 @@ class SignUp extends Component {
   }
 
   handleUpdate(text, key) {
-    return () => this.setState({
+    this.setState({
       [key]: text,
       loginSuccessful: true
     });
