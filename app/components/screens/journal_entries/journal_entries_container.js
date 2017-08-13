@@ -6,7 +6,7 @@ import JournalEntries from './journal_entries';
 
 const mapStateToProps = state => {
   return {
-    error: state.errors,
+    errors: state.errors,
     currentUser: state.currentUser,
     journalEntries: state.journalEntries
   };

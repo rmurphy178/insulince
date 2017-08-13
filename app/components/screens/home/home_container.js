@@ -14,8 +14,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllJournalEntries: () => dispatch(fetchAllJournalEntries()),
-    fetchAllMeasurements: () => dispatch(fetchAllMeasurements())
   };
 };
 

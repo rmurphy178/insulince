@@ -15,11 +15,6 @@ import {
 import Footer from '../footer/footer';
 
 class Home extends React.Component {
-  componentDidMount() {
-    this.props.fetchAllJournalEntries();
-    this.props.fetchAllMeasurements();
-  }
-
   constructor(props) {
     super(props);
   }

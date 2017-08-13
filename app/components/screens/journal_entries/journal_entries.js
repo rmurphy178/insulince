@@ -18,40 +18,51 @@ import { StyleSheet } from 'react-native';
 import Footer from '../footer/footer';
 
 export default class JournalEntries extends Component {
+  componentDidMount() {
+    this.props.fetchAllJournalEntries()
+      .then(() => this.setState({
+        currentEntryId: this.props.journalEntries.allIds[this.props.journalEntries.allIds.length - 1]
+      }));
+  }
+
   constructor(props) {
     super(props);
     this.state = {
-      currentEntryId: this.props.journalEntries.allIds[this.props.journalEntries.allIds.length - 1]
+      currentEntryId: ""
     };
   }
 
   render() {
+    console.log(this.state);
+    console.log(this.props.journalEntries);
     const breakfastItems = [];
     const lunchItems = [];
     const dinnerItems = [];
     const snackItems = [];
     const ItemsInfo = [];
     const { journalEntries } = this.props;
-    journalEntries.byId[this.state.currentEntryId].breakfast
+    if (this.state.currentEntryId) {
+      journalEntries.byId[this.state.currentEntryId].breakfast
       .forEach(breakfastItem => {
         breakfastItems.push(breakfastItem.item_name);
         ItemsInfo.push(`${breakfastItem.brand_name}, ${breakfastItem.nf_serving_size_qty} ${breakfastItem.nf_serving_size_unit}`);
       });
-    journalEntries.byId[this.state.currentEntryId].lunch
+      journalEntries.byId[this.state.currentEntryId].lunch
       .forEach(lunchItem => {
         lunchItems.push(lunchItem.item_name);
         ItemsInfo.push(`${lunchItem.brand_name}, ${lunchItem.nf_serving_size_qty} ${lunchItem.nf_serving_size_unit}`);
       });
-    journalEntries.byId[this.state.currentEntryId].dinner
+      journalEntries.byId[this.state.currentEntryId].dinner
       .forEach(dinnerItem => {
         dinnerItems.push(dinnerItem.item_name);
         ItemsInfo.push(`${dinnerItem.brand_name}, ${dinnerItem.nf_serving_size_qty} ${dinnerItem.nf_serving_size_unit}`);
       });
-    journalEntries.byId[this.state.currentEntryId].snacks
+      journalEntries.byId[this.state.currentEntryId].snacks
       .forEach(snackItem => {
         snackItems.push(snackItem.item_name);
         ItemsInfo.push(`${snackItem.brand_name}, ${snackItem.nf_serving_size_qty} ${snackItem.nf_serving_size_unit}`);
       });
+    }
     let idx = -1;
     return (
       <Container>

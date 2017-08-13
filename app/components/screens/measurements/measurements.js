@@ -11,6 +11,10 @@ import Footer from '../footer/footer';
 import { Container } from 'native-base';
 
 class Measurements extends Component {
+  componentDidMount() {
+    this.props.fetchAllMeasurements();
+  }
+
   constructor() {
     super();
     this.state = {

@@ -1,18 +1,24 @@
 import { connect } from 'react-redux';
 import Measurements from './measurements';
-import { createMeasurement, deleteMeasurement, updateMeasurement } from '../../../actions/measurements_actions';
+import {
+  fetchAllMeasurements,
+  createMeasurement,
+  deleteMeasurement,
+  updateMeasurement
+} from '../../../actions/measurements_actions';
 
 
-const mapStateToProps = ({  currentUser, errors, measurements }) => {
+const mapStateToProps = state => {
   return {
-    errors: errors,
-    currentUser: currentUser,
-    measurements: measurements
+    errors: state.errors,
+    currentUser: state.currentUser,
+    measurements: state.measurements
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
+    fetchAllMeasurements: () => dispatch(fetchAllMeasurements()),
     createMeasurement: measurement => dispatch(createMeasurement(measurement)),
     updateMeasurement: measurement => dispatch(updateMeasurement(measurement)),
     deleteMeasurement: measurementId => dispatch(deleteMeasurement(measurementId))
