@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { StyleSheet, Image } from 'react-native';
 import {
   Content,
   Text,
@@ -10,19 +11,15 @@ import {
   Body,
   Title,
   Right,
-  Container,
-  H1
+  Container
 } from 'native-base';
-import { StyleSheet, Image } from 'react-native';
 import Footer from '../footer/footer';
 
-export default class Home extends React.Component {
-  constructor(props) {
-    super(props);
+export default class Nutrition extends React.Component {
+  componentWillMount() {
   }
 
   render() {
-    const { currentUser } = this.props;
     return (
       <Image
         source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502485970/insulince-gradient_wofrfg.png' }}
@@ -35,14 +32,12 @@ export default class Home extends React.Component {
               </Button>
             </Left>
             <Body>
-              <Title>Insulince</Title>
+              <Title>Nutrition</Title>
             </Body>
             <Right />
           </Header>
-          <Content style={ styles.content }>
-            <H1 style={ styles.h1 }>
-              Welcome, { currentUser.username }!
-            </H1>
+          <Content>
+
           </Content>
           <Footer navigation={ this.props.navigation } />
         </Container>
@@ -57,12 +52,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover'
   },
   content: {
-    padding: 30,
-    backgroundColor: 'white'
-  },
-  h1: {
-    fontWeight: '700',
-    alignSelf: 'center',
-    color: '#431833'
+    backgroundColor: 'white',
+    padding: 30
   }
 });

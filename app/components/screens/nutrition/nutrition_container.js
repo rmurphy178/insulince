@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import MacroTracker from './macro_tracker';
+import Nutrition from './nutrition';
 
 
 const mapStateToProps = ( { currentUser, errors }) => ({
@@ -12,4 +12,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(MacroTracker);
+export default connect(mapStateToProps, mapDispatchToProps)(Nutrition);

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import FoodSearch from './food_search';
+import { searchNutritionix } from '../../../actions/nutritionix_actions';
 
 const mapStateToProps = state => {
   return {
@@ -9,7 +10,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    searchNutritionix: query => dispatch(searchNutritionix(query))
   };
 };
 

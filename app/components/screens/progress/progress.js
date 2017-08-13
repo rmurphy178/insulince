@@ -17,11 +17,12 @@ import Footer from '../footer/footer';
 export default class Progress extends Component {
   constructor(props) {
     super(props);
+    this.redirectToNutrition = this.redirectToNutrition.bind(this);
     this.redirectToMeasurements = this.redirectToMeasurements.bind(this);
   }
 
-  redirectToMacroTracker() {
-    this.props.navigation.navigate('MacroTracker');
+  redirectToNutrition() {
+    this.props.navigation.navigate('Nutrition');
   }
 
   redirectToMeasurements() {
@@ -33,7 +34,7 @@ export default class Progress extends Component {
       <Image
       source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502485970/insulince-gradient_wofrfg.png' }}
       style={ styles.backgroundImage }>
-        <Container>
+        <Container style={{ flexDirection: 'column' }}>
           <Header>
             <Left>
               <Button transparent
@@ -46,24 +47,20 @@ export default class Progress extends Component {
             </Body>
             <Right />
           </Header>
-          <Content>
-            <Container style={ styles.container }>
-              <Button full
-                onPress={ this.redirectToMacroTracker }
-                style={ styles.macroButton }>
-                <Text>
-                  Macro Tracker
-                </Text>
-              </Button>
-              <Button full
-                onPress={ this.redirectToMeasurements }
-                style={ styles.measurementButton }>
-                <Text>
-                  Measurements
-                </Text>
-              </Button>
-            </Container>
-          </Content>
+          <Button full transparent
+            onPress={ this.redirectToNutrition }
+            style={ styles.nutritionButton }>
+            <Text style={ styles.buttonText }>
+              Nutrition
+            </Text>
+          </Button>
+          <Button full transparent
+            onPress={ this.redirectToMeasurements }
+            style={ styles.measurementButton }>
+            <Text style={ styles.buttonText }>
+              Measurements
+            </Text>
+          </Button>
           <Footer navigation={ this.props.navigation } />
         </Container>
       </Image>
@@ -76,17 +73,14 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover'
   },
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center'
-  },
-  macroButton: {
-    flex: .5,
-    backgroundColor: 'transparent'
+  nutritionButton: {
+    flex: 1
   },
   measurementButton: {
-    flex: .5,
-    backgroundColor: 'transparent'
+    flex: 1
+  },
+  buttonText: {
+    fontSize: 20,
+    color: 'white'
   }
 });

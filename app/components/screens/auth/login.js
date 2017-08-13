@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  StatusBar,
   KeyboardAvoidingView,
   Image
 } from 'react-native';
@@ -54,7 +53,6 @@ class Login extends Component {
       });
    }
 
-
   redirectToSignUp() {
   this.props.navigation.navigate('SignUp');
   this.props.clearErrors();
@@ -91,7 +89,6 @@ class Login extends Component {
         <KeyboardAvoidingView
           style={ styles.view }
           behavior={ 'padding' }>
-          <StatusBar hidden={true} />
           <Root>
             <Container>
               <Content>

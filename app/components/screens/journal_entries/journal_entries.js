@@ -81,6 +81,14 @@ export default class JournalEntries extends Component {
       dinnerItems: "",
       snackItems: ""
     };
+    this.addFood = this.addFood.bind(this);
+    this.deleteRow = this.deleteRow.bind(this);
+  }
+
+  addFood(key) {
+    return(
+      () => this.props.navigation.navigate('FoodSearch', { key })
+    );
   }
 
   deleteRow(secId, rowId, rowMap) {
@@ -91,7 +99,11 @@ export default class JournalEntries extends Component {
   }
 
   render() {
-    let content = <Content><Spinner color='#621E2F' /></Content>;
+    let content =
+      <Content
+        style={{ backgroundColor: 'white' }}>
+        <Spinner color='#621E2F' />
+      </Content>;
     if (this.state.currentEntryId) {
       content =
         <Content>
@@ -100,12 +112,18 @@ export default class JournalEntries extends Component {
             <Text style={ styles.separatorText }>
               BREAKFAST
             </Text>
+            <Text
+              onPress={ this.addFood('Add Breakfast') }
+              style={ styles.separatorText }>
+              + ADD FOOD
+            </Text>
           </Separator>
           <List
+            style={{ backgroundColor: 'white' }}
             dataSource={this.ds.cloneWithRows(this.state.breakfastItems)}
             renderRow={data =>
               <ListItem>
-                <Text> {data} </Text>
+                <Text style={{ paddingLeft: 14 }}> {data} </Text>
               </ListItem>}
             renderLeftHiddenRow={data =>
               <Button full onPress={() => alert(data)}>
@@ -123,12 +141,18 @@ export default class JournalEntries extends Component {
             <Text style={ styles.separatorText }>
               LUNCH
             </Text>
+            <Text
+              onPress={ this.addFood('Add Lunch') }
+              style={ styles.separatorText }>
+              + ADD FOOD
+            </Text>
           </Separator>
           <List
+            style={{ backgroundColor: 'white' }}
             dataSource={this.ds.cloneWithRows(this.state.lunchItems)}
             renderRow={data =>
               <ListItem>
-                <Text> {data} </Text>
+                <Text style={{ paddingLeft: 14 }}> {data} </Text>
               </ListItem>}
             renderLeftHiddenRow={data =>
               <Button full onPress={() => alert(data)}>
@@ -146,12 +170,18 @@ export default class JournalEntries extends Component {
             <Text style={ styles.separatorText }>
               DINNER
             </Text>
+            <Text
+              onPress={ this.addFood('Add Dinner') }
+              style={ styles.separatorText }>
+              + ADD FOOD
+            </Text>
           </Separator>
           <List
+            style={{ backgroundColor: 'white' }}
             dataSource={this.ds.cloneWithRows(this.state.dinnerItems)}
             renderRow={data =>
               <ListItem>
-                <Text> {data} </Text>
+                <Text style={{ paddingLeft: 14 }}> {data} </Text>
               </ListItem>}
             renderLeftHiddenRow={data =>
               <Button full onPress={() => alert(data)}>
@@ -169,12 +199,18 @@ export default class JournalEntries extends Component {
             <Text style={ styles.separatorText }>
               SNACKS
             </Text>
+            <Text
+              onPress={ this.addFood('Add Snack') }
+              style={ styles.separatorText }>
+              + ADD FOOD
+            </Text>
           </Separator>
           <List
+            style={{ backgroundColor: 'white' }}
             dataSource={this.ds.cloneWithRows(this.state.snackItems)}
             renderRow={data =>
               <ListItem>
-                <Text> {data} </Text>
+                <Text style={{ paddingLeft: 14 }}> {data} </Text>
               </ListItem>}
             renderLeftHiddenRow={data =>
               <Button full onPress={() => alert(data)}>
@@ -228,25 +264,16 @@ const styles = StyleSheet.create({
     resizeMode: 'cover'
   },
   separator: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingRight: 16
   },
   separatorText: {
     color: 'white',
     fontSize: 16,
-    fontWeight: '700'
-  },
-  listItem: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between'
-  },
-  listItemName: {
-    alignSelf: 'flex-start',
-    fontSize: 16
-  },
-  listItemDetails: {
-    alignSelf: 'flex-start',
-    fontSize: 12
+    fontWeight: '700',
   },
   headerBody: {
     flex: 1,
