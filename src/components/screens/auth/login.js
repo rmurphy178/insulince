@@ -33,7 +33,7 @@ class Login extends Component {
   }
 
   handleUpdate(text, key) {
-    return () => this.setState({
+    this.setState({
       [key]: text,
       loginSuccessful: true
     });
@@ -86,6 +86,7 @@ class Login extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <Image
       source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502485970/insulince-gradient_wofrfg.png' }}
