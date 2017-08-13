@@ -29,7 +29,7 @@ class Home extends React.Component {
             </Button>
           </Left>
           <Body>
-            <Title>Home</Title>
+            <Title>Insulince</Title>
           </Body>
           <Right />
         </Header>

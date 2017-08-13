@@ -18,10 +18,25 @@ import {
 } from "native-base";
 
 export default class FooterNav extends Component {
+  componentWillMount() {
+    let activeTab;
+    if (this.props.navigation.state.routeName === 'Home') activeTab = 'tab1';
+    if (this.props.navigation.state.routeName === 'JournalEntries') activeTab = 'tab2';
+    if (this.props.navigation.state.routeName === 'Progress') activeTab = 'tab3';
+    if (this.props.navigation.state.routeName === 'Account') activeTab = 'tab4';
+    this.setState({
+      [activeTab]: true
+    });
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.log("hi");
+  }
+
   constructor(props) {
     super(props);
     this.state = {
-      tab1: true,
+      tab1: false,
       tab2: false,
       tab3: false,
       tab4: false,

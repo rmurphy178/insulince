@@ -11,12 +11,17 @@ import {
   Body,
   Title
 } from 'native-base';
+import { StyleSheet } from 'react-native';
 import Footer from '../footer/footer';
 
 export default class Progress extends Component {
   constructor(props) {
     super(props);
     this.redirectToMeasurements = this.redirectToMeasurements.bind(this);
+  }
+
+  redirectToMacroTracker() {
+    this.props.navigation.navigate('MacroTracker');
   }
 
   redirectToMeasurements() {
@@ -38,14 +43,41 @@ export default class Progress extends Component {
           <Right />
         </Header>
         <Content>
-          <Text>Progress</Text>
-          <Button
-            onPress={ this.redirectToMeasurements }>
-            <Text>Measurements</Text>
-          </Button>
+          <Container style={ styles.container }>
+            <Button full
+              onPress={ this.redirectToMacroTracker }
+              style={ styles.macroButton }>
+              <Text>
+                Macro Tracker
+              </Text>
+            </Button>
+            <Button full
+              onPress={ this.redirectToMeasurements }
+              style={ styles.measurementButton }>
+              <Text>
+                Measurements
+              </Text>
+            </Button>
+          </Container>
         </Content>
         <Footer navigation={ this.props.navigation } />
       </Container>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center'
+  },
+  macroButton: {
+    flex: .5,
+    backgroundColor: '#431833'
+  },
+  measurementButton: {
+    flex: .5,
+    backgroundColor: '#521A36'
+  }
+});
