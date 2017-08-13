@@ -58,7 +58,7 @@ class JournalEntries extends React.Component {
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="ios-arrow-round-back" />
+              <Icon name="md-arrow-back" />
             </Button>
           </Left>
           <Body style={ styles.headerBody }>
