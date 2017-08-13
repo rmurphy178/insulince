@@ -22,7 +22,8 @@ export default class PieChart extends React.Component {
         ]}
         categories={{ x: ["Sugar", "Carbs", "Fat", "Calories", "Protein"] }}
         colorScale={["crimson", "cadetblue", "darkgreen", "darkmagenta", "goldenrod" ]}
-        innerRadius={100}
+        height={250}
+        innerRadius={50}
         animate={{ duration: 2000 }}
         animate={{
     onExit: {
