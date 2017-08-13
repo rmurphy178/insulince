@@ -12,7 +12,9 @@ import {
   Left,
   Right,
   Title,
-  Body
+  Body,
+  List,
+  ListItem
 } from 'native-base';
 import Footer from '../footer/footer';
 
@@ -21,7 +23,8 @@ export default class FoodSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: ''
+      query: '',
+      searchResults: []
     };
     this.updateQuery = this.updateQuery.bind(this);
     this.search = this.search.bind(this);
@@ -34,7 +37,16 @@ export default class FoodSearch extends Component {
   }
 
   search() {
-    this.props.searchNutritionix(this.state.query);
+    const searchResults = [];
+    this.props.searchNutritionix(this.state.query)
+      .then(results => {
+        results.forEach(result => {
+          searchResults.push(result.fields);
+        });
+        this.setState({
+          searchResults: searchResults
+        });
+      });
   }
 
   render() {
@@ -69,7 +81,24 @@ export default class FoodSearch extends Component {
             </Button>
           </Header>
           <Content style={{ backgroundColor: 'white' }}>
-
+            <List dataArray={ this.state.searchResults }
+            renderRow={item =>
+              <ListItem>
+                <Left style={ styles.resultInfo }>
+                  <Text
+                    style={{ alignSelf: 'flex-start' }}>
+                    { item.item_name }
+                  </Text>
+                  <Text style={ styles.infoText }>
+                    { `${item.brand_name}, ${item.nf_serving_size_qty} ${item.nf_serving_size_unit}` }
+                  </Text>
+                </Left>
+                <Right>
+                  <Icon name="arrow-forward" />
+                </Right>
+              </ListItem>
+            }>
+          </List>
           </Content>
           <Footer navigation={ this.props.navigation } />
         </Container>
@@ -82,5 +111,14 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover'
+  },
+  resultInfo: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start'
+  },
+  infoText: {
+    alignSelf: 'flex-start',
+    fontSize: 12
   }
 });

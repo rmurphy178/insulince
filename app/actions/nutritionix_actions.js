@@ -11,7 +11,7 @@ export const receiveNutritionixResults = results => {
 };
 
 export const searchNutritionix = query => dispatch => {
-  nutritionixAPIUtil.searchNutritionix(query)
+  return nutritionixAPIUtil.searchNutritionix(query)
     .then(response => response.data.hits,
       errors => receiveErrors(errors.response.data));
 };
