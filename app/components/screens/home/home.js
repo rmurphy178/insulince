@@ -39,7 +39,7 @@ export default class Home extends React.Component {
             </Body>
             <Right />
           </Header>
-          <Content style={{ backgroundColor: 'white' }}>
+          <Content style={ styles.content }>
             <H1 style={ styles.h1 }>
               Welcome, { currentUser.username }!
             </H1>
@@ -55,6 +55,10 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover'
+  },
+  content: {
+    backgroundColor: 'white',
+    padding: 30
   },
   h1: {
     fontWeight: '700',
