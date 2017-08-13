@@ -33,10 +33,16 @@ export default class FoodShow extends Component {
             </Left>
             <Body style={ styles.headerBody }>
               <Title>
-                { this.props.navigation.state.params.key }
+                { item.item_name }
               </Title>
             </Body>
-            <Right />
+            <Right>
+              <Button transparent>
+                <Text>
+                  Add
+                </Text>
+              </Button>
+            </Right>
           </Header>
           <Content style={{ backgroundColor: 'white' }}>
             <Text>{ item.item_name }</Text>

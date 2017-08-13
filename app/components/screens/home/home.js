@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
     resizeMode: 'cover'
   },
   content: {
-    backgroundColor: 'white',
-    padding: 30
+    padding: 30,
+    backgroundColor: 'white'
   },
   h1: {
     fontWeight: '700',

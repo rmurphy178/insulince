@@ -275,19 +275,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
   },
-  listItem: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between'
-  },
-  listItemName: {
-    alignSelf: 'flex-start',
-    fontSize: 16
-  },
-  listItemDetails: {
-    alignSelf: 'flex-start',
-    fontSize: 12
-  },
   headerBody: {
     flex: 1,
     flexDirection: 'row',

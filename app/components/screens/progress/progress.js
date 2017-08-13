@@ -47,17 +47,17 @@ export default class Progress extends Component {
             </Body>
             <Right />
           </Header>
-          <Button full
+          <Button full transparent
             onPress={ this.redirectToNutrition }
             style={ styles.nutritionButton }>
-            <Text>
+            <Text style={ styles.buttonText }>
               Nutrition
             </Text>
           </Button>
-          <Button full
+          <Button full transparent
             onPress={ this.redirectToMeasurements }
             style={ styles.measurementButton }>
-            <Text>
+            <Text style={ styles.buttonText }>
               Measurements
             </Text>
           </Button>
@@ -74,11 +74,13 @@ const styles = StyleSheet.create({
     resizeMode: 'cover'
   },
   nutritionButton: {
-    flex: 1,
-    backgroundColor: 'transparent'
+    flex: 1
   },
   measurementButton: {
-    flex: 1,
-    backgroundColor: 'transparent'
+    flex: 1
+  },
+  buttonText: {
+    fontSize: 20,
+    color: 'white'
   }
 });

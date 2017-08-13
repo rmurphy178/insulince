@@ -87,8 +87,9 @@ export default class FoodSearch extends Component {
             </Button>
           </Header>
           <Content style={{ backgroundColor: 'white' }}>
-            <List dataArray={ this.state.searchResults }
-            renderRow={item =>
+            <List
+              dataArray={ this.state.searchResults }
+              renderRow={item =>
               <ListItem onPress={ this.showFoodPage(item) }>
                 <Left style={ styles.resultInfo }>
                   <Text

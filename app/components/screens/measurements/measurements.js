@@ -11,7 +11,10 @@ import {
   Body,
   Title,
   Right,
-  Container
+  Container,
+  Separator,
+  ListItem,
+  List
 } from 'native-base';
 import Footer from '../footer/footer';
 
@@ -65,55 +68,49 @@ class Measurements extends Component {
         style={ styles.backgroundImage }>
         <KeyboardAvoidingView
           style={styles.view}
-          behavior={'padding'}
-          >
-        <Container>
-          <Header>
-            <Left>
-              <Button transparent onPress={() => this.props.navigation.goBack()}>
-                <Icon name="arrow-back" />
-              </Button>
-            </Left>
-            <Body>
-              <Title>Nutrition</Title>
-            </Body>
-            <Right />
-          </Header>
-          <Content style={{ backgroundColor: 'white' }}>
-            <View style={styles.inputsContainer}>
-
-              <View>
-                {this.state.errors.map((error, i) => (
-                  <Text key={i}>{error}</Text>
-                ))}
-              </View>
-              <Text>{this.state.errors}</Text>
-
-              <View style={styles.container}>
-                <Text style={styles.update}>Weight</Text>
-                <TouchableOpacity style={styles.updateButton}
-                  onPress={this.updatePressed}
-                  >
-                  <Text style={styles.buttonText}>Edit</Text>
-                </TouchableOpacity>
-                <Text style={styles.update}>Chest</Text>
-                <Text style={styles.update}>Waist</Text>
-                <Text style={styles.update}>Hips</Text>
-                <Text style={styles.update}>Height</Text>
-              </View>
-
-            </View>
-          </Content>
-
-
-
-
-        </Container>
+          behavior={'padding'}>
+          <Container>
+            <Header>
+              <Left>
+                <Button transparent onPress={() => this.props.navigation.goBack()}>
+                  <Icon name="arrow-back" />
+                </Button>
+              </Left>
+              <Body>
+                <Title>Measurements</Title>
+              </Body>
+              <Right />
+            </Header>
+            <Content style={{ backgroundColor: 'white' }}>
+              <Separator bordered
+                style={ styles.separator }>
+                <Text style={ styles.separatorText }>
+                  DATE
+                </Text>
+              </Separator>
+              <List
+                style={{ backgroundColor: 'white' }}
+                dataSource={this.ds.cloneWithRows()}
+                renderRow={data =>
+                  <ListItem>
+                    <Text style={{ paddingLeft: 14 }}> {data} </Text>
+                  </ListItem>}
+                renderLeftHiddenRow={data =>
+                  <Button full onPress={() => alert(data)}>
+                    <Icon active name="information-circle" />
+                  </Button>}
+                renderRightHiddenRow={(data, secId, rowId, rowMap) =>
+                  <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
+                    <Icon active name="trash" />
+                  </Button>}
+                leftOpenValue={75}
+                rightOpenValue={-75}
+              />
+            </Content>
+          </Container>
         </KeyboardAvoidingView>
-
         <Footer navigation={ this.props.navigation } />
-        </Image>
-
+      </Image>
     );
   }
 
@@ -128,5 +125,17 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover'
+  },
+  separator: {
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingRight: 16
+  },
+  separatorText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '700',
   }
 });

@@ -17,6 +17,16 @@ import { Image, StyleSheet } from 'react-native';
 import Footer from '../footer/footer';
 
 export default class Account extends Component {
+  constructor(props) {
+    super(props);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  handleLogout() {
+    this.props.navigation.navigate('Login');
+    this.props.logout();
+  }
+
   render() {
     return (
       <Image
@@ -69,7 +79,8 @@ export default class Account extends Component {
                   <Icon name="arrow-forward" />
                 </Right>
               </ListItem>
-              <ListItem icon>
+              <ListItem icon
+                onPress={ this.handleLogout }>
                 <Left>
                   <Icon name="ios-log-out" />
                 </Left>

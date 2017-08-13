@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  StatusBar,
   KeyboardAvoidingView,
   Image
 } from 'react-native';
@@ -53,7 +52,6 @@ class Login extends Component {
         }
       });
    }
-
 
   redirectToSignUp() {
   this.props.navigation.navigate('SignUp');

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StackNavigator, TabNavigator } from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 import LoginContainer from '../screens/auth/login_container';
 import SignUpContainer from '../screens/auth/signup_container';
 import SplashScreenContainer from '../screens/auth/splash_container';
