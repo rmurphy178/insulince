@@ -74,7 +74,9 @@ const styles = StyleSheet.create({
     resizeMode: 'cover'
   },
   nutritionButton: {
-    flex: 1
+    flex: 1,
+    borderBottomColor: '#a7a6ab',
+    borderBottomWidth: .5
   },
   measurementButton: {
     flex: 1

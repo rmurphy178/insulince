@@ -134,12 +134,12 @@ export default {
   footerDefaultBg: platform === "ios" ? "transparent" : "transparent",
 
   // FooterTab
-  tabBarTextColor: platform === "ios" ? "#6b6b6b" : "#fff",
+  tabBarTextColor: platform === "ios" ? "#fff" : "#fff",
   tabBarTextSize: platform === "ios" ? 11 : 11,
-  activeTab: platform === "ios" ? "#007aff" : "#fff",
-  sTabBarActiveTextColor: "#007aff",
-  tabBarActiveTextColor: platform === "ios" ? "#007aff" : "#fff",
-  tabActiveBgColor: platform === "ios" ? "#cde1f9" : "transparent",
+  activeTab: platform === "ios" ? "#fff" : "#fff",
+  sTabBarActiveTextColor: "#fff",
+  tabBarActiveTextColor: platform === "ios" ? "#461834" : "#461834",
+  tabActiveBgColor: platform === "ios" ? "transparent" : "transparent",
 
   // Tab
   tabDefaultBg: platform === "ios" ? "#F8F8F8" : "#3F51B5",
@@ -150,16 +150,16 @@ export default {
   topTabBarActiveBorderColor: platform === "ios" ? "#007aff" : "#fff",
 
   // Header
-  toolbarBtnColor: platform === "ios" ? "#007aff" : "#fff",
-  toolbarDefaultBg: platform === "ios" ? "#F8F8F8" : "transparent",
+  toolbarBtnColor: platform === "ios" ? "#fff" : "#fff",
+  toolbarDefaultBg: platform === "ios" ? "transparent" : "transparent",
   toolbarHeight: platform === "ios" ? 64 : 74,
   toolbarIconSize: platform === "ios" ? 20 : 22,
   toolbarSearchIconSize: platform === "ios" ? 20 : 23,
-  toolbarInputColor: platform === "ios" ? "#CECDD2" : "#fff",
+  toolbarInputColor: platform === "ios" ? "#fff" : "#fff",
   searchBarHeight: platform === "ios" ? 30 : 40,
   toolbarInverseBg: "#222",
-  toolbarTextColor: platform === "ios" ? "#000" : "#fff",
-  toolbarDefaultBorder: platform === "ios" ? "#a7a6ab" : "#3F51B5",
+  toolbarTextColor: platform === "ios" ? "#fff" : "#fff",
+  toolbarDefaultBorder: platform === "ios" ? "#a7a6ab" : "#fff",
   iosStatusbar: platform === "ios" ? "dark-content" : "light-content",
   get statusBarColor() {
     return '#fff';
@@ -255,7 +255,7 @@ export default {
   subtitleColor: platform === "ios" ? "#8e8e93" : "#FFF",
 
   // New Variable
-  titleFontColor: platform === "ios" ? "#000" : "#FFF",
+  titleFontColor: platform === "ios" ? "#fff" : "#FFF",
 
   // Other
   borderRadiusBase: platform === "ios" ? 5 : 2,
