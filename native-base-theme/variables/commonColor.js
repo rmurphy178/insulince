@@ -162,7 +162,8 @@ export default {
   iosStatusbar: "light-content",
   toolbarDefaultBorder: "#2874F0",
   get statusBarColor() {
-    return color(this.toolbarDefaultBg).darken(0.2).hex();
+    return '#fff';
+    // return color(this.toolbarDefaultBg).darken(0.2).hex();
   },
 
   // Icon
@@ -229,7 +230,8 @@ export default {
   radioColor: "#7e7e7e",
 
   get radioSelectedColor() {
-    return color(this.radioColor).darken(0.2).hex();
+    return '#fff';
+    // return color(this.radioColor).darken(0.2).hex();
   },
 
   // Spinner
@@ -261,7 +263,8 @@ export default {
   contentPadding: 10,
 
   get darkenHeader() {
-    return color(this.tabBgColor).darken(0.03).hex();
+    return '#fff';
+    // return color(this.tabBgColor).darken(0.03).hex();
   },
 
   dropdownBg: "#000",
