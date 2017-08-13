@@ -91,7 +91,6 @@ class Login extends Component {
         <KeyboardAvoidingView
           style={ styles.view }
           behavior={ 'padding' }>
-          <StatusBar hidden={true} />
           <Root>
             <Container>
               <Content>

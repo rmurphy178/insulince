@@ -81,6 +81,14 @@ export default class JournalEntries extends Component {
       dinnerItems: "",
       snackItems: ""
     };
+    this.addFood = this.addFood.bind(this);
+    this.deleteRow = this.deleteRow.bind(this);
+  }
+
+  addFood(key) {
+    return(
+      () => this.props.navigation.navigate('FoodSearch')
+    );
   }
 
   deleteRow(secId, rowId, rowMap) {
@@ -103,6 +111,11 @@ export default class JournalEntries extends Component {
             style={ styles.separator }>
             <Text style={ styles.separatorText }>
               BREAKFAST
+            </Text>
+            <Text
+              onPress={ this.addFood('breakfast') }
+              style={ styles.separatorText }>
+              + ADD FOOD
             </Text>
           </Separator>
           <List
@@ -127,6 +140,11 @@ export default class JournalEntries extends Component {
             <Text style={ styles.separatorText }>
               LUNCH
             </Text>
+            <Text
+              onPress={ this.addFood('lunch') }
+              style={ styles.separatorText }>
+              + ADD FOOD
+            </Text>
           </Separator>
           <List
             dataSource={this.ds.cloneWithRows(this.state.lunchItems)}
@@ -150,6 +168,11 @@ export default class JournalEntries extends Component {
             <Text style={ styles.separatorText }>
               DINNER
             </Text>
+            <Text
+              onPress={ this.addFood('dinner') }
+              style={ styles.separatorText }>
+              + ADD FOOD
+            </Text>
           </Separator>
           <List
             dataSource={this.ds.cloneWithRows(this.state.dinnerItems)}
@@ -172,6 +195,11 @@ export default class JournalEntries extends Component {
             style={ styles.separator }>
             <Text style={ styles.separatorText }>
               SNACKS
+            </Text>
+            <Text
+              onPress={ this.addFood('snack') }
+              style={ styles.separatorText }>
+              + ADD FOOD
             </Text>
           </Separator>
           <List
@@ -232,12 +260,16 @@ const styles = StyleSheet.create({
     resizeMode: 'cover'
   },
   separator: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingRight: 16
   },
   separatorText: {
     color: 'white',
     fontSize: 16,
-    fontWeight: '700'
+    fontWeight: '700',
   },
   listItem: {
     flex: 1,

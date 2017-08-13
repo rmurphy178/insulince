@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
-import { Container, Header, Item, Input, Icon, Button, Text } from 'native-base';
+import { StyleSheet, Image } from 'react-native';
+import {
+  Container,
+  Header,
+  Item,
+  Input,
+  Icon,
+  Button,
+  Text,
+  Content,
+  Left,
+  Right,
+  Title,
+  Body
+} from 'native-base';
+import Footer from '../footer/footer';
 
 export default class FoodSearch extends Component {
 
@@ -20,17 +34,46 @@ export default class FoodSearch extends Component {
 
   render() {
     return (
-      <Container>
-        <Header searchBar rounded>
-          <Item>
-            <Icon name="ios-search" />
-            <Input placeholder="Search for a food" />
-          </Item>
-          <Button transparent>
-            <Text>Search</Text>
-          </Button>
-        </Header>
-      </Container>
+      <Image
+        source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502485970/insulince-gradient_wofrfg.png' }}
+        style={ styles.backgroundImage }>
+        <Container>
+          <Header>
+            <Left>
+              <Button transparent onPress={() => this.props.navigation.goBack()}>
+                <Icon name="md-arrow-back" />
+              </Button>
+            </Left>
+            <Body style={ styles.headerBody }>
+              <Title>
+                Food Search
+              </Title>
+            </Body>
+            <Right />
+          </Header>
+          <Header searchBar rounded>
+            <Item>
+              <Icon name="ios-search" />
+              <Input
+                placeholder="Search for a food" />
+            </Item>
+            <Button transparent>
+              <Text>Search</Text>
+            </Button>
+          </Header>
+          <Content style={{ backgroundColor: 'white' }}>
+
+          </Content>
+          <Footer navigation={ this.props.navigation } />
+        </Container>
+      </Image>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover'
+  }
+});

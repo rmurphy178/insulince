@@ -19,7 +19,8 @@ export const AuthNav = StackNavigator({
   Progress: { screen: Progress },
   Account: { screen: AccountContainer },
   Measurements: { screen: MeasurementsContainer },
-  MacroTracker: { screen: MacroTrackerContainer }
+  MacroTracker: { screen: MacroTrackerContainer },
+  FoodSearch: { screen: FoodSearchContainer }
 },
   { headerMode: 'none' }
 );

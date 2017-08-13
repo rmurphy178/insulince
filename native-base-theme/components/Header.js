@@ -83,7 +83,7 @@ export default (variables = variable) => {
 			"NativeBase.Item": {
 				"NativeBase.Icon": {
 					backgroundColor: "transparent",
-					color: variables.dropdownLinkColor,
+					color: '#2A132B',
 					fontSize: variables.toolbarSearchIconSize,
 					alignItems: "center",
 					marginTop: 2,
@@ -106,7 +106,7 @@ export default (variables = variable) => {
 				flex: 1,
 				height: variables.searchBarHeight,
 				borderColor: "transparent",
-				backgroundColor: "transparent",
+				backgroundColor: "white",
 			},
 			"NativeBase.Button": {
 				".transparent": {
@@ -114,16 +114,16 @@ export default (variables = variable) => {
 						fontWeight: "500",
 					},
 					paddingHorizontal: null,
-					paddingLeft: platform === "ios" ? 10 : null,
+					paddingLeft: platform === "ios" ? 10 : 10
 				},
-				paddingHorizontal: platform === "ios" ? undefined : null,
-				width: platform === "ios" ? undefined : 0,
-				height: platform === "ios" ? undefined : 0,
+				paddingHorizontal: platform === "ios" ? undefined : undefined,
+				width: platform === "ios" ? undefined : undefined,
+				height: platform === "ios" ? undefined : undefined,
 			},
 		},
 		".rounded": {
 			"NativeBase.Item": {
-				borderRadius: platform === "ios" && platformStyle !== "material" ? 25 : 3,
+				borderRadius: platform === "ios" && platformStyle !== "material" ? 25 : 25,
 			},
 		},
 		"NativeBase.Left": {
@@ -294,7 +294,7 @@ export default (variables = variable) => {
 		flexDirection: "row",
 		paddingHorizontal: 10,
 		justifyContent: "center",
-		paddingTop: platform === "ios" ? 15 : 0,
+		paddingTop: platform === "ios" ? 10 : 20,
 		borderBottomWidth: platform === "ios" ? 1 / PixelRatio.getPixelSizeForLayoutSize(1) : 0,
 		borderBottomColor: variables.toolbarDefaultBorder,
 		height: variables.toolbarHeight,
