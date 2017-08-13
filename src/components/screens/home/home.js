@@ -16,6 +16,8 @@ import {
 import { StyleSheet, Image } from 'react-native';
 import Footer from '../footer/footer';
 
+import PieChart from '../charts/pie_charts/pie_chart';
+
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -43,6 +45,9 @@ export default class Home extends React.Component {
             <H1 style={ styles.h1 }>
               Welcome, { currentUser.username }!
             </H1>
+              <View style={styles.chart}>
+                <PieChart />
+              </View>
           </Content>
           <Footer navigation={ this.props.navigation } />
         </Container>
@@ -58,11 +63,26 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 30,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   h1: {
     fontWeight: '700',
     alignSelf: 'center',
     color: '#431833'
+  },
+  chart: {
+    alignSelf: 'center',
+    borderWidth: 1,
+    borderRadius: 0,
+    borderColor: '#ddd',
+    borderBottomWidth: 0,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 5,
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 10
   }
 });

@@ -15,6 +15,20 @@ export const fetchAllJournalEntries = () => {
   });
 };
 
+export const fetchLastJournalEntry = () => {
+  return ASYNC.getItem("auth_token").then(token => {
+    const url = "https://insulince-api.herokuapp.com/api/journal_entries/last";
+    return axios({
+      method: 'GET',
+      url: url,
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token
+      }
+    });
+  });
+};
+
 export const createJournalEntry = journalEntry => {
   return ASYNC.getItem("auth_token").then(token => {
     const url = "https://insulince-api.herokuapp.com/api/journal_entries";
