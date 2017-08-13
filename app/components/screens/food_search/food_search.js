@@ -28,6 +28,7 @@ export default class FoodSearch extends Component {
     };
     this.updateQuery = this.updateQuery.bind(this);
     this.search = this.search.bind(this);
+    this.showFoodPage = this.showFoodPage.bind(this);
   }
 
   updateQuery(text) {
@@ -47,6 +48,12 @@ export default class FoodSearch extends Component {
           searchResults: searchResults
         });
       });
+  }
+
+  showFoodPage(item) {
+    return (
+      () => this.props.navigation.navigate('FoodShow', { item }) 
+    );
   }
 
   render() {
@@ -83,7 +90,7 @@ export default class FoodSearch extends Component {
           <Content style={{ backgroundColor: 'white' }}>
             <List dataArray={ this.state.searchResults }
             renderRow={item =>
-              <ListItem>
+              <ListItem onPress={ this.showFoodPage(item) }>
                 <Left style={ styles.resultInfo }>
                   <Text
                     style={{ alignSelf: 'flex-start' }}>
