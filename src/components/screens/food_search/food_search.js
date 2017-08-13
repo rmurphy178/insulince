@@ -60,19 +60,8 @@ export default class FoodSearch extends Component {
     );
   }
 
-  displayErrors() {
-    if (this.state.noResults) {
-      return Toast.show({
-        text: "No results found. Please try another search.",
-        position: 'top',
-        buttonText: 'Okay',
-        type: 'danger',
-        duration: 3000
-      });
-    }
-  }
-
   render() {
+    const { key } = this.props.navigation.state.params;
     return (
       <Image
         source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502485970/insulince-gradient_wofrfg.png' }}
@@ -82,11 +71,33 @@ export default class FoodSearch extends Component {
           behavior={ 'padding' }>
         <Root>
           <Container>
-
+            <Header>
+              <Left>
+                <Button transparent onPress={() => this.props.navigation.goBack()}>
+                  <Icon name="md-arrow-back" />
+                </Button>
+              </Left>
+              <Body style={ styles.headerBody }>
+                <Title>
+                  { `Add ${key.charAt(0).toUpperCase()}${key.slice(1)}` }
+                </Title>
+              </Body>
+              <Right />
+            </Header>
+            <Header searchBar rounded>
+              <Item>
+                <Icon name="ios-search" />
+                <Input
+                  autoFocus={ true }
+                  onChangeText={ text => this.updateQuery(text) }
+                  placeholder="Search for a food" />
+              </Item>
+              <Button transparent
+                onPress={ this.search }>
+                <Text>Search</Text>
+              </Button>
+            </Header>
             <Content style={{ backgroundColor: 'white' }}>
-              <View>
-                { this.displayErrors() }
-              </View>
               <List
                 dataArray={ this.state.searchResults }
                 renderRow={item =>
