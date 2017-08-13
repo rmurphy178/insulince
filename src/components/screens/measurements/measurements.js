@@ -21,6 +21,7 @@ import Footer from '../footer/footer';
 class Measurements extends Component {
   componentDidMount() {
     this.props.fetchAllMeasurements();
+    this.props.fetchLastMeasurement();
   }
 
   constructor() {

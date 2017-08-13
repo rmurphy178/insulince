@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchAllJournalEntries } from '../../../actions/journal_entries_actions';
+import { fetchAllJournalEntries, fetchLastJournalEntry } from '../../../actions/journal_entries_actions';
 import { fetchAllMeasurements } from '../../../actions/measurements_actions';
 import Home from './home';
 
@@ -12,9 +12,8 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  fetchLastJournalEntry: () => dispatch(fetchLastJournalEntry())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
