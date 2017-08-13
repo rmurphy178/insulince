@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+import { StyleSheet, Image, KeyboardAvoidingView } from 'react-native';
 import {
-  View,
+  Content,
   Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-  KeyboardAvoidingView
-} from 'react-native';
+  View,
+  Header,
+  Left,
+  Icon,
+  Button,
+  Body,
+  Title,
+  Right,
+  Container
+} from 'native-base';
 import Footer from '../footer/footer';
-import { Container } from 'native-base';
 
 class Measurements extends Component {
   componentDidMount() {
@@ -55,40 +60,60 @@ class Measurements extends Component {
 
   render() {
     return (
-      <Container>
-
+      <Image
+        source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502485970/insulince-gradient_wofrfg.png' }}
+        style={ styles.backgroundImage }>
         <KeyboardAvoidingView
-          style={styles.container}
+          style={styles.view}
           behavior={'padding'}
           >
-          <View style={styles.inputsContainer}>
+        <Container>
+          <Header>
+            <Left>
+              <Button transparent onPress={() => this.props.navigation.goBack()}>
+                <Icon name="arrow-back" />
+              </Button>
+            </Left>
+            <Body>
+              <Title>Nutrition</Title>
+            </Body>
+            <Right />
+          </Header>
+          <Content style={{ backgroundColor: 'white' }}>
+            <View style={styles.inputsContainer}>
 
-            <View>
-              {this.state.errors.map((error, i) => (
-                <Text key={i}>{error}</Text>
-              ))}
+              <View>
+                {this.state.errors.map((error, i) => (
+                  <Text key={i}>{error}</Text>
+                ))}
+              </View>
+              <Text>{this.state.errors}</Text>
+
+              <View style={styles.container}>
+                <Text style={styles.update}>Weight</Text>
+                <TouchableOpacity style={styles.updateButton}
+                  onPress={this.updatePressed}
+                  >
+                  <Text style={styles.buttonText}>Edit</Text>
+                </TouchableOpacity>
+                <Text style={styles.update}>Chest</Text>
+                <Text style={styles.update}>Waist</Text>
+                <Text style={styles.update}>Hips</Text>
+                <Text style={styles.update}>Height</Text>
+              </View>
+
             </View>
-            <Text>{this.state.errors}</Text>
-
-            <View style={styles.container}>
-              <Text style={styles.update}>Weight</Text>
-              <TouchableOpacity style={styles.updateButton}
-                onPress={this.updatePressed}
-                >
-                <Text style={styles.buttonText}>Edit</Text>
-              </TouchableOpacity>
-              <Text style={styles.update}>Chest</Text>
-              <Text style={styles.update}>Waist</Text>
-              <Text style={styles.update}>Hips</Text>
-              <Text style={styles.update}>Height</Text>
-            </View>
+          </Content>
 
 
 
-          </View>
+
+        </Container>
         </KeyboardAvoidingView>
+
         <Footer navigation={ this.props.navigation } />
-      </Container>
+        </Image>
+
     );
   }
 
@@ -97,11 +122,11 @@ class Measurements extends Component {
 export default Measurements;
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'flex-end',
+  view: {
+    flex: 1
+  },
+  backgroundImage: {
     flex: 1,
-    padding: 60,
-    // backgroundColor: '#510847'
+    resizeMode: 'cover'
   }
-
 });
