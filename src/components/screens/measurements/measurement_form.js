@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
-import { Container, Content, Form, Item, Input, Label, Icon, Button } from 'native-base';
+import { StyleSheet, Image, KeyboardAvoidingView } from 'react-native';
 import {
-  View,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  List,
-  ListItem,
+  Content,
   Text,
-  Separator,
+  View,
+  Header,
   Left,
-  Right,
-  Title,
+  Icon,
+  Button,
   Body,
-  Image,
-  Spinner
-} from 'react-native';
+  Title,
+  Right,
+  Container,
+  Separator,
+  ListItem,
+  List,
+  Form,
+  Item,
+  Label,
+  Input
+} from 'native-base';
 import header from '../header/header';
 import Footer from '../footer/footer';
 
@@ -28,30 +31,18 @@ class MeasurementForm extends Component {
       waist: '',
       hips: '',
       weight: '',
-      height: '',
-      errors: []
+      height: ''
+
     };
 
-    this.update = this.update.bind(this);
-    this.updatePressed = this.updatePressed.bind(this);
+    this.addMeasurement = this.addMeasurement.bind(this);
+  }
 
+  addMeasurement() {
+    this.props
   }
 
 
-  update(event) {
-
-  }
-
-  updatePressed() {
-    this.setState ({
-      chest: this.state.chest,
-      waist: this.state.waist,
-      hips: this.state.hips,
-      weight: this.state.weight,
-      height: this.state.height
-
-    });
-  }
 
   render() {
     return (
@@ -69,50 +60,57 @@ class MeasurementForm extends Component {
                 </Button>
               </Left>
               <Body>
-                <Title>Measurements</Title>
+                <Title>Add Measurements</Title>
               </Body>
               <Right />
             </Header>
             <Content style={{ backgroundColor: 'white' }}>
 
-
-
-      <KeyboardAvoidingView
-        style={styles.container}
-        behavior="padding"
-      >
-        <Container>
-        <Text style={styles.text}> Add New Measurements </Text>
-          <Content>
             <Form>
               <Item floatingLabel>
                 <Label>Weight</Label>
-                <Input />
+                <Input
+                 />
               </Item>
               <Item floatingLabel>
                 <Label>Chest</Label>
-                <Input />
+                <Input
+                onChangeText={ text =>
+                  this.addMeasurement(text, 'chest') } />/>
               </Item>
               <Item floatingLabel>
                 <Label>Waist</Label>
-                <Input />
+                <Input
+                onChangeText={ text =>
+                  this.addMeasurement(text, 'waist') } /> />
               </Item>
               <Item floatingLabel>
                 <Label>Hips</Label>
-                <Input />
+                <Input
+                onChangeText={ text =>
+                  this.addMeasurement(text, 'hips') } /> />
               </Item>
               <Item floatingLabel last>
                 <Label>Height</Label>
-                <Input />
+                <Input
+                onChangeText={ text =>
+                  this.addMeasurement(text, 'height') } />/>
               </Item>
             </Form>
             <Button block warning style={ styles.newbutton }
                     onPress={() => this.props.navigation.goBack()}>
-              <Text>Add</Text>
+              <Text>
+              onPress={ this.addMeasurement('Add') }
+              Add
+              </Text>
             </Button>
+
+
+
           </Content>
         </Container>
       </KeyboardAvoidingView>
+    </Image>
     );
   }
 }
@@ -123,7 +121,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'flex-end',
     flex: 1,
-    padding: 60,
+    padding: 60
     // backgroundColor: '#510847'
   },
   newbutton: {

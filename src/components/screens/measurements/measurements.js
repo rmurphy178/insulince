@@ -21,7 +21,25 @@ import MeasurementForm from './measurement_form';
 
 class Measurements extends Component {
   componentDidMount() {
-    this.props.fetchAllMeasurements();
+    this.props.fetchAllMeasurements()
+      .then(()  => {
+        const { measurements } = this.props;
+        this.currentMeasurementId = measurements.allIds[measurements.allIds.length - 1];
+        this.chest = '';
+        this.waist = '';
+        this.hips = '';
+        this.weight= '';
+        this.height = '';
+
+        this.setState({
+          currentMeasurementId: this.currentMeasurementId,
+          chest: this.chest,
+          waist: this.waist,
+          hips: this.hips,
+          weight: this.weight,
+          height: this.height
+        });
+      });
   }
 
   constructor() {
@@ -75,26 +93,31 @@ class Measurements extends Component {
                      <ListItem>
                        <Body>
                          <Text style={styles.text} >Weight</Text>
+                         <Text style={styles.userinfo} > { this.state.weight } </Text>
                        </Body>
                      </ListItem>
                      <ListItem>
                        <Body>
                          <Text style={styles.text}>Chest</Text>
+                         <Text style={styles.userinfo} > { this.state.chest } </Text>
                        </Body>
                      </ListItem>
                      <ListItem>
                        <Body>
                          <Text style={styles.text}>Waist</Text>
+                         <Text style={styles.userinfo} > { this.state.waist } </Text>
                        </Body>
                      </ListItem>
                      <ListItem>
                        <Body>
                          <Text style={styles.text}>Hips</Text>
+                         <Text style={styles.userinfo} > { this.state.hips } </Text>
                        </Body>
                      </ListItem>
                      <ListItem>
                        <Body>
                          <Text style={styles.text}>Height</Text>
+                         <Text style={styles.userinfo} > { this.state.height } </Text>
                        </Body>
                      </ListItem>
                    </List>
