@@ -108,7 +108,7 @@ export default class JournalEntries extends Component {
               BREAKFAST
             </Text>
             <Text
-              onPress={ this.addFood('Add Breakfast') }
+              onPress={ this.addFood('breakfast') }
               style={ styles.separatorText }>
               + ADD FOOD
             </Text>
@@ -141,7 +141,7 @@ export default class JournalEntries extends Component {
               LUNCH
             </Text>
             <Text
-              onPress={ this.addFood('Add Lunch') }
+              onPress={ this.addFood('lunch') }
               style={ styles.separatorText }>
               + ADD FOOD
             </Text>
@@ -175,7 +175,7 @@ export default class JournalEntries extends Component {
               DINNER
             </Text>
             <Text
-              onPress={ this.addFood('Add Dinner') }
+              onPress={ this.addFood('dinner') }
               style={ styles.separatorText }>
               + ADD FOOD
             </Text>
@@ -209,7 +209,7 @@ export default class JournalEntries extends Component {
               SNACKS
             </Text>
             <Text
-              onPress={ this.addFood('Add Snack') }
+              onPress={ this.addFood('snack') }
               style={ styles.separatorText }>
               + ADD FOOD
             </Text>
