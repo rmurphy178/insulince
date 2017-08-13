@@ -15,7 +15,7 @@ import {
   Icon,
   Spinner
 } from 'native-base';
-import { StyleSheet, Platform, ListView, Image } from 'react-native';
+import { StyleSheet, ListView, Image } from 'react-native';
 import Footer from '../footer/footer';
 
 const datas = [
@@ -282,6 +282,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   headerIcons: {
-    color: Platform.OS === "ios" ? '#007aff' : 'white'
+    color: 'white'
   }
 });
