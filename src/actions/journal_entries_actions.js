@@ -31,8 +31,8 @@ export const fetchAllJournalEntries = () => dispatch => {
 export const createJournalEntry = journalEntry => dispatch => {
   return(
     journalEntriesAPIUtil.createJournalEntry(journalEntry)
-      .then(newJournalEntry => {
-        dispatch(receiveJournalEntry(newJournalEntry));
+      .then(response => {
+        dispatch(receiveJournalEntry(response.data));
         dispatch(clearErrors());
       }, errors => receiveErrors(errors.response.data))
   );
@@ -41,8 +41,8 @@ export const createJournalEntry = journalEntry => dispatch => {
 export const updateJournalEntry = journalEntry => dispatch => {
   return(
     journalEntriesAPIUtil.updateJournalEntry(journalEntry)
-      .then(updatedJournalEntry => {
-        dispatch(receiveJournalEntry(updatedJournalEntry));
+      .then(response => {
+        dispatch(receiveJournalEntry(response.data));
         dispatch(clearErrors());
       }, errors => receiveErrors(errors.response.data))
   );

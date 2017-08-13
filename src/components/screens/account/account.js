@@ -23,8 +23,8 @@ export default class Account extends Component {
   }
 
   handleLogout() {
-    this.props.navigation.navigate('Login');
-    this.props.logout();
+    this.props.logout()
+      .then(this.props.navigation.navigate('Login'));
   }
 
   render() {

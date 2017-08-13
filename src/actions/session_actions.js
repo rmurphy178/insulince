@@ -45,7 +45,6 @@ export const logout = user => dispatch => {
   return(
     ASYNC.removeItem("auth_token")
       .then(() => {
-        dispatch(receiveCurrentUser(null));
         dispatch(clearStore());
       }, errors => dispatch(receiveErrors(errors)))
   );
