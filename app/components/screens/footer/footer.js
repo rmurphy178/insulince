@@ -130,6 +130,7 @@ export default class FooterNav extends Component {
               active={ this.state.add }
               onPress={() => this.toggleAdd()}>
               <Icon
+                style={{ fontSize: 40 }}
                 active={ this.state.add }
                 name="ios-add-circle" />
             </Button>
