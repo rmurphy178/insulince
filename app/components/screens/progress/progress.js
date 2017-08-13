@@ -33,7 +33,7 @@ export default class Progress extends Component {
       <Image
       source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502485970/insulince-gradient_wofrfg.png' }}
       style={ styles.backgroundImage }>
-        <Container>
+        <Container style={{ flexDirection: 'column' }}>
           <Header>
             <Left>
               <Button transparent
@@ -46,24 +46,20 @@ export default class Progress extends Component {
             </Body>
             <Right />
           </Header>
-          <Content>
-            <Container style={ styles.container }>
-              <Button full
-                onPress={ this.redirectToMacroTracker }
-                style={ styles.macroButton }>
-                <Text>
-                  Macro Tracker
-                </Text>
-              </Button>
-              <Button full
-                onPress={ this.redirectToMeasurements }
-                style={ styles.measurementButton }>
-                <Text>
-                  Measurements
-                </Text>
-              </Button>
-            </Container>
-          </Content>
+          <Button full
+            onPress={ this.redirectToMacroTracker }
+            style={ styles.macroButton }>
+            <Text>
+              Macro Tracker
+            </Text>
+          </Button>
+          <Button full
+            onPress={ this.redirectToMeasurements }
+            style={ styles.measurementButton }>
+            <Text>
+              Measurements
+            </Text>
+          </Button>
           <Footer navigation={ this.props.navigation } />
         </Container>
       </Image>
@@ -76,17 +72,12 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover'
   },
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center'
-  },
   macroButton: {
-    flex: .5,
+    flex: 1,
     backgroundColor: 'transparent'
   },
   measurementButton: {
-    flex: .5,
+    flex: 1,
     backgroundColor: 'transparent'
   }
 });

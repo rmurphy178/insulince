@@ -39,12 +39,10 @@ export default class Home extends React.Component {
             </Body>
             <Right />
           </Header>
-          <Content>
-            <Container style={ styles.container }>
-              <H1 style={ styles.h1 }>
-                Welcome, { currentUser.username }!
-              </H1>
-            </Container>
+          <Content style={{ backgroundColor: 'white' }}>
+            <H1 style={ styles.h1 }>
+              Welcome, { currentUser.username }!
+            </H1>
           </Content>
           <Footer navigation={ this.props.navigation } />
         </Container>
@@ -57,10 +55,6 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover'
-  },
-  container: {
-    padding: 30,
-    backgroundColor: 'white'
   },
   h1: {
     fontWeight: '700',
