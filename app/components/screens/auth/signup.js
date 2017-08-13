@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 import {
-  View,
   Image,
   StatusBar,
-  TextInput,
   StyleSheet,
-  TouchableOpacity,
   KeyboardAvoidingView
 } from 'react-native';
-import { Container, Content, Item, Input, Button, Text, Icon, Toast, Root } from 'native-base';
+import {
+  Container,
+  Content,
+  Item,
+  Input,
+  Button,
+  Text,
+  Icon,
+  Toast,
+  Root,
+  View
+} from 'native-base';
 
 class SignUp extends Component {
   constructor(props) {
@@ -61,8 +69,8 @@ class SignUp extends Component {
         source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502485970/insulince-gradient_wofrfg.png' }}
         style={ styles.backgroundImage }>
           <KeyboardAvoidingView
-          style={ styles.container }
-          behavior={ 'padding' }>
+            style={ styles.view }
+            behavior={ 'padding' }>
             <StatusBar hidden={true} />
             <Root>
               <Container>
@@ -72,70 +80,77 @@ class SignUp extends Component {
                     this.displayErrors()
                     }
                   </View>
-                  <Item
-                    error={ this.state.loginSuccessful ? false : true }>
-                    <Input
-                      style={ styles.input }
-                      placeholderTextColor='white'
-                      placeholder='username'
-                      value={ this.state.userCredential }
-                      onChangeText={ text => this.setState({
-                        username: text,
-                        loginSuccessful: true
-                        }) } />
-                    <Icon
-                      style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
-                      name='close-circle' />
-                  </Item>
-                  <Item
-                    error={ this.state.loginSuccessful ? false : true }>
-                    <Input
-                      style={ styles.input }
-                      placeholderTextColor='white'
-                      placeholder='email address'
-                      value={ this.state.userCredential }
-                      onChangeText={ text => this.setState({
-                        email: text,
-                        loginSuccessful: true
+                  <Container style={ styles.container }>
+                    <Image
+                      source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502605519/insulince-logo.png' }}
+                      style={ styles.logo } />
+                    <Item
+                      error={ this.state.loginSuccessful ? false : true }>
+                      <Input
+                        style={ styles.input }
+                        placeholderTextColor='white'
+                        placeholder='username'
+                        value={ this.state.userCredential }
+                        onChangeText={ text => this.setState({
+                          username: text,
+                          loginSuccessful: true
                         }) } />
                       <Icon
                         style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
                         name='close-circle' />
-                  </Item>
-                  <Item
-                    error={ this.state.loginSuccessful ? false : true }>
-                    <Input
-                      style={ styles.input }
-                      placeholderTextColor='white'
-                      secureTextEntry={ true }
-                      placeholder='password'
-                      value={ this.state.password }
-                      onChangeText={ text => this.setState({
-                        password: text,
-                        loginSuccessful: true
+                    </Item>
+                    <Item
+                      error={ this.state.loginSuccessful ? false : true }>
+                      <Input
+                        style={ styles.input }
+                        placeholderTextColor='white'
+                        placeholder='email address'
+                        value={ this.state.userCredential }
+                        onChangeText={ text => this.setState({
+                          email: text,
+                          loginSuccessful: true
                         }) } />
-                    <Icon
-                      style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
-                      name='close-circle' />
-                  </Item>
-                  <Button block
-                    disabled={ this.state.userCredential && this.state.password && this.state.password.length >= 6 ? false : true }
-                    style={ styles.button }
-                    onPress={ this.signUpUser }>
+                      <Icon
+                        style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
+                        name='close-circle' />
+                    </Item>
+                    <Item
+                      error={ this.state.loginSuccessful ? false : true }>
+                      <Input
+                        style={ styles.input }
+                        placeholderTextColor='white'
+                        secureTextEntry={ true }
+                        placeholder='password'
+                        value={ this.state.password }
+                        onChangeText={ text => this.setState({
+                          password: text,
+                          loginSuccessful: true
+                        }) } />
+                      <Icon
+                        style={ this.state.loginSuccessful ? styles.iconHidden : styles.iconShow }
+                        name='close-circle' />
+                    </Item>
+                    <Button block
+                      disabled={ this.state.userCredential && this.state.password && this.state.password.length >= 6 ? false : true }
+                      style={ styles.button }
+                      onPress={ this.signUpUser }>
                       <Text>Sign Up</Text>
-                  </Button>
-                  <Text
-                    style={ styles.text }>
-                      Already a member?
-                  </Text>
-                  <Button transparent
-                    style={ styles.redirectButton }
-                    onPress={ this.redirectToLogin }>
+                    </Button>
+                    <View>
                       <Text
-                        style={ styles.redirectText }>
-                        Login
+                        style={ styles.text }>
+                        Already a member?
                       </Text>
-                  </Button>
+                      <Button transparent
+                        style={ styles.redirectButton }
+                        onPress={ this.redirectToLogin }>
+                        <Text
+                          style={ styles.redirectText }>
+                          Login
+                        </Text>
+                      </Button>
+                    </View>
+                  </Container>
                 </Content>
               </Container>
             </Root>
@@ -148,14 +163,25 @@ class SignUp extends Component {
 export default SignUp;
 
 const styles = StyleSheet.create({
+  view: {
+    flex: 1
+  },
   container: {
-    justifyContent: 'center',
-    flex: 1,
-    padding: 40
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    paddingLeft: 40,
+    paddingRight: 40,
+    paddingTop: 80,
+    paddingBottom: 80
   },
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover'
+  },
+  logo: {
+    width: 288,
+    height: 69
   },
   input: {
     color: '#FFFFFF',
@@ -163,13 +189,12 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 20,
-    backgroundColor: 'transparent',
+    backgroundColor: '#2A132B',
     opacity: .6
   },
   text: {
     color: '#FFFFFF',
     opacity: .6,
-    marginTop: 20,
     textAlign: 'center'
   },
   redirectButton: {

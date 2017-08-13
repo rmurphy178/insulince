@@ -106,7 +106,7 @@ export default (variables = variable) => {
 				flex: 1,
 				height: variables.searchBarHeight,
 				borderColor: "transparent",
-				backgroundColor: variables.toolbarInputColor,
+				backgroundColor: "transparent",
 			},
 			"NativeBase.Button": {
 				".transparent": {
@@ -190,13 +190,13 @@ export default (variables = variable) => {
 				alignSelf: null,
 				paddingHorizontal: variables.buttonPadding,
 			},
-			flex: platform === "ios" && platformStyle !== "material" ? 1 : 0.5,
+			flex: platform === "ios" && platformStyle !== "material" ? 1 : 1,
 			alignSelf: "center",
 			alignItems: "flex-start",
 		},
 		"NativeBase.Body": {
 			flex: 1,
-			alignItems: platform === "ios" && platformStyle !== "material" ? "center" : "flex-start",
+			alignItems: platform === "ios" && platformStyle !== "material" ? "center" : "center",
 			alignSelf: "center",
 			"NativeBase.Segment": {
 				borderWidth: 0,
@@ -290,7 +290,7 @@ export default (variables = variable) => {
 			flexDirection: "row",
 			justifyContent: "flex-end",
 		},
-		backgroundColor: variables.toolbarDefaultBg,
+		backgroundColor: "transparent",
 		flexDirection: "row",
 		paddingHorizontal: 10,
 		justifyContent: "center",

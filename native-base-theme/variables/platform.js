@@ -111,7 +111,7 @@ export default {
   brandPrimary: platform === "ios" ? "#007aff" : "#3F51B5",
   brandInfo: "#62B1F6",
   brandSuccess: "#5cb85c",
-  brandDanger: "#d9534f",
+  brandDanger: "#B33931",
   brandWarning: "#f0ad4e",
   brandSidebar: "#252932",
 
@@ -131,15 +131,15 @@ export default {
 
   // Footer
   footerHeight: 55,
-  footerDefaultBg: platform === "ios" ? "#F8F8F8" : "#4179F7",
+  footerDefaultBg: platform === "ios" ? "transparent" : "transparent",
 
   // FooterTab
-  tabBarTextColor: platform === "ios" ? "#6b6b6b" : "#b3c7f9",
-  tabBarTextSize: platform === "ios" ? 14 : 11,
+  tabBarTextColor: platform === "ios" ? "#6b6b6b" : "#fff",
+  tabBarTextSize: platform === "ios" ? 11 : 11,
   activeTab: platform === "ios" ? "#007aff" : "#fff",
   sTabBarActiveTextColor: "#007aff",
   tabBarActiveTextColor: platform === "ios" ? "#007aff" : "#fff",
-  tabActiveBgColor: platform === "ios" ? "#cde1f9" : "#3F51B5",
+  tabActiveBgColor: platform === "ios" ? "#cde1f9" : "transparent",
 
   // Tab
   tabDefaultBg: platform === "ios" ? "#F8F8F8" : "#3F51B5",
@@ -151,7 +151,7 @@ export default {
 
   // Header
   toolbarBtnColor: platform === "ios" ? "#007aff" : "#fff",
-  toolbarDefaultBg: platform === "ios" ? "#F8F8F8" : "#3F51B5",
+  toolbarDefaultBg: platform === "ios" ? "#F8F8F8" : "transparent",
   toolbarHeight: platform === "ios" ? 64 : 56,
   toolbarIconSize: platform === "ios" ? 20 : 22,
   toolbarSearchIconSize: platform === "ios" ? 20 : 23,
@@ -175,7 +175,7 @@ export default {
   inputFontSize: 17,
   inputBorderColor: "#D9D5DC",
   inputSuccessBorderColor: "#2b8339",
-  inputErrorBorderColor: "#ed2f2f",
+  inputErrorBorderColor: "#B33931",
 
   get inputColor() {
     return this.textColor;

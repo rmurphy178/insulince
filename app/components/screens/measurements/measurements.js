@@ -7,9 +7,14 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView
 } from 'react-native';
-import baseStyles from '../styles/styles';
+import Footer from '../footer/footer';
+import { Container } from 'native-base';
 
 class Measurements extends Component {
+  componentDidMount() {
+    this.props.fetchAllMeasurements();
+  }
+
   constructor() {
     super();
     this.state = {
@@ -50,36 +55,40 @@ class Measurements extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView
-        style={styles.container}
-        behavior={'padding'}
-        >
-        <View style={styles.inputsContainer}>
+      <Container>
 
-        <View>
-          {this.state.errors.map((error, i) => (
-            <Text key={i}>{error}</Text>
-          ))}
-        </View>
-        <Text>{this.state.errors}</Text>
-
-        <View style={styles.container}>
-          <Text style={styles.update}>Weight</Text>
-          <TouchableOpacity style={styles.updateButton}
-            onPress={this.updatePressed}
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior={'padding'}
           >
-            <Text style={styles.buttonText}>Edit</Text>
-          </TouchableOpacity>
-          <Text style={styles.update}>Chest</Text>
-          <Text style={styles.update}>Waist</Text>
-          <Text style={styles.update}>Hips</Text>
-          <Text style={styles.update}>Height</Text>
-        </View>
+          <View style={styles.inputsContainer}>
+
+            <View>
+              {this.state.errors.map((error, i) => (
+                <Text key={i}>{error}</Text>
+              ))}
+            </View>
+            <Text>{this.state.errors}</Text>
+
+            <View style={styles.container}>
+              <Text style={styles.update}>Weight</Text>
+              <TouchableOpacity style={styles.updateButton}
+                onPress={this.updatePressed}
+                >
+                <Text style={styles.buttonText}>Edit</Text>
+              </TouchableOpacity>
+              <Text style={styles.update}>Chest</Text>
+              <Text style={styles.update}>Waist</Text>
+              <Text style={styles.update}>Hips</Text>
+              <Text style={styles.update}>Height</Text>
+            </View>
 
 
 
-        </View>
-      </KeyboardAvoidingView>
+          </View>
+        </KeyboardAvoidingView>
+        <Footer navigation={ this.props.navigation } />
+      </Container>
     );
   }
 
