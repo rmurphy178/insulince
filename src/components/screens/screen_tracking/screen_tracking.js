@@ -1,8 +1,9 @@
 import { NavigationActions } from 'react-navigation';
 import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
 
-const tracker = new GoogleAnalyticsTracker(GA_TRACKING_ID);
+const tracker = new GoogleAnalyticsTracker('UA-104510954-1');
 
+// GA_TRACKING_ID
 
 // Add this component to store as middleWare to enable screen tracking
 // in google analytics
