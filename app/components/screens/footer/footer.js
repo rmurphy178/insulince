@@ -36,6 +36,7 @@ export default class FooterNav extends Component {
       tab2: false,
       tab3: false,
       tab4: false,
+      add: false
     };
   }
 
@@ -44,7 +45,8 @@ export default class FooterNav extends Component {
       tab1: true,
       tab2: false,
       tab3: false,
-      tab4: false
+      tab4: false,
+      add: false
     }, () => {
       if (this.props.navigation.state.routeName !== 'Home') {
         this.props.navigation.navigate('Home');
@@ -57,7 +59,8 @@ export default class FooterNav extends Component {
       tab1: false,
       tab2: true,
       tab3: false,
-      tab4: false
+      tab4: false,
+      add: false
     }, () => {
       if (this.props.navigation.state.routeName !== 'JournalEntries') {
         this.props.navigation.navigate('JournalEntries');
@@ -70,7 +73,8 @@ export default class FooterNav extends Component {
       tab1: false,
       tab2: false,
       tab3: true,
-      tab4: false
+      tab4: false,
+      add: false
     }, () => {
       if (this.props.navigation.state.routeName !== 'Progress') {
         this.props.navigation.navigate('Progress');
@@ -83,7 +87,8 @@ export default class FooterNav extends Component {
       tab1: false,
       tab2: false,
       tab3: false,
-      tab4: true
+      tab4: true,
+      add: false
     }, () => {
       if (this.props.navigation.state.routeName !== 'Account') {
         this.props.navigation.navigate('Account');
@@ -91,12 +96,13 @@ export default class FooterNav extends Component {
     });
   }
 
-  toggleNone() {
+  toggleAdd() {
     this.setState({
       tab1: false,
       tab2: false,
       tab3: false,
-      tab4: false
+      tab4: false,
+      add: true
     });
   }
 
@@ -104,28 +110,47 @@ export default class FooterNav extends Component {
     return (
         <Footer>
           <FooterTab>
-            <Button active={this.state.tab1} onPress={() => this.toggleTab1()}>
-              <Icon active={this.state.tab1} name="ios-home" />
+            <Button
+              active={ this.state.tab1 }
+              onPress={() => this.toggleTab1()}>
+              <Icon
+                active={ this.state.tab1 }
+                name="ios-home" />
               <Text>Home</Text>
             </Button>
-            <Button active={this.state.tab2} onPress={() => this.toggleTab2()}>
-              <Icon active={this.state.tab2} name="ios-bookmarks" />
+            <Button
+              active={ this.state.tab2 }
+              onPress={() => this.toggleTab2()}>
+              <Icon
+                active={ this.state.tab2 }
+                name="ios-bookmarks" />
               <Text>Entries</Text>
             </Button>
-            <Button active onPress={() => this.toggleNone()}>
-              <Icon active name="ios-add-circle" />
+            <Button
+              active={ this.state.add }
+              onPress={() => this.toggleAdd()}>
+              <Icon
+                active={ this.state.add }
+                name="ios-add-circle" />
             </Button>
-            <Button active={this.state.tab3} onPress={() => this.toggleTab3()}>
-              <Icon active={this.state.tab3} name="ios-stats" />
+            <Button
+              active={ this.state.tab3 }
+              onPress={() => this.toggleTab3()}>
+              <Icon
+                active={ this.state.tab3 }
+                name="ios-stats" />
               <Text>Progress</Text>
             </Button>
-            <Button active={this.state.tab4} onPress={() => this.toggleTab4()}>
-              <Icon active={this.state.tab4} name="ios-person" />
+            <Button
+              active={ this.state.tab4 }
+              onPress={() => this.toggleTab4()}>
+              <Icon
+                active={ this.state.tab4 }
+                name="ios-person" />
               <Text>Account</Text>
             </Button>
           </FooterTab>
         </Footer>
-
     );
   }
 }
