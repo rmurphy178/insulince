@@ -19,7 +19,7 @@ export default (variables = variable) => {
 			'.noBottomBorder': {
 				borderBottomWidth: 0,
 			},
-			height: 35,
+			height: 55,
 			paddingTop: variables.listItemPadding + 2,
 			paddingBottom: variables.listItemPadding,
 			borderBottomWidth: variables.borderWidth,

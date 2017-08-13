@@ -4,16 +4,17 @@ import { fetchAllJournalEntries } from '../../../actions/journal_entries_actions
 import JournalEntries from './journal_entries';
 
 
-const mapStateToProps = ( { currentUser, errors }) => {
+const mapStateToProps = state => {
   return {
-    errors: errors,
-    currentUser: currentUser
+    errors: state.errors,
+    currentUser: state.currentUser,
+    journalEntries: state.journalEntries
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    fetchAllJournalEntries: () => dispatch(fetchAllJournalEntries)
+    fetchAllJournalEntries: () => dispatch(fetchAllJournalEntries())
   };
 };
 
