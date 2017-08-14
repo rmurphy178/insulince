@@ -21,6 +21,21 @@ import PieChart from '../charts/pie_charts/pie_chart';
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
+      this.state = {
+
+      };
+
+    this.getChartData = this.getChartData.bind(this);
+  }
+
+
+  componentWillMount() {
+    this.getChartData();
+  }
+
+
+  getChartData() {
+    this.props.fetchLastJournalEntry();
   }
 
   render() {
@@ -45,6 +60,7 @@ export default class Home extends React.Component {
             <H1 style={ styles.h1 }>
               Welcome, { currentUser.username }!
             </H1>
+            <View>{this.getChartData}</View>
               <View style={styles.chart}>
                 <PieChart />
               </View>
