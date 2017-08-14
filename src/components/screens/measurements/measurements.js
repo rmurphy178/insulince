@@ -17,10 +17,29 @@ import {
   List
 } from 'native-base';
 import Footer from '../footer/footer';
+import MeasurementForm from './measurement_form';
 
 class Measurements extends Component {
   componentDidMount() {
-    this.props.fetchAllMeasurements();
+    this.props.fetchAllMeasurements()
+      .then(()  => {
+        const { measurements } = this.props;
+        this.currentMeasurementId = measurements.allIds[measurements.allIds.length - 1];
+        this.chest = '';
+        this.waist = '';
+        this.hips = '';
+        this.weight= '';
+        this.height = '';
+
+        this.setState({
+          currentMeasurementId: this.currentMeasurementId,
+          chest: this.chest,
+          waist: this.waist,
+          hips: this.hips,
+          weight: this.weight,
+          height: this.height
+        });
+      });
   }
 
   constructor() {
@@ -33,32 +52,11 @@ class Measurements extends Component {
       height: '',
       errors: []
     };
-
-    this.handleUpdate = this.handleUpdate.bind(this);
-    this.update = this.update.bind(this);
-    this.updatePressed = this.updatePressed.bind(this);
-
+    this.redirectToMeasurementForm = this.redirectToMeasurementForm.bind(this);
   }
 
-  handleUpdate(event) {
-    const updateInput = document.getElementById(this.update.name);
-    updateInput.classList.remove('hidden');
-    updateInput.focus();
-  }
-
-  update(event) {
-
-  }
-
-  updatePressed() {
-    this.props.update({
-      chest: this.state.chest,
-      waist: this.state.waist,
-      hips: this.state.hips,
-      weight: this.state.weight,
-      height: this.state.height
-    });
-    // should this redirect or just update?
+  redirectToMeasurementForm() {
+    this.props.navigation.navigate('MeasurementForm');
   }
 
   render() {
@@ -82,30 +80,56 @@ class Measurements extends Component {
               <Right />
             </Header>
             <Content style={{ backgroundColor: 'white' }}>
-              <Separator bordered
-                style={ styles.separator }>
-                <Text style={ styles.separatorText }>
-                  DATE
-                </Text>
-              </Separator>
-              <List
-                style={{ backgroundColor: 'white' }}
-                dataSource={this.ds.cloneWithRows()}
-                renderRow={data =>
-                  <ListItem>
-                    <Text style={{ paddingLeft: 14 }}> {data} </Text>
-                  </ListItem>}
-                renderLeftHiddenRow={data =>
-                  <Button full onPress={() => alert(data)}>
-                    <Icon active name="information-circle" />
-                  </Button>}
-                renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-                  <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
-                    <Icon active name="trash" />
-                  </Button>}
-                leftOpenValue={75}
-                rightOpenValue={-75}
-              />
+
+
+              <Container style={styles.container}>
+                 <Content>
+                   <List>
+                     <ListItem>
+                       <Body>
+                         <Text style={styles.text} >Date</Text>
+                       </Body>
+                     </ListItem>
+                     <ListItem>
+                       <Body>
+                         <Text style={styles.text} >Weight</Text>
+                         <Text style={styles.userinfo} > { this.state.weight } </Text>
+                       </Body>
+                     </ListItem>
+                     <ListItem>
+                       <Body>
+                         <Text style={styles.text}>Chest</Text>
+                         <Text style={styles.userinfo} > { this.state.chest } </Text>
+                       </Body>
+                     </ListItem>
+                     <ListItem>
+                       <Body>
+                         <Text style={styles.text}>Waist</Text>
+                         <Text style={styles.userinfo} > { this.state.waist } </Text>
+                       </Body>
+                     </ListItem>
+                     <ListItem>
+                       <Body>
+                         <Text style={styles.text}>Hips</Text>
+                         <Text style={styles.userinfo} > { this.state.hips } </Text>
+                       </Body>
+                     </ListItem>
+                     <ListItem>
+                       <Body>
+                         <Text style={styles.text}>Height</Text>
+                         <Text style={styles.userinfo} > { this.state.height } </Text>
+                       </Body>
+                     </ListItem>
+                   </List>
+                   <Button bordered transparent warning
+                     onPress={this.redirectToMeasurementForm}
+                     style={styles.newbutton}>
+                     <Text style={styles.plaintext}>Add New</Text>
+                   </Button>
+                 </Content>
+               </Container>
+
+
             </Content>
           </Container>
         </KeyboardAvoidingView>
