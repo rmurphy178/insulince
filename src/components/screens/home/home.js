@@ -22,16 +22,18 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lastEntry: {},
-      unavailable: false
+      breakfast: [],
+      lunch: [],
+      dinner: [],
+      snack: []
     };
 
 }
 
 componentDidMount(){
-  this.props.fetchAllJournalEntries()
+  this.props.fetchLastJournalEntry()
     .then(results => {
-      console.log(results);
+      console.log(Object.keys(results));
     });
 }
   //
