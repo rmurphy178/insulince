@@ -25,21 +25,21 @@ export default class Home extends React.Component {
       lastEntry: {},
       unavailable: false
     };
+    this.getLastJournalEntry = this.getLastJournalEntry.bind(this);
 }
 
-// last journal entry is object return
+componentDidMount(){
+  this.props.fetchAllJournalEntries()
+    .then(results => {
+      console.log(results);
+    });
+}
 
   getLastJournalEntry(props) {
     const lastEntry = [];
     this.props.fetchLastJournalEntry()
       .then(results => {
-        results.forEach(result => {
-          lastEntry.push(result.fields);
-        });
-        this.setState({
-          lastEntry: lastEntry,
-          unavailable: lastEntry.length === 0
-        });
+        console.log(results.breakfast);
       });
   }
 

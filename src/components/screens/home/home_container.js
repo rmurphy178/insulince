@@ -13,7 +13,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchLastJournalEntry: () => dispatch(fetchLastJournalEntry())
+  fetchLastJournalEntry: () => dispatch(fetchLastJournalEntry()),
+  fetchAllJournalEntries: () => dispatch(fetchAllJournalEntries())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
