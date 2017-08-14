@@ -99,11 +99,14 @@ export default class JournalEntries extends Component {
             <Text style={ styles.separatorText }>
               BREAKFAST
             </Text>
-            <Text
-              onPress={ this.addFood('breakfast') }
-              style={ styles.separatorText }>
-              + ADD FOOD
-            </Text>
+            <Button transparent
+              style={{ alignSelf: 'center' }}
+              onPress={ this.addFood('lunch') }>
+              <Text
+                style={ styles.separatorText }>
+                + ADD FOOD
+              </Text>
+            </Button>
           </Separator>
           <List
             dataSource={this.ds.cloneWithRows(this.state.breakfastItems)}
@@ -132,11 +135,14 @@ export default class JournalEntries extends Component {
             <Text style={ styles.separatorText }>
               LUNCH
             </Text>
-            <Text
-              onPress={ this.addFood('lunch') }
-              style={ styles.separatorText }>
-              + ADD FOOD
-            </Text>
+            <Button transparent
+              style={{ alignSelf: 'center' }}
+              onPress={ this.addFood('lunch') }>
+              <Text
+                style={ styles.separatorText }>
+                + ADD FOOD
+              </Text>
+            </Button>
           </Separator>
           <List
             style={{ backgroundColor: 'white' }}
@@ -166,11 +172,14 @@ export default class JournalEntries extends Component {
             <Text style={ styles.separatorText }>
               DINNER
             </Text>
-            <Text
-              onPress={ this.addFood('dinner') }
-              style={ styles.separatorText }>
-              + ADD FOOD
-            </Text>
+            <Button transparent
+              style={{ alignSelf: 'center' }}
+              onPress={ this.addFood('lunch') }>
+              <Text
+                style={ styles.separatorText }>
+                + ADD FOOD
+              </Text>
+            </Button>
           </Separator>
           <List
             style={{ backgroundColor: 'white' }}
@@ -200,11 +209,14 @@ export default class JournalEntries extends Component {
             <Text style={ styles.separatorText }>
               SNACKS
             </Text>
-            <Text
-              onPress={ this.addFood('snacks') }
-              style={ styles.separatorText }>
-              + ADD FOOD
-            </Text>
+            <Button transparent
+              style={{ alignSelf: 'center' }}
+              onPress={ this.addFood('lunch') }>
+              <Text
+                style={ styles.separatorText }>
+                + ADD FOOD
+              </Text>
+            </Button>
           </Separator>
           <List
             style={{ backgroundColor: 'white' }}
