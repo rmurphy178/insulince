@@ -29,6 +29,7 @@ export default class JournalEntries extends Component {
         this.snackItems = [];
         if (this.props.navigation.state && this.props.navigation.state.params && this.props.navigation.state.params.currentEntryId) {
           this.currentEntryId = this.props.navigation.state.params.currentEntryId;
+          this.currentEntryDate = new  Date(this.props.journalEntries[this.currentEntryId].created_at);
           journalEntries.byId[this.currentEntryId].breakfast
             .forEach(breakfastItem => {
               this.breakfastItems.push(breakfastItem);
@@ -47,9 +48,12 @@ export default class JournalEntries extends Component {
             });
         } else {
           this.currentEntryId = 'new';
+          const date = new Date();
+          this.currentEntryDate = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
         }
         this.setState({
           currentEntryId: this.currentEntryId,
+          currentEntryDate: this.currentEntryDate,
           breakfastItems: this.breakfastItems,
           lunchItems: this.lunchItems,
           dinnerItems: this.dinnerItems,
@@ -63,11 +67,12 @@ export default class JournalEntries extends Component {
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       currentEntryId: "",
+      currentEntryDate: "",
       basic: true,
       breakfastItems: "",
       lunchItems: "",
       dinnerItems: "",
-      snackItems: ""
+      snackItems: "",
     };
     this.addFood = this.addFood.bind(this);
     this.deleteRow = this.deleteRow.bind(this);
@@ -104,16 +109,17 @@ export default class JournalEntries extends Component {
             <Text style={ styles.separatorText }>
               BREAKFAST
             </Text>
-            <Button transparent
-              style={{ alignSelf: 'center' }}
-              onPress={ this.addFood('lunch') }>
-              <Text
-                style={ styles.separatorText }>
-                + ADD FOOD
-              </Text>
-            </Button>
           </Separator>
+          <ListItem
+            onPress={ this.addFood('breakfast') }
+            style={ styles.addListItem }>
+            <Text style={ styles.addFoodText }>
+              + ADD FOOD
+            </Text>
+          </ListItem>
           <List
+            enableEmptySections
+            style={{ backgroundColor: 'white' }}
             dataSource={this.ds.cloneWithRows(this.state.breakfastItems)}
             renderRow={data =>
               <ListItem style={ styles.resultInfo }>
@@ -139,16 +145,16 @@ export default class JournalEntries extends Component {
             <Text style={ styles.separatorText }>
               LUNCH
             </Text>
-            <Button transparent
-              style={{ alignSelf: 'center' }}
-              onPress={ this.addFood('lunch') }>
-              <Text
-                style={ styles.separatorText }>
-                + ADD FOOD
-              </Text>
-            </Button>
           </Separator>
+          <ListItem
+            onPress={ this.addFood('lunch') }
+            style={ styles.addListItem }>
+            <Text style={ styles.addFoodText }>
+              + ADD FOOD
+            </Text>
+          </ListItem>
           <List
+            enableEmptySections
             style={{ backgroundColor: 'white' }}
             dataSource={this.ds.cloneWithRows(this.state.lunchItems)}
             renderRow={data =>
@@ -175,16 +181,16 @@ export default class JournalEntries extends Component {
               <Text style={ styles.separatorText }>
                 DINNER
               </Text>
-              <Button transparent
-                style={{ alignSelf: 'center' }}
-                onPress={ this.addFood('lunch') }>
-                <Text
-                  style={ styles.separatorText }>
-                  + ADD FOOD
-                </Text>
-              </Button>
             </Separator>
+            <ListItem
+              onPress={ this.addFood('dinner') }
+              style={ styles.addListItem }>
+              <Text style={ styles.addFoodText }>
+                + ADD FOOD
+              </Text>
+            </ListItem>
             <List
+              enableEmptySections
               style={{ backgroundColor: 'white' }}
               dataSource={this.ds.cloneWithRows(this.state.dinnerItems)}
               renderRow={data =>
@@ -211,16 +217,16 @@ export default class JournalEntries extends Component {
                 <Text style={ styles.separatorText }>
                   SNACKS
                 </Text>
-                <Button transparent
-                  style={{ alignSelf: 'center' }}
-                  onPress={ this.addFood('lunch') }>
-                  <Text
-                    style={ styles.separatorText }>
-                    + ADD FOOD
-                  </Text>
-                </Button>
               </Separator>
+              <ListItem
+                onPress={ this.addFood('snacks') }
+                style={ styles.addListItem }>
+                <Text style={ styles.addFoodText }>
+                  + ADD FOOD
+                </Text>
+              </ListItem>
               <List
+                enableEmptySections
                 style={{ backgroundColor: 'white' }}
                 dataSource={this.ds.cloneWithRows(this.state.snackItems)}
                 renderRow={data =>
@@ -244,14 +250,6 @@ export default class JournalEntries extends Component {
                 rightOpenValue={-75} />
         </Content>;
     }
-    if (this.state.currentEntryId === 'new') {
-      date = Date.now();
-    } else {
-      if (this.state.currentEntryId) {
-        date =
-          this.props.journalEntries[this.state.currentEntryId].created_at;
-      }
-    }
     return (
       <Image
         source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502485970/insulince-gradient_wofrfg.png' }}
@@ -268,7 +266,7 @@ export default class JournalEntries extends Component {
                 style={ styles.headerIcons }
                 name="ios-arrow-back" />
               <Title>
-                { date }
+                { this.state.currentEntryDate }
               </Title>
               <Icon
                 style={ styles.headerIcons }
@@ -290,10 +288,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover'
   },
   separator: {
-    backgroundColor: 'transparent',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    backgroundColor: 'transparent'
   },
   separatorText: {
     color: 'white',
@@ -313,6 +308,11 @@ const styles = StyleSheet.create({
     paddingLeft: 14,
     alignSelf: 'flex-start'
   },
+  addFoodText: {
+    paddingLeft: 14,
+    alignSelf: 'flex-start',
+    fontWeight: '700'
+  },
   resultInfo: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
@@ -322,5 +322,9 @@ const styles = StyleSheet.create({
     paddingLeft: 14,
     alignSelf: 'flex-start',
     fontSize: 12
+  },
+  addListItem: {
+    backgroundColor: 'white',
+    marginLeft: 0
   }
 });
