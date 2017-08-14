@@ -39,7 +39,7 @@ class MeasurementForm extends Component {
   }
 
   addMeasurement() {
-    this.props
+    this.setState
   }
 
 
@@ -67,40 +67,12 @@ class MeasurementForm extends Component {
             <Content style={{ backgroundColor: 'white' }}>
 
             <Form>
-              <Item floatingLabel>
-                <Label>Weight</Label>
-                <Input
-                 />
-              </Item>
-              <Item floatingLabel>
-                <Label>Chest</Label>
-                <Input
-                onChangeText={ text =>
-                  this.addMeasurement(text, 'chest') } />/>
-              </Item>
-              <Item floatingLabel>
-                <Label>Waist</Label>
-                <Input
-                onChangeText={ text =>
-                  this.addMeasurement(text, 'waist') } /> />
-              </Item>
-              <Item floatingLabel>
-                <Label>Hips</Label>
-                <Input
-                onChangeText={ text =>
-                  this.addMeasurement(text, 'hips') } /> />
-              </Item>
-              <Item floatingLabel last>
-                <Label>Height</Label>
-                <Input
-                onChangeText={ text =>
-                  this.addMeasurement(text, 'height') } />/>
-              </Item>
+      
             </Form>
             <Button block warning style={ styles.newbutton }
                     onPress={() => this.props.navigation.goBack()}>
               <Text>
-              onPress={ this.addMeasurement('Add') }
+              onClick={this.addMeasurement()}
               Add
               </Text>
             </Button>
