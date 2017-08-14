@@ -23,27 +23,31 @@ export default class JournalEntries extends Component {
     this.props.fetchAllJournalEntries()
       .then(()  => {
         const { journalEntries } = this.props;
-        this.currentEntryId = journalEntries.allIds[journalEntries.allIds.length - 1];
         this.breakfastItems = [];
         this.lunchItems = [];
         this.dinnerItems = [];
         this.snackItems = [];
-        journalEntries.byId[this.currentEntryId].breakfast
-          .forEach(breakfastItem => {
-            this.breakfastItems.push(breakfastItem);
+        if (this.props.navigation.state && this.props.navigation.state.params && this.props.navigation.state.params.currentEntryId) {
+          this.currentEntryId = this.props.navigation.state.params.currentEntryId;
+          journalEntries.byId[this.currentEntryId].breakfast
+            .forEach(breakfastItem => {
+              this.breakfastItems.push(breakfastItem);
+            });
+          journalEntries.byId[this.currentEntryId].lunch
+            .forEach(lunchItem => {
+              this.lunchItems.push(lunchItem);
+            });
+          journalEntries.byId[this.currentEntryId].dinner
+            .forEach(dinnerItem => {
+              this.dinnerItems.push(dinnerItem);
           });
-        journalEntries.byId[this.currentEntryId].lunch
-          .forEach(lunchItem => {
-            this.lunchItems.push(lunchItem);
-          });
-        journalEntries.byId[this.currentEntryId].dinner
-          .forEach(dinnerItem => {
-            this.dinnerItems.push(dinnerItem);
-        });
-        journalEntries.byId[this.currentEntryId].snacks
-          .forEach(snackItem => {
-            this.snackItems.push(snackItem);
-          });
+          journalEntries.byId[this.currentEntryId].snacks
+            .forEach(snackItem => {
+              this.snackItems.push(snackItem);
+            });
+        } else {
+          this.currentEntryId = 'new';
+        }
         this.setState({
           currentEntryId: this.currentEntryId,
           breakfastItems: this.breakfastItems,
@@ -86,6 +90,7 @@ export default class JournalEntries extends Component {
   }
 
   render() {
+    let date;
     let content =
       <Content
         style={{ backgroundColor: 'white' }}>
@@ -128,8 +133,7 @@ export default class JournalEntries extends Component {
                 <Icon active name="trash" />
               </Button>}
             leftOpenValue={75}
-            rightOpenValue={-75}
-          />
+            rightOpenValue={-75} />
           <Separator bordered
             style={ styles.separator }>
             <Text style={ styles.separatorText }>
@@ -165,85 +169,89 @@ export default class JournalEntries extends Component {
                 <Icon active name="trash" />
               </Button>}
             leftOpenValue={75}
-            rightOpenValue={-75}
-          />
-          <Separator bordered
-            style={ styles.separator }>
-            <Text style={ styles.separatorText }>
-              DINNER
-            </Text>
-            <Button transparent
-              style={{ alignSelf: 'center' }}
-              onPress={ this.addFood('lunch') }>
-              <Text
-                style={ styles.separatorText }>
-                + ADD FOOD
+            rightOpenValue={-75} />
+            <Separator bordered
+              style={ styles.separator }>
+              <Text style={ styles.separatorText }>
+                DINNER
               </Text>
-            </Button>
-          </Separator>
-          <List
-            style={{ backgroundColor: 'white' }}
-            dataSource={this.ds.cloneWithRows(this.state.dinnerItems)}
-            renderRow={data =>
-              <ListItem style={ styles.resultInfo }>
-                <Text style={ styles.resultName }>
-                  {data.item_name}
+              <Button transparent
+                style={{ alignSelf: 'center' }}
+                onPress={ this.addFood('lunch') }>
+                <Text
+                  style={ styles.separatorText }>
+                  + ADD FOOD
                 </Text>
-                <Text style={ styles.infoText }>
-                  { `${data.brand_name}, ${data.nf_serving_size_qty} ${data.nf_serving_size_unit}` }
+              </Button>
+            </Separator>
+            <List
+              style={{ backgroundColor: 'white' }}
+              dataSource={this.ds.cloneWithRows(this.state.dinnerItems)}
+              renderRow={data =>
+                <ListItem style={ styles.resultInfo }>
+                  <Text style={ styles.resultName }>
+                    {data.item_name}
+                  </Text>
+                  <Text style={ styles.infoText }>
+                    { `${data.brand_name}, ${data.nf_serving_size_qty} ${data.nf_serving_size_unit}` }
+                  </Text>
+                </ListItem>}
+              renderLeftHiddenRow={data =>
+                <Button full onPress={() => alert(data)}>
+                  <Icon active name="information-circle" />
+                </Button>}
+              renderRightHiddenRow={(data, secId, rowId, rowMap) =>
+                <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
+                  <Icon active name="trash" />
+                </Button>}
+              leftOpenValue={75}
+              rightOpenValue={-75} />
+              <Separator bordered
+                style={ styles.separator }>
+                <Text style={ styles.separatorText }>
+                  SNACKS
                 </Text>
-              </ListItem>}
-            renderLeftHiddenRow={data =>
-              <Button full onPress={() => alert(data)}>
-                <Icon active name="information-circle" />
-              </Button>}
-            renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-              <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
-                <Icon active name="trash" />
-              </Button>}
-            leftOpenValue={75}
-            rightOpenValue={-75}
-          />
-          <Separator bordered
-            style={ styles.separator }>
-            <Text style={ styles.separatorText }>
-              SNACKS
-            </Text>
-            <Button transparent
-              style={{ alignSelf: 'center' }}
-              onPress={ this.addFood('lunch') }>
-              <Text
-                style={ styles.separatorText }>
-                + ADD FOOD
-              </Text>
-            </Button>
-          </Separator>
-          <List
-            style={{ backgroundColor: 'white' }}
-            dataSource={this.ds.cloneWithRows(this.state.snackItems)}
-            renderRow={data =>
-              <ListItem style={ styles.resultInfo }>
-                <Text style={ styles.resultName }>
-                  {data.item_name}
-                </Text>
-                <Text style={ styles.infoText }>
-                  { `${data.brand_name}, ${data.nf_serving_size_qty} ${data.nf_serving_size_unit}` }
-                </Text>
-              </ListItem>}
-            renderLeftHiddenRow={data =>
-              <Button full onPress={() => alert(data)}>
-                <Icon active name="information-circle" />
-              </Button>}
-            renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-              <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
-                <Icon active name="trash" />
-              </Button>}
-            leftOpenValue={75}
-            rightOpenValue={-75}
-          />
+                <Button transparent
+                  style={{ alignSelf: 'center' }}
+                  onPress={ this.addFood('lunch') }>
+                  <Text
+                    style={ styles.separatorText }>
+                    + ADD FOOD
+                  </Text>
+                </Button>
+              </Separator>
+              <List
+                style={{ backgroundColor: 'white' }}
+                dataSource={this.ds.cloneWithRows(this.state.snackItems)}
+                renderRow={data =>
+                  <ListItem style={ styles.resultInfo }>
+                    <Text style={ styles.resultName }>
+                      {data.item_name}
+                    </Text>
+                    <Text style={ styles.infoText }>
+                      { `${data.brand_name}, ${data.nf_serving_size_qty} ${data.nf_serving_size_unit}` }
+                    </Text>
+                  </ListItem>}
+                renderLeftHiddenRow={data =>
+                  <Button full onPress={() => alert(data)}>
+                    <Icon active name="information-circle" />
+                  </Button>}
+                renderRightHiddenRow={(data, secId, rowId, rowMap) =>
+                  <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
+                    <Icon active name="trash" />
+                  </Button>}
+                leftOpenValue={75}
+                rightOpenValue={-75} />
         </Content>;
     }
-    let idx = -1;
+    if (this.state.currentEntryId === 'new') {
+      date = Date.now();
+    } else {
+      if (this.state.currentEntryId) {
+        date =
+          this.props.journalEntries[this.state.currentEntryId].created_at;
+      }
+    }
     return (
       <Image
         source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502485970/insulince-gradient_wofrfg.png' }}
@@ -260,7 +268,7 @@ export default class JournalEntries extends Component {
                 style={ styles.headerIcons }
                 name="ios-arrow-back" />
               <Title>
-                Date
+                { date }
               </Title>
               <Icon
                 style={ styles.headerIcons }
@@ -285,8 +293,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingRight: 16
+    alignItems: 'center'
   },
   separatorText: {
     color: 'white',

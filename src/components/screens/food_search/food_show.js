@@ -24,10 +24,16 @@ export default class FoodShow extends Component {
 
   addFoodToEntry() {
     const { item, key, journalEntryId } = this.props.navigation.state.params;
-    this.props.addJournalEntryItem({
-      [key]: [item]
-    }, key, journalEntryId)
-      .then(this.props.navigation.navigate('JournalEntries'));
+    if (journalEntryId) {
+      this.props.addJournalEntryItem({
+        [key]: [item]
+      }, key, journalEntryId)
+      .then(response => this.props.navigation.navigate('JournalEntries', { currentEntryId: response.data.id }));
+    } else {
+      this.props.createJournalEntry({
+        [key]: [item]
+      }).then(response => this.props.navigation.navigate('JournalEntries', { currentEntryId: response.data.id }));
+    }
   }
 
   render() {

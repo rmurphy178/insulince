@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import FoodShow from './food_show';
-import { addJournalEntryItem } from '../../../actions/journal_entries_actions';
+import { addJournalEntryItem, createJournalEntry } from '../../../actions/journal_entries_actions';
 
 const mapStateToProps = state => {
   return {
@@ -10,7 +10,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addJournalEntryItem: (item, meal, journalEntryId) => dispatch(addJournalEntryItem(item, meal, journalEntryId))
+    addJournalEntryItem: (item, meal, journalEntryId) => dispatch(addJournalEntryItem(item, meal, journalEntryId)),
+    createJournalEntry: journalEntry => dispatch(createJournalEntry(journalEntry))
   };
 };
 
