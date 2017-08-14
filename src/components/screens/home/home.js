@@ -25,7 +25,7 @@ export default class Home extends React.Component {
       lastEntry: {},
       unavailable: false
     };
-    this.getLastJournalEntry = this.getLastJournalEntry.bind(this);
+
 }
 
 componentDidMount(){
@@ -34,14 +34,14 @@ componentDidMount(){
       console.log(results);
     });
 }
-
-  getLastJournalEntry(props) {
-    const lastEntry = [];
-    this.props.fetchLastJournalEntry()
-      .then(results => {
-        console.log(results.breakfast);
-      });
-  }
+  //
+  // getLastJournalEntry(props) {
+  //   const lastEntry = [];
+  //   this.props.fetchLastJournalEntry()
+  //     .then(results => {
+  //       console.log(results.breakfast);
+  //     });
+  // }
 
   render() {
     const { currentUser } = this.props;
