@@ -22,11 +22,12 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lastEntry: [],
+      lastEntry: {},
       unavailable: false
     };
 }
 
+// last journal entry is object return
 
   getLastJournalEntry(props) {
     const lastEntry = [];
