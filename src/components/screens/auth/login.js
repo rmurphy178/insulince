@@ -104,6 +104,7 @@ class Login extends Component {
                   <Image
                     source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502605519/insulince-logo.png' }}
                     style={ styles.logo } />
+                  <Text style={styles.blurb}> Nutrition tracking for Insulin Resistance</Text>
                   <Item
                     error={ this.state.loginSuccessful ? false : true }>
                     <Input
@@ -217,5 +218,10 @@ const styles = StyleSheet.create({
   },
   iconShow: {
     opacity: 1
+  },
+  blurb: {
+    color: '#FFFFFF',
+    textAlign: 'center'
+
   }
 });
