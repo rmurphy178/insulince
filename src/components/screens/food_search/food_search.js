@@ -55,8 +55,13 @@ export default class FoodSearch extends Component {
   }
 
   showFoodPage(item) {
+    const { key, journalEntryId } = this.props.navigation.state.params;
     return (
-      () => this.props.navigation.navigate('FoodShow', { item })
+      () => this.props.navigation.navigate('FoodShow', {
+        item,
+        key,
+        journalEntryId
+      })
     );
   }
 
@@ -79,7 +84,9 @@ export default class FoodSearch extends Component {
               </Left>
               <Body style={ styles.headerBody }>
                 <Title>
-                  { `Add ${key.charAt(0).toUpperCase()}${key.slice(1)}` }
+                  {
+                    `Add ${key.charAt(0).toUpperCase()}${key.slice(1)}`
+                  }
                 </Title>
               </Body>
               <Right />

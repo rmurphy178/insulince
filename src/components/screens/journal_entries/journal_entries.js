@@ -18,17 +18,6 @@ import {
 import { StyleSheet, ListView, Image } from 'react-native';
 import Footer from '../footer/footer';
 
-const datas = [
-  'Simon Mignolet',
-  'Nathaniel Clyne',
-  'Dejan Lovren',
-  'Mama Sakho',
-  'Alberto Moreno',
-  'Emre Can',
-  'Joe Allen',
-  'Phil Coutinho',
-];
-
 export default class JournalEntries extends Component {
   componentDidMount() {
     this.props.fetchAllJournalEntries()
@@ -81,9 +70,12 @@ export default class JournalEntries extends Component {
   }
 
   addFood(key) {
-    return(
-      () => this.props.navigation.navigate('FoodSearch', { key })
-    );
+    return () => {
+      this.props.navigation.navigate('FoodSearch', {
+        key: key,
+        journalEntryId: this.state.currentEntryId
+      });
+    };
   }
 
   deleteRow(secId, rowId, rowMap) {
@@ -209,7 +201,7 @@ export default class JournalEntries extends Component {
               SNACKS
             </Text>
             <Text
-              onPress={ this.addFood('snack') }
+              onPress={ this.addFood('snacks') }
               style={ styles.separatorText }>
               + ADD FOOD
             </Text>

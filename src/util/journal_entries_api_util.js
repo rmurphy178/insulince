@@ -48,13 +48,28 @@ export const updateJournalEntry = journalEntry => {
   return ASYNC.getItem("auth_token").then(token => {
     const url = `https://insulince-api.herokuapp.com/api/journal_entries/${journalEntry.id}`;
     return axios({
-      method: 'POST',
+      method: 'PATCH',
       url: url,
       headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + token
       },
       data: { journal_entry: journalEntry }
+    });
+  });
+};
+
+export const addJournalEntryItem = (item, meal, journalEntryId) => {
+  return ASYNC.getItem("auth_token").then(token => {
+    const url = `https://insulince-api.herokuapp.com/api/journal_entries/${journalEntryId}/add/${meal}`;
+    return axios({
+      method: 'PATCH',
+      url: url,
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token
+      },
+      data: { journal_entry: item }
     });
   });
 };

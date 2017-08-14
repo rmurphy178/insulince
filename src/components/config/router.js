@@ -10,7 +10,7 @@ import Progress from '../screens/progress/progress';
 import AccountContainer from '../screens/account/account_container';
 import NutritionContainer from '../screens/nutrition/nutrition_container';
 import FoodSearchContainer from '../screens/food_search/food_search_container';
-import FoodShow from '../screens/food_search/food_show';
+import FoodShowContainer from '../screens/food_search/food_show_container';
 
 export const AuthNav = StackNavigator({
   Login: { screen: LoginContainer },
@@ -22,7 +22,7 @@ export const AuthNav = StackNavigator({
   Measurements: { screen: MeasurementsContainer },
   Nutrition: { screen: NutritionContainer },
   FoodSearch: { screen: FoodSearchContainer },
-  FoodShow: { screen: FoodShow }
+  FoodShow: { screen: FoodShowContainer }
 },
   { headerMode: 'none' }
 );
