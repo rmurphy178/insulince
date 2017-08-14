@@ -18,6 +18,8 @@ import Footer from '../footer/footer';
 
 import PieChart from '../charts/pie_charts/pie_chart';
 
+import { values } from 'lodash';
+
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -56,7 +58,7 @@ export default class Home extends React.Component {
             this.snackItems.push(snackItem);
           });
         this.setState({
-          breakfastItems: this.breakfastItems,
+          breakfastItems: this.breakfastItems.map(item => values(item)),
           lunchItems: this.lunchItems,
           dinnerItems: this.dinnerItems,
           snackItems: this.snackItems
@@ -99,6 +101,7 @@ export default class Home extends React.Component {
               <View style={styles.chart}>
                 <PieChart />
               </View>
+
           </Content>
           <Footer navigation={ this.props.navigation } />
         </Container>
@@ -106,6 +109,8 @@ export default class Home extends React.Component {
     );
   }
 }
+
+
 
 const styles = StyleSheet.create({
   backgroundImage: {
