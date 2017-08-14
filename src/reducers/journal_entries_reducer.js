@@ -13,7 +13,7 @@ const JournalEntriesReducer = (state = defaultState, action) => {
   switch(action.type) {
     case(RECEIVE_ALL_JOURNAL_ENTRIES):
       nextState = merge({}, defaultState);
-      nextState.allIds = Object.keys(action.journalEntries);
+      nextState.allIds = Object.keys(action.journalEntries).reverse();
       nextState.allIds.forEach(journalEntryId => {
         nextState.byId[journalEntryId] = action.journalEntries[journalEntryId];
       });
@@ -22,7 +22,7 @@ const JournalEntriesReducer = (state = defaultState, action) => {
       nextState = merge({}, state);
       nextState.byId[action.journalEntry.id] = action.journalEntry.entry;
       if (!nextState.allIds.includes(action.journalEntry.id)) {
-        nextState.allIds.push(action.journalEntry.id);
+        nextState.allIds.shift(action.journalEntry.id);
       }
       return nextState;
     case CLEAR_STORE:

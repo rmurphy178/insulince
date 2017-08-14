@@ -23,14 +23,12 @@ export default class JournalEntries extends Component {
     this.props.fetchAllJournalEntries()
       .then(()  => {
         const { journalEntries } = this.props;
-        let date;
         this.breakfastItems = [];
         this.lunchItems = [];
         this.dinnerItems = [];
         this.snackItems = [];
         if (this.props.navigation.state && this.props.navigation.state.params && this.props.navigation.state.params.currentEntryId) {
           this.currentEntryId = this.props.navigation.state.params.currentEntryId;
-          date = new  Date(this.props.journalEntries[this.currentEntryId].created_at);
           journalEntries.byId[this.currentEntryId].breakfast
             .forEach(breakfastItem => {
               this.breakfastItems.push(breakfastItem);
@@ -48,10 +46,9 @@ export default class JournalEntries extends Component {
               this.snackItems.push(snackItem);
             });
         } else {
-          this.currentEntryId = 'new';
-          date = new Date();
+          this.currentEntryId = journalEntries.allIds[journalEntries.allIds.length - 1];
         }
-        this.currentEntryDate = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+        this.currentEntryDate = new  Date(journalEntries[this.currentEntryId].created_at);
         this.setState({
           currentEntryId: this.currentEntryId,
           currentEntryDate: this.currentEntryDate,
@@ -60,6 +57,8 @@ export default class JournalEntries extends Component {
           dinnerItems: this.dinnerItems,
           snackItems: this.snackItems
         });
+        this.checkLeftForEntry();
+        this.checkRightForEntry();
       });
   }
 
@@ -100,11 +99,51 @@ export default class JournalEntries extends Component {
   }
 
   leftDate() {
-
+    let currentIdx = this.props.journalEntries.indexOf(this.state.currentEntryId);
+    this.props.navigation.navigate('JournalEntries', { currentEntryId: this.props.journalEntries.allIds[currentIdx + 1] });
   }
 
   rightDate() {
+    let currentIdx = this.props.journalEntries.indexOf(this.state.currentEntryId);
+    this.props.navigation.navigate('JournalEntries', { currentEntryId: this.props.journalEntries.allIds[currentIdx - 1] });
+  }
 
+  checkLeftForEntry() {
+    const { journalEntries } = this.props;
+    const { currentEntryId, currentEntryDate } = this.state;
+    if (currentEntryId) {
+      let idx = journalEntries.allIds.indexOf(currentEntryId);
+      if (idx > 0 && !this.state.left) {
+        this.setState({
+          left: true
+        });
+      } else {
+        if (idx === 0 && this.state.left) {
+          this.setState({
+            left: false
+          });
+        }
+      }
+    }
+  }
+
+  checkRightForEntry() {
+    const { journalEntries } = this.props;
+    const { currentEntryId, currentEntryDate } = this.state;
+    if (currentEntryId) {
+      let idx = journalEntries.allIds.indexOf(currentEntryId);
+      if (idx < journalEntries.allIds.length - 1 && !this.state.right) {
+        this.setState({
+          right: true
+        });
+      } else {
+        if (idx === journalEntries.allIds.length - 1 && this.state.right) {
+          this.setState({
+            right: false
+          });
+        }
+      }
+    }
   }
 
   render() {
@@ -281,7 +320,9 @@ export default class JournalEntries extends Component {
                 style={ styles.headerIcons }
                 name="ios-arrow-back" />
               <Title>
-                { this.state.currentEntryDate }
+                {
+                 `${this.state.currentEntryDate.getMonth()}/${this.state.currentEntryDate.getDate()}/${this.state.currentEntryDate.getFullYear()}`
+                }
               </Title>
               <Icon
                 disabled={ !this.state.right }
