@@ -29,6 +29,7 @@ export default class JournalEntries extends Component {
         this.snackItems = [];
         if (this.props.navigation.state && this.props.navigation.state.params && this.props.navigation.state.params.currentEntryId) {
           this.currentEntryId = this.props.navigation.state.params.currentEntryId;
+          this.currentEntryDate = new  Date(journalEntries.byId[this.currentEntryId].created_at);
           journalEntries.byId[this.currentEntryId].breakfast
             .forEach(breakfastItem => {
               this.breakfastItems.push(breakfastItem);
@@ -46,9 +47,9 @@ export default class JournalEntries extends Component {
               this.snackItems.push(snackItem);
             });
         } else {
-          this.currentEntryId = journalEntries.allIds[journalEntries.allIds.length - 1];
+          this.currentEntryId = journalEntries.allIds[0];
+          this.currentEntryDate = new  Date(journalEntries.byId[this.currentEntryId].created_at);
         }
-        this.currentEntryDate = new  Date(journalEntries[this.currentEntryId].created_at);
         this.setState({
           currentEntryId: this.currentEntryId,
           currentEntryDate: this.currentEntryDate,
@@ -74,7 +75,7 @@ export default class JournalEntries extends Component {
       dinnerItems: "",
       snackItems: "",
       right: false,
-      left: true
+      left: false
     };
     this.addFood = this.addFood.bind(this);
     this.deleteRow = this.deleteRow.bind(this);
@@ -301,6 +302,7 @@ export default class JournalEntries extends Component {
                 leftOpenValue={75}
                 rightOpenValue={-75} />
         </Content>;
+        date = `${this.state.currentEntryDate.getMonth()}/${this.state.currentEntryDate.getDate()}/${this.state.currentEntryDate.getFullYear()}`;
     }
     return (
       <Image
@@ -321,7 +323,7 @@ export default class JournalEntries extends Component {
                 name="ios-arrow-back" />
               <Title>
                 {
-                 `${this.state.currentEntryDate.getMonth()}/${this.state.currentEntryDate.getDate()}/${this.state.currentEntryDate.getFullYear()}`
+                 date
                 }
               </Title>
               <Icon
