@@ -22,23 +22,50 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      breakfast: [],
-      lunch: [],
-      dinner: [],
-      snack: []
+      breakfastItems: "",
+      lunchItems: "",
+      dinnerItems: "",
+      snackItems: ""
     };
+  }
 
-}
 
-componentDidMount(){
-  this.props.fetchLastJournalEntry()
-    .then(results => {
-      console.log(Object.keys(results));
-    });
-}
-  //
+  componentDidMount() {
+    this.props.fetchAllJournalEntries()
+      .then(()  => {
+        const { journalEntries } = this.props;
+        this.currentEntryId = journalEntries.allIds[journalEntries.allIds.length - 1];
+        this.breakfastItems = [];
+        this.lunchItems = [];
+        this.dinnerItems = [];
+        this.snackItems = [];
+        journalEntries.byId[this.currentEntryId].breakfast
+          .forEach(breakfastItem => {
+            this.breakfastItems.push(breakfastItem);
+          });
+        journalEntries.byId[this.currentEntryId].lunch
+          .forEach(lunchItem => {
+            this.lunchItems.push(lunchItem);
+          });
+        journalEntries.byId[this.currentEntryId].dinner
+          .forEach(dinnerItem => {
+            this.dinnerItems.push(dinnerItem);
+        });
+        journalEntries.byId[this.currentEntryId].snacks
+          .forEach(snackItem => {
+            this.snackItems.push(snackItem);
+          });
+        this.setState({
+          breakfastItems: this.breakfastItems,
+          lunchItems: this.lunchItems,
+          dinnerItems: this.dinnerItems,
+          snackItems: this.snackItems
+        });
+      });
+  }
+
   // getLastJournalEntry(props) {
-  //   const lastEntry = [];
+  //   const entries = ;
   //   this.props.fetchLastJournalEntry()
   //     .then(results => {
   //       console.log(results.breakfast);
@@ -46,6 +73,7 @@ componentDidMount(){
   // }
 
   render() {
+    console.log(this.state);
     const { currentUser } = this.props;
     return (
       <Image
