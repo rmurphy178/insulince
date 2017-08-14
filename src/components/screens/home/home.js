@@ -21,21 +21,25 @@ import PieChart from '../charts/pie_charts/pie_chart';
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
-      this.state = {
-
-      };
-
-    this.getChartData = this.getChartData.bind(this);
-  }
-
-
-  componentWillMount() {
-    this.getChartData();
-  }
+    this.state = {
+      lastEntry: [],
+      unavailable: false
+    };
+}
 
 
-  getChartData() {
-    this.props.fetchLastJournalEntry();
+  getLastJournalEntry(props) {
+    const lastEntry = [];
+    this.props.fetchLastJournalEntry()
+      .then(results => {
+        results.forEach(result => {
+          lastEntry.push(result.fields);
+        });
+        this.setState({
+          lastEntry: lastEntry,
+          unavailable: lastEntry.length === 0
+        });
+      });
   }
 
   render() {
