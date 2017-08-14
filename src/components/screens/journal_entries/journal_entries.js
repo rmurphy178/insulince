@@ -18,50 +18,48 @@ import {
 import { StyleSheet, ListView, Image } from 'react-native';
 import Footer from '../footer/footer';
 
-const datas = [
-  'Simon Mignolet',
-  'Nathaniel Clyne',
-  'Dejan Lovren',
-  'Mama Sakho',
-  'Alberto Moreno',
-  'Emre Can',
-  'Joe Allen',
-  'Phil Coutinho',
-];
-
 export default class JournalEntries extends Component {
   componentDidMount() {
     this.props.fetchAllJournalEntries()
       .then(()  => {
         const { journalEntries } = this.props;
-        this.currentEntryId = journalEntries.allIds[journalEntries.allIds.length - 1];
         this.breakfastItems = [];
         this.lunchItems = [];
         this.dinnerItems = [];
         this.snackItems = [];
-        journalEntries.byId[this.currentEntryId].breakfast
-          .forEach(breakfastItem => {
-            this.breakfastItems.push(breakfastItem);
+        if (this.props.navigation.state && this.props.navigation.state.params && this.props.navigation.state.params.currentEntryId) {
+          this.currentEntryId = this.props.navigation.state.params.currentEntryId;
+          this.currentEntryDate = new  Date(journalEntries.byId[this.currentEntryId].created_at);
+          journalEntries.byId[this.currentEntryId].breakfast
+            .forEach(breakfastItem => {
+              this.breakfastItems.push(breakfastItem);
+            });
+          journalEntries.byId[this.currentEntryId].lunch
+            .forEach(lunchItem => {
+              this.lunchItems.push(lunchItem);
+            });
+          journalEntries.byId[this.currentEntryId].dinner
+            .forEach(dinnerItem => {
+              this.dinnerItems.push(dinnerItem);
           });
-        journalEntries.byId[this.currentEntryId].lunch
-          .forEach(lunchItem => {
-            this.lunchItems.push(lunchItem);
-          });
-        journalEntries.byId[this.currentEntryId].dinner
-          .forEach(dinnerItem => {
-            this.dinnerItems.push(dinnerItem);
-        });
-        journalEntries.byId[this.currentEntryId].snacks
-          .forEach(snackItem => {
-            this.snackItems.push(snackItem);
-          });
+          journalEntries.byId[this.currentEntryId].snacks
+            .forEach(snackItem => {
+              this.snackItems.push(snackItem);
+            });
+        } else {
+          this.currentEntryId = journalEntries.allIds[0];
+          this.currentEntryDate = new  Date(journalEntries.byId[this.currentEntryId].created_at);
+        }
         this.setState({
           currentEntryId: this.currentEntryId,
+          currentEntryDate: this.currentEntryDate,
           breakfastItems: this.breakfastItems,
           lunchItems: this.lunchItems,
           dinnerItems: this.dinnerItems,
           snackItems: this.snackItems
         });
+        this.checkLeftForEntry();
+        this.checkRightForEntry();
       });
   }
 
@@ -70,20 +68,28 @@ export default class JournalEntries extends Component {
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       currentEntryId: "",
+      currentEntryDate: "",
       basic: true,
       breakfastItems: "",
       lunchItems: "",
       dinnerItems: "",
-      snackItems: ""
+      snackItems: "",
+      right: false,
+      left: false
     };
     this.addFood = this.addFood.bind(this);
     this.deleteRow = this.deleteRow.bind(this);
+    this.leftDate = this.leftDate.bind(this);
+    this.rightDate = this.rightDate.bind(this);
   }
 
   addFood(key) {
-    return(
-      () => this.props.navigation.navigate('FoodSearch', { key })
-    );
+    return () => {
+      this.props.navigation.navigate('FoodSearch', {
+        key: key,
+        journalEntryId: this.state.currentEntryId
+      });
+    };
   }
 
   deleteRow(secId, rowId, rowMap) {
@@ -93,7 +99,56 @@ export default class JournalEntries extends Component {
     this.setState({ listViewData: newData });
   }
 
+  leftDate() {
+    let currentIdx = this.props.journalEntries.indexOf(this.state.currentEntryId);
+    this.props.navigation.navigate('JournalEntries', { currentEntryId: this.props.journalEntries.allIds[currentIdx + 1] });
+  }
+
+  rightDate() {
+    let currentIdx = this.props.journalEntries.indexOf(this.state.currentEntryId);
+    this.props.navigation.navigate('JournalEntries', { currentEntryId: this.props.journalEntries.allIds[currentIdx - 1] });
+  }
+
+  checkLeftForEntry() {
+    const { journalEntries } = this.props;
+    const { currentEntryId, currentEntryDate } = this.state;
+    if (currentEntryId) {
+      let idx = journalEntries.allIds.indexOf(currentEntryId);
+      if (idx > 0 && !this.state.left) {
+        this.setState({
+          left: true
+        });
+      } else {
+        if (idx === 0 && this.state.left) {
+          this.setState({
+            left: false
+          });
+        }
+      }
+    }
+  }
+
+  checkRightForEntry() {
+    const { journalEntries } = this.props;
+    const { currentEntryId, currentEntryDate } = this.state;
+    if (currentEntryId) {
+      let idx = journalEntries.allIds.indexOf(currentEntryId);
+      if (idx < journalEntries.allIds.length - 1 && !this.state.right) {
+        this.setState({
+          right: true
+        });
+      } else {
+        if (idx === journalEntries.allIds.length - 1 && this.state.right) {
+          this.setState({
+            right: false
+          });
+        }
+      }
+    }
+  }
+
   render() {
+    let date;
     let content =
       <Content
         style={{ backgroundColor: 'white' }}>
@@ -107,13 +162,17 @@ export default class JournalEntries extends Component {
             <Text style={ styles.separatorText }>
               BREAKFAST
             </Text>
-            <Text
-              onPress={ this.addFood('breakfast') }
-              style={ styles.separatorText }>
+          </Separator>
+          <ListItem
+            onPress={ this.addFood('breakfast') }
+            style={ styles.addListItem }>
+            <Text style={ styles.addFoodText }>
               + ADD FOOD
             </Text>
-          </Separator>
+          </ListItem>
           <List
+            enableEmptySections
+            style={{ backgroundColor: 'white' }}
             dataSource={this.ds.cloneWithRows(this.state.breakfastItems)}
             renderRow={data =>
               <ListItem style={ styles.resultInfo }>
@@ -133,20 +192,22 @@ export default class JournalEntries extends Component {
                 <Icon active name="trash" />
               </Button>}
             leftOpenValue={75}
-            rightOpenValue={-75}
-          />
+            rightOpenValue={-75} />
           <Separator bordered
             style={ styles.separator }>
             <Text style={ styles.separatorText }>
               LUNCH
             </Text>
-            <Text
-              onPress={ this.addFood('lunch') }
-              style={ styles.separatorText }>
+          </Separator>
+          <ListItem
+            onPress={ this.addFood('lunch') }
+            style={ styles.addListItem }>
+            <Text style={ styles.addFoodText }>
               + ADD FOOD
             </Text>
-          </Separator>
+          </ListItem>
           <List
+            enableEmptySections
             style={{ backgroundColor: 'white' }}
             dataSource={this.ds.cloneWithRows(this.state.lunchItems)}
             renderRow={data =>
@@ -167,79 +228,82 @@ export default class JournalEntries extends Component {
                 <Icon active name="trash" />
               </Button>}
             leftOpenValue={75}
-            rightOpenValue={-75}
-          />
-          <Separator bordered
-            style={ styles.separator }>
-            <Text style={ styles.separatorText }>
-              DINNER
-            </Text>
-            <Text
+            rightOpenValue={-75} />
+            <Separator bordered
+              style={ styles.separator }>
+              <Text style={ styles.separatorText }>
+                DINNER
+              </Text>
+            </Separator>
+            <ListItem
               onPress={ this.addFood('dinner') }
-              style={ styles.separatorText }>
-              + ADD FOOD
-            </Text>
-          </Separator>
-          <List
-            style={{ backgroundColor: 'white' }}
-            dataSource={this.ds.cloneWithRows(this.state.dinnerItems)}
-            renderRow={data =>
-              <ListItem style={ styles.resultInfo }>
-                <Text style={ styles.resultName }>
-                  {data.item_name}
+              style={ styles.addListItem }>
+              <Text style={ styles.addFoodText }>
+                + ADD FOOD
+              </Text>
+            </ListItem>
+            <List
+              enableEmptySections
+              style={{ backgroundColor: 'white' }}
+              dataSource={this.ds.cloneWithRows(this.state.dinnerItems)}
+              renderRow={data =>
+                <ListItem style={ styles.resultInfo }>
+                  <Text style={ styles.resultName }>
+                    {data.item_name}
+                  </Text>
+                  <Text style={ styles.infoText }>
+                    { `${data.brand_name}, ${data.nf_serving_size_qty} ${data.nf_serving_size_unit}` }
+                  </Text>
+                </ListItem>}
+              renderLeftHiddenRow={data =>
+                <Button full onPress={() => alert(data)}>
+                  <Icon active name="information-circle" />
+                </Button>}
+              renderRightHiddenRow={(data, secId, rowId, rowMap) =>
+                <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
+                  <Icon active name="trash" />
+                </Button>}
+              leftOpenValue={75}
+              rightOpenValue={-75} />
+              <Separator bordered
+                style={ styles.separator }>
+                <Text style={ styles.separatorText }>
+                  SNACKS
                 </Text>
-                <Text style={ styles.infoText }>
-                  { `${data.brand_name}, ${data.nf_serving_size_qty} ${data.nf_serving_size_unit}` }
+              </Separator>
+              <ListItem
+                onPress={ this.addFood('snacks') }
+                style={ styles.addListItem }>
+                <Text style={ styles.addFoodText }>
+                  + ADD FOOD
                 </Text>
-              </ListItem>}
-            renderLeftHiddenRow={data =>
-              <Button full onPress={() => alert(data)}>
-                <Icon active name="information-circle" />
-              </Button>}
-            renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-              <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
-                <Icon active name="trash" />
-              </Button>}
-            leftOpenValue={75}
-            rightOpenValue={-75}
-          />
-          <Separator bordered
-            style={ styles.separator }>
-            <Text style={ styles.separatorText }>
-              SNACKS
-            </Text>
-            <Text
-              onPress={ this.addFood('snack') }
-              style={ styles.separatorText }>
-              + ADD FOOD
-            </Text>
-          </Separator>
-          <List
-            style={{ backgroundColor: 'white' }}
-            dataSource={this.ds.cloneWithRows(this.state.snackItems)}
-            renderRow={data =>
-              <ListItem style={ styles.resultInfo }>
-                <Text style={ styles.resultName }>
-                  {data.item_name}
-                </Text>
-                <Text style={ styles.infoText }>
-                  { `${data.brand_name}, ${data.nf_serving_size_qty} ${data.nf_serving_size_unit}` }
-                </Text>
-              </ListItem>}
-            renderLeftHiddenRow={data =>
-              <Button full onPress={() => alert(data)}>
-                <Icon active name="information-circle" />
-              </Button>}
-            renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-              <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
-                <Icon active name="trash" />
-              </Button>}
-            leftOpenValue={75}
-            rightOpenValue={-75}
-          />
+              </ListItem>
+              <List
+                enableEmptySections
+                style={{ backgroundColor: 'white' }}
+                dataSource={this.ds.cloneWithRows(this.state.snackItems)}
+                renderRow={data =>
+                  <ListItem style={ styles.resultInfo }>
+                    <Text style={ styles.resultName }>
+                      {data.item_name}
+                    </Text>
+                    <Text style={ styles.infoText }>
+                      { `${data.brand_name}, ${data.nf_serving_size_qty} ${data.nf_serving_size_unit}` }
+                    </Text>
+                  </ListItem>}
+                renderLeftHiddenRow={data =>
+                  <Button full onPress={() => alert(data)}>
+                    <Icon active name="information-circle" />
+                  </Button>}
+                renderRightHiddenRow={(data, secId, rowId, rowMap) =>
+                  <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
+                    <Icon active name="trash" />
+                  </Button>}
+                leftOpenValue={75}
+                rightOpenValue={-75} />
         </Content>;
+        date = `${this.state.currentEntryDate.getMonth()}/${this.state.currentEntryDate.getDate()}/${this.state.currentEntryDate.getFullYear()}`;
     }
-    let idx = -1;
     return (
       <Image
         source={{ uri: 'https://res.cloudinary.com/malice/image/upload/v1502485970/insulince-gradient_wofrfg.png' }}
@@ -253,12 +317,18 @@ export default class JournalEntries extends Component {
             </Left>
             <Body style={ styles.headerBody }>
               <Icon
+                disabled={ !this.state.left }
+                onPress={ this.leftDate }
                 style={ styles.headerIcons }
                 name="ios-arrow-back" />
               <Title>
-                Date
+                {
+                 date
+                }
               </Title>
               <Icon
+                disabled={ !this.state.right }
+                onPress={ this.rightDate }
                 style={ styles.headerIcons }
                 name="ios-arrow-forward" />
             </Body>
@@ -278,11 +348,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover'
   },
   separator: {
-    backgroundColor: 'transparent',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingRight: 16
+    backgroundColor: 'transparent'
   },
   separatorText: {
     color: 'white',
@@ -302,6 +368,11 @@ const styles = StyleSheet.create({
     paddingLeft: 14,
     alignSelf: 'flex-start'
   },
+  addFoodText: {
+    paddingLeft: 14,
+    alignSelf: 'flex-start',
+    fontWeight: '700'
+  },
   resultInfo: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
@@ -311,5 +382,9 @@ const styles = StyleSheet.create({
     paddingLeft: 14,
     alignSelf: 'flex-start',
     fontSize: 12
+  },
+  addListItem: {
+    backgroundColor: 'white',
+    marginLeft: 0
   }
 });

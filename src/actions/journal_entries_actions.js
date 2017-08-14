@@ -58,6 +58,16 @@ export const updateJournalEntry = journalEntry => dispatch => {
   );
 };
 
+export const addJournalEntryItem = (item, meal, journalEntryId) => dispatch => {
+  return(
+    journalEntriesAPIUtil.addJournalEntryItem(item, meal, journalEntryId)
+      .then(response => {
+        dispatch(receiveJournalEntry(response.data));
+        dispatch(clearErrors());
+      }, errors => receiveErrors(errors.response.data))
+  );
+};
+
 export const deleteJournalEntry = journalEntryId => dispatch => {
   return(
     journalEntriesAPIUtil.deleteJournalEntry(journalEntryId)

@@ -17,6 +17,25 @@ import Footer from '../footer/footer';
 import { StyleSheet, Image } from 'react-native';
 
 export default class FoodShow extends Component {
+  constructor(props) {
+    super(props);
+    this.addFoodToEntry = this.addFoodToEntry.bind(this);
+  }
+
+  addFoodToEntry() {
+    const { item, key, journalEntryId } = this.props.navigation.state.params;
+    if (journalEntryId) {
+      this.props.addJournalEntryItem({
+        [key]: [item]
+      }, key, journalEntryId)
+      .then(response => this.props.navigation.navigate('JournalEntries', { currentEntryId: response.data.id }));
+    } else {
+      this.props.createJournalEntry({
+        [key]: [item]
+      }).then(response => this.props.navigation.navigate('JournalEntries', { currentEntryId: response.data.id }));
+    }
+  }
+
   render() {
     const { item } = this.props.navigation.state.params;
     return(
@@ -37,7 +56,8 @@ export default class FoodShow extends Component {
               </Title>
             </Body>
             <Right>
-              <Button transparent>
+              <Button transparent
+                onPress={ this.addFoodToEntry }>
                 <Text>
                   Add
                 </Text>
