@@ -21,6 +21,26 @@ import PieChart from '../charts/pie_charts/pie_chart';
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      lastEntry: {},
+      unavailable: false
+    };
+}
+
+// last journal entry is object return
+
+  getLastJournalEntry(props) {
+    const lastEntry = [];
+    this.props.fetchLastJournalEntry()
+      .then(results => {
+        results.forEach(result => {
+          lastEntry.push(result.fields);
+        });
+        this.setState({
+          lastEntry: lastEntry,
+          unavailable: lastEntry.length === 0
+        });
+      });
   }
 
   render() {
@@ -45,6 +65,7 @@ export default class Home extends React.Component {
             <H1 style={ styles.h1 }>
               Welcome, { currentUser.username }!
             </H1>
+            <View>{this.getChartData}</View>
               <View style={styles.chart}>
                 <PieChart />
               </View>
