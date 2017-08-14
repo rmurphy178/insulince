@@ -23,13 +23,14 @@ export default class JournalEntries extends Component {
     this.props.fetchAllJournalEntries()
       .then(()  => {
         const { journalEntries } = this.props;
+        let date;
         this.breakfastItems = [];
         this.lunchItems = [];
         this.dinnerItems = [];
         this.snackItems = [];
         if (this.props.navigation.state && this.props.navigation.state.params && this.props.navigation.state.params.currentEntryId) {
           this.currentEntryId = this.props.navigation.state.params.currentEntryId;
-          this.currentEntryDate = new  Date(this.props.journalEntries[this.currentEntryId].created_at);
+          date = new  Date(this.props.journalEntries[this.currentEntryId].created_at);
           journalEntries.byId[this.currentEntryId].breakfast
             .forEach(breakfastItem => {
               this.breakfastItems.push(breakfastItem);
@@ -48,9 +49,9 @@ export default class JournalEntries extends Component {
             });
         } else {
           this.currentEntryId = 'new';
-          const date = new Date();
-          this.currentEntryDate = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+          date = new Date();
         }
+        this.currentEntryDate = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
         this.setState({
           currentEntryId: this.currentEntryId,
           currentEntryDate: this.currentEntryDate,
@@ -73,9 +74,13 @@ export default class JournalEntries extends Component {
       lunchItems: "",
       dinnerItems: "",
       snackItems: "",
+      right: false,
+      left: true
     };
     this.addFood = this.addFood.bind(this);
     this.deleteRow = this.deleteRow.bind(this);
+    this.leftDate = this.leftDate.bind(this);
+    this.rightDate = this.rightDate.bind(this);
   }
 
   addFood(key) {
@@ -92,6 +97,14 @@ export default class JournalEntries extends Component {
     const newData = [...this.state.listViewData];
     newData.splice(rowId, 1);
     this.setState({ listViewData: newData });
+  }
+
+  leftDate() {
+
+  }
+
+  rightDate() {
+
   }
 
   render() {
@@ -263,12 +276,16 @@ export default class JournalEntries extends Component {
             </Left>
             <Body style={ styles.headerBody }>
               <Icon
+                disabled={ !this.state.left }
+                onPress={ this.leftDate }
                 style={ styles.headerIcons }
                 name="ios-arrow-back" />
               <Title>
                 { this.state.currentEntryDate }
               </Title>
               <Icon
+                disabled={ !this.state.right }
+                onPress={ this.rightDate }
                 style={ styles.headerIcons }
                 name="ios-arrow-forward" />
             </Body>
