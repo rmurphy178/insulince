@@ -18,7 +18,6 @@ import Footer from '../footer/footer';
 
 import PieChart from '../charts/pie_charts/pie_chart';
 
-import { values } from 'lodash';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -27,7 +26,8 @@ export default class Home extends React.Component {
       breakfastItems: "",
       lunchItems: "",
       dinnerItems: "",
-      snackItems: ""
+      snackItems: "",
+      calories: ""
     };
   }
 
@@ -43,36 +43,34 @@ export default class Home extends React.Component {
         this.snackItems = [];
         journalEntries.byId[this.currentEntryId].breakfast
           .forEach(breakfastItem => {
-            this.breakfastItems.push(breakfastItem);
+            this.breakfastItems.push(breakfastItem['nf_calories']);
           });
         journalEntries.byId[this.currentEntryId].lunch
           .forEach(lunchItem => {
-            this.lunchItems.push(lunchItem);
+            this.lunchItems.push(lunchItem['nf_calories']);
           });
         journalEntries.byId[this.currentEntryId].dinner
           .forEach(dinnerItem => {
-            this.dinnerItems.push(dinnerItem);
+            this.dinnerItems.push(dinnerItem['nf_calories']);
         });
         journalEntries.byId[this.currentEntryId].snacks
           .forEach(snackItem => {
-            this.snackItems.push(snackItem);
+            this.snackItems.push(snackItem['nf_calories']);
           });
         this.setState({
-          breakfastItems: this.breakfastItems.map(item => values(item)),
-          lunchItems: this.lunchItems,
-          dinnerItems: this.dinnerItems,
-          snackItems: this.snackItems
+          breakfastItems: this.breakfastItems.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))),
+          lunchItems: this.lunchItems.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))),
+          dinnerItems: this.dinnerItems.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))),
+          snackItems: this.snackItems.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))),
+          calories: (this.breakfastItems.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))) +
+                      this.lunchItems.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))) +
+                      this.dinnerItems.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))) +
+                      this.snackItems.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))))
         });
       });
   }
 
-  // getLastJournalEntry(props) {
-  //   const entries = ;
-  //   this.props.fetchLastJournalEntry()
-  //     .then(results => {
-  //       console.log(results.breakfast);
-  //     });
-  // }
+
 
   render() {
     console.log(this.state);
@@ -101,7 +99,6 @@ export default class Home extends React.Component {
               <View style={styles.chart}>
                 <PieChart />
               </View>
-
           </Content>
           <Footer navigation={ this.props.navigation } />
         </Container>
@@ -128,15 +125,12 @@ const styles = StyleSheet.create({
   },
   chart: {
     alignSelf: 'center',
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 0,
     borderColor: '#ddd',
     borderBottomWidth: 0,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 5,
+    shadowOffset: { width: 0, height: 0 },
     marginLeft: 5,
     marginRight: 5,
     marginTop: 10

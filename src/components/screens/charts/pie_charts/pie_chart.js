@@ -7,7 +7,6 @@ import {
 from "victory-native";
 
 
-
 export default class PieChart extends React.Component {
   render() {
     return (
