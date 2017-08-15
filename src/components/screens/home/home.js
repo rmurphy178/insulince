@@ -43,25 +43,25 @@ export default class Home extends React.Component {
         this.snackItems = [];
         journalEntries.byId[this.currentEntryId].breakfast
           .forEach(breakfastItem => {
-            this.breakfastItems.push(breakfastItem);
+            this.breakfastItems.push(breakfastItem['nf_calories']);
           });
         journalEntries.byId[this.currentEntryId].lunch
           .forEach(lunchItem => {
-            this.lunchItems.push(lunchItem);
+            this.lunchItems.push(lunchItem['nf_calories']);
           });
         journalEntries.byId[this.currentEntryId].dinner
           .forEach(dinnerItem => {
-            this.dinnerItems.push(dinnerItem);
+            this.dinnerItems.push(dinnerItem['nf_calories']);
         });
         journalEntries.byId[this.currentEntryId].snacks
           .forEach(snackItem => {
-            this.snackItems.push(snackItem);
+            this.snackItems.push(snackItem['nf_calories']);
           });
         this.setState({
-          breakfastItems: this.breakfastItems.map(item => values(item)),
-          lunchItems: this.lunchItems,
-          dinnerItems: this.dinnerItems,
-          snackItems: this.snackItems
+          breakfastItems: this.breakfastItems.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))),
+          lunchItems: this.lunchItems.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))),
+          dinnerItems: this.dinnerItems.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))),
+          snackItems: this.snackItems.reduce((total, calories) => (Math.floor(Number(total) + Number(calories))))
         });
       });
   }
