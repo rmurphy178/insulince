@@ -32,7 +32,10 @@ export default class Home extends React.Component {
       lunchItems_sugar: "",
       dinnerItems_sugar: "",
       snackItems_sugar: "",
-      sugar: ""
+      sugar: "",
+      fat: "",
+      carbs: "",
+      protein: ""
     };
   }
 
