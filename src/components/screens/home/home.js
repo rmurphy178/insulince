@@ -67,21 +67,25 @@ export default class Home extends React.Component {
         this.breakfastItems_sugar = [];
         this.breakfastItems_fat = [];
         this.breakfastItems_carbs = [];
+        this.breakfastItems_protein = [];
 
         this.lunchItems_calories = [];
         this.lunchItems_sugar = [];
         this.lunchItems_fat = [];
         this.lunchItems_carbs = [];
+        this.lunchItems_protein = [];
 
         this.dinnerItems_calories = [];
         this.dinnerItems_sugar = [];
         this.dinnerItems_fat = [];
         this.dinnerItems_carbs = [];
+        this.dinnerItems_protein = [];
 
         this.snackItems_calories = [];
         this.snackItems_sugar = [];
         this.snackItems_fat = [];
         this.snackItems_carbs = [];
+        this.snackItems_protein = [];
 
         journalEntries.byId[this.currentEntryId].breakfast
           .forEach(breakfastItem => {
@@ -89,6 +93,7 @@ export default class Home extends React.Component {
             this.breakfastItems_sugar.push(breakfastItem['nf_sugars']);
             this.breakfastItems_fat.push(breakfastItem['nf_total_fat']);
             this.breakfastItems_carbs.push(breakfastItem['nf_total_carbohydrate']);
+            this.breakfastItems_protein.push(breakfastItem['nf_protein']);
           });
         journalEntries.byId[this.currentEntryId].lunch
           .forEach(lunchItem => {
@@ -96,6 +101,7 @@ export default class Home extends React.Component {
             this.lunchItems_sugar.push(lunchItem['nf_sugars']);
             this.lunchItems_fat.push(lunchItem['nf_total_fat']);
             this.lunchItems_carbs.push(lunchItem['nf_total_carbohydrate']);
+            this.lunchItems_protein.push(lunchItem['nf_protein']);
           });
         journalEntries.byId[this.currentEntryId].dinner
           .forEach(dinnerItem => {
@@ -103,6 +109,7 @@ export default class Home extends React.Component {
             this.dinnerItems_sugar.push(dinnerItem['nf_sugars']);
             this.dinnerItems_fat.push(dinnerItem['nf_total_fat']);
             this.dinnerItems_carbs.push(dinnerItem['nf_total_carbohydrate']);
+            this.dinnerItems_protein.push(dinnerItem['nf_protein']);
         });
         journalEntries.byId[this.currentEntryId].snacks
           .forEach(snackItem => {
@@ -110,7 +117,9 @@ export default class Home extends React.Component {
             this.snackItems_sugar.push(snackItem['nf_sugars']);
             this.snackItems_fat.push(snackItem['nf_total_fat']);
             this.snackItems_carbs.push(snackItem['nf_total_carbohydrate']);
+            this.snackItems_protein.push(snackItem['nf_protein']);
           });
+
         this.setState({
           breakfastItems_calories: this.breakfastItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))),
           breakfastItems_sugar: this.breakfastItems_sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar)))),
@@ -150,7 +159,12 @@ export default class Home extends React.Component {
           carbs: (this.breakfastItems_carbs.reduce((total, carbs) => (Math.floor(Number(total) + Number(carbs)))) +
                       this.lunchItems_carbs.reduce((total, carbs) => (Math.floor(Number(total) + Number(carbs)))) +
                       this.dinnerItems_carbs.reduce((total, carbs) => (Math.floor(Number(total) + Number(carbs)))) +
-                      this.snackItems_carbs.reduce((total, carbs) => (Math.floor(Number(total) + Number(carbs)))))
+                      this.snackItems_carbs.reduce((total, carbs) => (Math.floor(Number(total) + Number(carbs))))),
+
+          protein: (this.breakfastItems_protein.reduce((total, protein) => (Math.floor(Number(total) + Number(protein)))) +
+                      this.lunchItems_protein.reduce((total, protein) => (Math.floor(Number(total) + Number(protein)))) +
+                      this.dinnerItems_protein.reduce((total, protein) => (Math.floor(Number(total) + Number(protein)))) +
+                      this.snackItems_protein.reduce((total, protein) => (Math.floor(Number(total) + Number(protein)))))
         });
       });
   }
