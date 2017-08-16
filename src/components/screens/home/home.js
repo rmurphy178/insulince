@@ -47,7 +47,9 @@ export default class Home extends React.Component {
         this.lunchItems_calories = [];
         this.lunchItems_sugar = [];
         this.dinnerItems_calories = [];
+        this.dinnerItems_sugar = [];
         this.snackItems_calories = [];
+        this.snackItems_sugar = [];
         journalEntries.byId[this.currentEntryId].breakfast
           .forEach(breakfastItem => {
             this.breakfastItems_calories.push(breakfastItem['nf_calories']);
@@ -61,10 +63,12 @@ export default class Home extends React.Component {
         journalEntries.byId[this.currentEntryId].dinner
           .forEach(dinnerItem => {
             this.dinnerItems_calories.push(dinnerItem['nf_calories']);
+            this.dinnerItems_sugar.push(dinnerItem['nf_sugars']);
         });
         journalEntries.byId[this.currentEntryId].snacks
           .forEach(snackItem => {
             this.snackItems_calories.push(snackItem['nf_calories']);
+            this.snackItems_sugar.push(snackItem['nf_sugars']);
           });
         this.setState({
           breakfastItems_calories: this.breakfastItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))),
@@ -72,11 +76,17 @@ export default class Home extends React.Component {
           lunchItems_calories: this.lunchItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))),
           lunchItems_sugar: this.lunchItems_sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar)))),
           dinnerItems_calories: this.dinnerItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))),
+          dinnerItems_sugar: this.dinnerItems_sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar)))),
           snackItems_calories: this.snackItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))),
+          snackItems_sugar: this.snackItems_sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar)))),
           calories: (this.breakfastItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))) +
                       this.lunchItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))) +
                       this.dinnerItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))) +
-                      this.snackItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))))
+                      this.snackItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories))))),
+          sugar: (this.breakfastItems_sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar)))) +
+                      this.lunchItems_sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar)))) +
+                      this.dinnerItems_sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar)))) +
+                      this.snackItems_sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar)))))
         });
       });
   }
