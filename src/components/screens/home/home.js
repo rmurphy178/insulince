@@ -23,36 +23,10 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      breakfastItems_calories: "",
-      lunchItems_calories: "",
-      dinnerItems_calories: "",
-      snackItems_calories: "",
       calories: "",
-
-      breakfastItems_sugar: "",
-      lunchItems_sugar: "",
-      dinnerItems_sugar: "",
-      snackItems_sugar: "",
       sugar: "",
-
-
-      breakfastItems_fat: "",
-      lunchItems_fat: "",
-      dinnerItems_fat: "",
-      snackItems_fat: "",
       fat: "",
-
-
-      breakfastItems_carbs: "",
-      lunchItems_carbs: "",
-      dinnerItems_carbs: "",
-      snackItems_carbs: "",
       carbs: "",
-
-      breakfastItems_protein: "",
-      lunchItems_protein: "",
-      dinnerItems_protein: "",
-      snackItems_protein: "",
       protein: ""
     };
   }
@@ -63,108 +37,53 @@ export default class Home extends React.Component {
       .then(()  => {
         const { journalEntries } = this.props;
         this.currentEntryId = journalEntries.allIds[journalEntries.allIds.length - 1];
-        this.breakfastItems_calories = [];
-        this.breakfastItems_sugar = [];
-        this.breakfastItems_fat = [];
-        this.breakfastItems_carbs = [];
-        this.breakfastItems_protein = [];
 
-        this.lunchItems_calories = [];
-        this.lunchItems_sugar = [];
-        this.lunchItems_fat = [];
-        this.lunchItems_carbs = [];
-        this.lunchItems_protein = [];
+        this.calories = [];
+        this.sugar = [];
+        this.fat = [];
+        this.carbs = [];
+        this.protein = [];
 
-        this.dinnerItems_calories = [];
-        this.dinnerItems_sugar = [];
-        this.dinnerItems_fat = [];
-        this.dinnerItems_carbs = [];
-        this.dinnerItems_protein = [];
-
-        this.snackItems_calories = [];
-        this.snackItems_sugar = [];
-        this.snackItems_fat = [];
-        this.snackItems_carbs = [];
-        this.snackItems_protein = [];
 
         journalEntries.byId[this.currentEntryId].breakfast
           .forEach(breakfastItem => {
-            this.breakfastItems_calories.push(breakfastItem['nf_calories']);
-            this.breakfastItems_sugar.push(breakfastItem['nf_sugars']);
-            this.breakfastItems_fat.push(breakfastItem['nf_total_fat']);
-            this.breakfastItems_carbs.push(breakfastItem['nf_total_carbohydrate']);
-            this.breakfastItems_protein.push(breakfastItem['nf_protein']);
+            this.calories.push(breakfastItem['nf_calories']);
+            this.sugar.push(breakfastItem['nf_sugars']);
+            this.fat.push(breakfastItem['nf_total_fat']);
+            this.carbs.push(breakfastItem['nf_total_carbohydrate']);
+            this.protein.push(breakfastItem['nf_protein']);
           });
         journalEntries.byId[this.currentEntryId].lunch
           .forEach(lunchItem => {
-            this.lunchItems_calories.push(lunchItem['nf_calories']);
-            this.lunchItems_sugar.push(lunchItem['nf_sugars']);
-            this.lunchItems_fat.push(lunchItem['nf_total_fat']);
-            this.lunchItems_carbs.push(lunchItem['nf_total_carbohydrate']);
-            this.lunchItems_protein.push(lunchItem['nf_protein']);
+            this.calories.push(lunchItem['nf_calories']);
+            this.sugar.push(lunchItem['nf_sugars']);
+            this.fat.push(lunchItem['nf_total_fat']);
+            this.carbs.push(lunchItem['nf_total_carbohydrate']);
+            this.protein.push(lunchItem['nf_protein']);
           });
         journalEntries.byId[this.currentEntryId].dinner
           .forEach(dinnerItem => {
-            this.dinnerItems_calories.push(dinnerItem['nf_calories']);
-            this.dinnerItems_sugar.push(dinnerItem['nf_sugars']);
-            this.dinnerItems_fat.push(dinnerItem['nf_total_fat']);
-            this.dinnerItems_carbs.push(dinnerItem['nf_total_carbohydrate']);
-            this.dinnerItems_protein.push(dinnerItem['nf_protein']);
+            this.calories.push(dinnerItem['nf_calories']);
+            this.sugar.push(dinnerItem['nf_sugars']);
+            this.fat.push(dinnerItem['nf_total_fat']);
+            this.carbs.push(dinnerItem['nf_total_carbohydrate']);
+            this.protein.push(dinnerItem['nf_protein']);
         });
         journalEntries.byId[this.currentEntryId].snacks
           .forEach(snackItem => {
-            this.snackItems_calories.push(snackItem['nf_calories']);
-            this.snackItems_sugar.push(snackItem['nf_sugars']);
-            this.snackItems_fat.push(snackItem['nf_total_fat']);
-            this.snackItems_carbs.push(snackItem['nf_total_carbohydrate']);
-            this.snackItems_protein.push(snackItem['nf_protein']);
+            this.calories.push(snackItem['nf_calories']);
+            this.sugar.push(snackItem['nf_sugars']);
+            this.fat.push(snackItem['nf_total_fat']);
+            this.carbs.push(snackItem['nf_total_carbohydrate']);
+            this.protein.push(snackItem['nf_protein']);
           });
 
         this.setState({
-          breakfastItems_calories: this.breakfastItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))),
-          breakfastItems_sugar: this.breakfastItems_sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar)))),
-          breakfastItems_fat: this.breakfastItems_fat.reduce((total, fat) => (Math.floor(Number(total) + Number(fat)))),
-          breakfastItems_carbs: this.breakfastItems_carbs.reduce((total, carbs) => (Math.floor(Number(total) + Number(carbs)))),
-
-          lunchItems_calories: this.lunchItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))),
-          lunchItems_sugar: this.lunchItems_sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar)))),
-          lunchItems_fat: this.lunchItems_fat.reduce((total, fat) => (Math.floor(Number(total) + Number(fat)))),
-          lunchItems_carbs: this.lunchItems_carbs.reduce((total, carbs) => (Math.floor(Number(total) + Number(carbs)))),
-
-          dinnerItems_calories: this.dinnerItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))),
-          dinnerItems_sugar: this.dinnerItems_sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar)))),
-          dinnerItems_fat: this.dinnerItems_fat.reduce((total, fat) => (Math.floor(Number(total) + Number(fat)))),
-          dinnerItems_carbs: this.dinnerItems_carbs.reduce((total, carbs) => (Math.floor(Number(total) + Number(carbs)))),
-
-          snackItems_calories: this.snackItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))),
-          snackItems_sugar: this.snackItems_sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar)))),
-          snackItems_fat: this.snackItems_fat.reduce((total, fat) => (Math.floor(Number(total) + Number(fat)))),
-          snackItems_carbs: this.snackItems_carbs.reduce((total, carbs) => (Math.floor(Number(total) + Number(carbs)))),
-
-          calories: (this.breakfastItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))) +
-                      this.lunchItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))) +
-                      this.dinnerItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories)))) +
-                      this.snackItems_calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories))))),
-
-          sugar: (this.breakfastItems_sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar)))) +
-                      this.lunchItems_sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar)))) +
-                      this.dinnerItems_sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar)))) +
-                      this.snackItems_sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar))))),
-
-          fat: (this.breakfastItems_fat.reduce((total, fat) => (Math.floor(Number(total) + Number(fat)))) +
-                      this.lunchItems_fat.reduce((total, fat) => (Math.floor(Number(total) + Number(fat)))) +
-                      this.dinnerItems_fat.reduce((total, fat) => (Math.floor(Number(total) + Number(fat)))) +
-                      this.snackItems_fat.reduce((total, fat) => (Math.floor(Number(total) + Number(fat))))),
-
-          carbs: (this.breakfastItems_carbs.reduce((total, carbs) => (Math.floor(Number(total) + Number(carbs)))) +
-                      this.lunchItems_carbs.reduce((total, carbs) => (Math.floor(Number(total) + Number(carbs)))) +
-                      this.dinnerItems_carbs.reduce((total, carbs) => (Math.floor(Number(total) + Number(carbs)))) +
-                      this.snackItems_carbs.reduce((total, carbs) => (Math.floor(Number(total) + Number(carbs))))),
-
-          protein: (this.breakfastItems_protein.reduce((total, protein) => (Math.floor(Number(total) + Number(protein)))) +
-                      this.lunchItems_protein.reduce((total, protein) => (Math.floor(Number(total) + Number(protein)))) +
-                      this.dinnerItems_protein.reduce((total, protein) => (Math.floor(Number(total) + Number(protein)))) +
-                      this.snackItems_protein.reduce((total, protein) => (Math.floor(Number(total) + Number(protein)))))
+          calories: (this.calories.reduce((total, calories) => (Math.floor(Number(total) + Number(calories))))),
+          sugar: (this.sugar.reduce((total, sugar) => (Math.floor(Number(total) + Number(sugar))))),
+          fat: (this.fat.reduce((total, fat) => (Math.floor(Number(total) + Number(fat))))),
+          carbs: (this.carbs.reduce((total, carbs) => (Math.floor(Number(total) + Number(carbs))))),
+          protein: (this.protein.reduce((total, protein) => (Math.floor(Number(total) + Number(protein)))))
         });
       });
   }
